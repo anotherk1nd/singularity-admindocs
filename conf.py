@@ -202,7 +202,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'ReadtheDocsTemplate.tex', u'Singularity Container Documentation',
-   u'Read the Docs', 'manual'),
+   u'Admin Docs', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
