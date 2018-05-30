@@ -141,7 +141,7 @@ build:
     $ PREFIX=/opt/singularity
     $ rpmbuild -ta --define="_prefix $PREFIX" --define "_sysconfdir $PREFIX/etc" --define "_defaultdocdir $PREFIX/share" singularity-*.tar.gz
 
-We recommend you look at our to get further information about container
+We recommend you look at our `security admin guide <#security>`_ to get further information about container
 privileges and mounting.
 
 Security
@@ -474,7 +474,7 @@ see what Singularity is doing there:
     INFO    [U=1000,P=1]       action_shell()                            Singularity: Invoking an interactive shell within container...
 
     DEBUG   [U=1000,P=1]       action_shell()                            Exec'ing /.singularity.d/actions/shell
-    Singularity ubuntu:~> 
+    Singularity ubuntu:~>
 
 Not only do I see all of the configuration options that I (probably
 forgot about) previously set, I can trace the entire flow of Singularity
@@ -534,7 +534,7 @@ never escalated, but we have the same outcome using a sandbox directory
     DEBUG   [U=1000,P=1]       action_shell()                            Exec'ing /.singularity.d/actions/shell
     Singularity ubuntu.dir:~> whoami
     gmk
-    Singularity ubuntu.dir:~> 
+    Singularity ubuntu.dir:~>
 
 | Here you can see that the output and functionality is very similar,
   but we never increased any privilege and none of the program flow was
@@ -939,7 +939,7 @@ There are however three caveats:
 Code Example using Open MPI 2.1.0 Stable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| 
+|
 
 ::
 
@@ -1054,13 +1054,13 @@ cases, this will work flawlessly as follows:
 
     $ pwd
     /home/gmk/demo
-    $ singularity shell container.img 
+    $ singularity shell container.img
     Singularity/container.img> pwd
     /home/gmk/demo
-    Singularity/container.img> ls -l debian.def 
+    Singularity/container.img> ls -l debian.def
     -rw-rw-r--. 1 gmk gmk 125 May 28 10:35 debian.def
     Singularity/container.img> exit
-    $ 
+    $
 
 | For directory binds to function properly, there must be an existing
   target endpoint within the container (just like a mount point). This
@@ -1086,7 +1086,7 @@ example:
     $ ls -l
     total 0
     -rw-r--r--. 1 root root 0 Jun  1 11:32 mooooo
-    $ singularity shell ~/demo/container.img 
+    $ singularity shell ~/demo/container.img
     WARNING: CWD bind directory not present: /foobar
     Singularity/container.img> pwd
     (unreachable)/foobar
@@ -1094,7 +1094,7 @@ example:
     total 0
     -rw-r--r--. 1 root root 0 Jun  1 18:32 mooooo
     Singularity/container.img> exit
-    $ 
+    $
 
 But notice how even though the directory location is not resolvable, the
 directory contents are available.
@@ -1111,7 +1111,7 @@ example:
 
     $ cat debian.def | singularity exec container.img grep 'MirrorURL'
     MirrorURL "http://ftp.us.debian.org/debian/"
-    $ 
+    $
     Making changes to the container (writable)
     By default, containers are accessed as read only. This is both to enable parallel container execution (e.g. MPI). To enter a container using exec, run, or shell you must pass the --writable flag in order to open the image as read/writable.
 
@@ -1129,19 +1129,19 @@ License
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-     
+
     (1) Redistributions of source code must retain the above copyright notice,
     this list of conditions and the following disclaimer.
-     
+
     (2) Redistributions in binary form must reproduce the above copyright notice,
     this list of conditions and the following disclaimer in the documentation
     and/or other materials provided with the distribution.
-     
+
     (3) Neither the name of the University of California, Lawrence Berkeley
     National Laboratory, U.S. Dept. of Energy nor the names of its contributors
     may be used to endorse or promote products derived from this software without
     specific prior written permission.
-     
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
     AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
     IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -1172,7 +1172,7 @@ License
     the U.S. Government has been granted for itself and others acting on its
     behalf a paid-up, nonexclusive, irrevocable, worldwide license in the Software
     to reproduce, distribute copies to the public, prepare derivative works, and
-    perform publicly and display publicly, and to permit other to do so. 
+    perform publicly and display publicly, and to permit other to do so.
 
 In layman terms...
 ~~~~~~~~~~~~~~~~~~
