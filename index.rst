@@ -977,7 +977,7 @@ Tutorials
 ^^^^^^^^^
 
 -  `Using Host libraries: GPU drivers and OpenMPI BTLs
-    <http://singularity.lbl.gov/tutorial-gpu-drivers-open-mpi-mtls>`__
+    <#tutorial-gpu-drivers-and-openmpi>`__
 
 MPI Development Example
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -1336,6 +1336,7 @@ The mysterious ``wget`` line gets a list of all the libraries that the CentOS ho
 think its safe to use in the container. Specifically these are things like nvidia drivers.
 
 ::
+
     libvdpau_nvidia.so
     libnvidia-opencl.so.1
     libnvidia-ml.so.1
@@ -1434,10 +1435,12 @@ Executing your image
 On our system we do:
 
 ::
+
     SINGULARITYENV_LD_LIBRARY_PATH=/usr/local/openmpi/2.1.0-gcc4/lib:/opt/munge-0.5.11/lib:/opt/slurm-16.05.4/lib:/opt/slurm-16.05.4/lib/slurm:/desired_hostlibs:/opt/mellanox/mxm/lib/
     export SINGULARITYENV_LD_LIBRARY_PATH
 
 then
 
 ::
+
     srun  singularity exec -B /usr/local/openmpi:/usr/local/openmpi -B /opt:/opt -B /lib64:/all_hostlibs hostlibs.img <path to binary>
