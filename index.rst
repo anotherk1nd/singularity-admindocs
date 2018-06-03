@@ -1256,3 +1256,188 @@ part of Singularity proper. For example any contributions submitted will
 have the standard BSD 3 clause terms (unless specifically and otherwise
 stated) and that the contribution is comprised of original new code that
 the contributor has authority to contribute.
+
+Appendix
+========
+
+Using Host libraries: GPU drivers and OpenMPI BTLs
+--------------------------------------------------
+
+.. _sec:tutorial-gpu-drivers-and-openmpi:
+
+**Note: Much of the GPU portion of this tutorial is deprecated by the** ``--nv`` **option
+that automatically binds host system driver libraries into your container at
+runtime. See the** ``exec`` **command for an example**
+
+Singularity does a fantastic job of isolating you from the host so you don’t have to muck
+about with ``LD_LIBRARY_PATH``, you just get exactly the library versions you want. However,
+in some situations you need to use library versions that match host exactly. Two common ones
+are NVIDIA gpu driver user-space libraries, and OpenMPI transport drivers for high performance
+networking. There are many ways to solve these problems. Some people build a container and copy
+the version of the libs (installed on the host) into the container.
+
+What We will learn today
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This document describes how to use a bind mount, symlinks and ldconfig so that when the host
+libraries are updated the container does not need to be rebuilt.
+
+Note this tutorial is tested with Singularity commit `945c6ee343a1e6101e22396a90dfdb5944f442b6 <https://github.com/singularityware/singularity/commit/945c6ee343a1e6101e22396a90dfdb5944f442b6>`_,
+which is part of the (current) development branch, and thus it should work with version 2.3 when
+that is released. The version of OpenMPI used is 2.1.0 (versions above 2.1 should work).
+
+Environment
+~~~~~~~~~~~
+
+In our environment we run CentOS 7 hosts with:
+
+#. slurm located on ``/opt/slurm-<version>`` and the slurm user ``slurm``
+
+#. Mellanox network cards with drivers installed to ``/opt/mellanox`` ( Specifically we run a RoCEv1
+   network for Lustre and MPI communications)
+#. NVIDIA GPUs with drivers installed to ``/lib64``
+#. OpenMPI (by default) for MPI processes
+
+
+Creating your image
+~~~~~~~~~~~~~~~~~~~
+
+Since we are building an ubuntu image, it may be easier to create an ubuntu VM to create the image.
+Alternatively you can follow the recipe here.
+
+Use the following def file to create the image.
+
+::
+
+    Bootstrap: debootstrap
+    MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+    OSVersion: xenial
+    Include: apt
+
+
+    %post
+    apt install -y software-properties-common
+    apt-add-repository -y universe
+    apt update
+    apt install -y wget
+    mkdir /usr/local/openmpi || echo "Directory exists"
+    mkdir /opt/mellanox || echo "Directory exists"
+    mkdir /all_hostlibs || echo "Directory exists"
+    mkdir /desired_hostlibs || echo "Directory exists"
+    mkdir /etc/libibverbs.d || echo "Directory exists"
+    echo "driver mlx4" > /etc/libibverbs.d/mlx4.driver
+    echo "driver mlx5" > /etc/libibverbs.d/mlx5.driver
+    adduser slurm || echo "User exists"
+    wget https://gist.githubusercontent.com/l1ll1/89b3f067d5b790ace6e6767be5ea2851/raw/422c8b5446c6479285cd29d1bf5be60f1b359b90/desired_hostlibs.txt -O /tmp/desired_hostlibs.txt
+    cat /tmp/desired_hostlibs.txt | xargs -I{} ln -s /all_hostlibs/{} /desired_hostlibs/{}
+    rm /tmp/desired_hostlibs.txt
+
+The mysterious ``wget`` line gets a list of all the libraries that the CentOS host has in ``/lib64`` that we
+think its safe to use in the container. Specifically these are things like nvidia drivers.
+
+::
+    libvdpau_nvidia.so
+    libnvidia-opencl.so.1
+    libnvidia-ml.so.1
+    libnvidia-ml.so
+    libnvidia-ifr.so.1
+    libnvidia-ifr.so
+    libnvidia-fbc.so.1
+    libnvidia-fbc.so
+    libnvidia-encode.so.1
+    libnvidia-encode.so
+    libnvidia-cfg.so.1
+    libnvidia-cfg.so
+    libicudata.so.50
+    libicudata.so
+    libcuda.so.1
+    libcuda.so
+    libGLX_nvidia.so.0
+    libGLESv2_nvidia.so.2
+    libGLESv1_CM_nvidia.so.1
+    libEGL_nvidia.so.0
+    libibcm.a
+    libibcm.so
+    libibcm.so.1
+    libibcm.so.1.0.0
+    libibdiag-2.1.1.so
+    libibdiag.a
+    libibdiag.la
+    libibdiag.so
+    libibdiagnet_plugins_ifc-2.1.1.so
+    libibdiagnet_plugins_ifc.a
+    libibdiagnet_plugins_ifc.la
+    libibdiagnet_plugins_ifc.so
+    libibdmcom-2.1.1.so
+    libibdmcom.a
+    libibdmcom.la
+    libibdmcom.so
+    libiberty.a
+    libibis-2.1.1.so.3
+    libibis-2.1.1.so.3.0.3
+    libibis.a
+    libibis.la
+    libibis.so
+    libibmad.a
+    libibmad.so
+    libibmad.so.5
+    libibmad.so.5.5.0
+    libibnetdisc.a
+    libibnetdisc.so
+    libibnetdisc.so.5
+    libibnetdisc.so.5.3.0
+    libibsysapi-2.1.1.so
+    libibsysapi.a
+    libibsysapi.la
+    libibsysapi.so
+    libibumad.a
+    libibumad.so
+    libibumad.so.3
+    libibumad.so.3.1.0
+    libibus-1.0.so.5
+    libibus-1.0.so.5.0.503
+    libibus-qt.so.1
+    libibus-qt.so.1.3.0
+    libibverbs.a
+    libibverbs.so
+    libibverbs.so.1
+    libibverbs.so.1.0.0
+    liblustreapi.so
+    libmlx4-rdmav2.so
+    libmlx4.a
+    libmlx5-rdmav2.so
+    libmlx5.a
+    libnl.so.1
+    libnuma.so.1
+    libosmcomp.a
+    libosmcomp.so
+    libosmcomp.so.3
+    libosmcomp.so.3.0.6
+    libosmvendor.a
+    libosmvendor.so
+    libosmvendor.so.3
+    libosmvendor.so.3.0.8
+    libpciaccess.so.0
+    librdmacm.so.1
+    libwrap.so.0
+
+
+Also note:
+
+#. in ``hostlibs.def`` we create a slurm user. Obviously if your ``SlurmUser`` is different you should change this name.
+#. We make directories for ``/opt`` and ``/usr/local/openmpi``. We’re going to bindmount these from the host so we get
+   all the bits of OpenMPI and Mellanox and Slurm that we need.
+
+Executing your image
+~~~~~~~~~~~~~~~~~~~~
+
+On our system we do:
+
+::
+    SINGULARITYENV_LD_LIBRARY_PATH=/usr/local/openmpi/2.1.0-gcc4/lib:/opt/munge-0.5.11/lib:/opt/slurm-16.05.4/lib:/opt/slurm-16.05.4/lib/slurm:/desired_hostlibs:/opt/mellanox/mxm/lib/
+    export SINGULARITYENV_LD_LIBRARY_PATH
+
+then
+
+::
+    srun  singularity exec -B /usr/local/openmpi:/usr/local/openmpi -B /opt:/opt -B /lib64:/all_hostlibs hostlibs.img <path to binary>
