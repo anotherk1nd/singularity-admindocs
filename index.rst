@@ -172,7 +172,7 @@ Container security paradigms
 | First some background. Most container platforms operate on the
   premise, **trusted users running trusted containers**. This means that
   the primary UNIX account controlling the container platform is either
-  “root” or user(s) that root has deputized (either via or given access
+  “root” or user(s) that root has deputized (either via ``sudo`` or given access
   to a control socket of a root owned daemon process).
 | Singularity on the other hand, operates on a different premise because
   it was developed for HPC type infrastructures where you have users,
@@ -189,12 +189,15 @@ Untrusted users running untrusted containers!
   escalation, means that attention to security is of the utmost
   importance.
 
+Privilege escalation is necessary for containerization!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 As mentioned, there are several containerization system calls and
 functions which are considered “privileged” in that they must be
 executed with a certain level of capability/privilege. To do this, all
 container systems must employ one of the following mechanisms:
 
-#. **Limit usage to root:** Only allow the root user (or users granted )
+#. **Limit usage to root:** Only allow the root user (or users granted ``sudo``)
    to run containers. This has the obvious limitation of not allowing
    arbitrary users the ability to run containers, nor does it allow
    users to run containers as themselves. Access to data, security data,
@@ -229,6 +232,9 @@ container systems must employ one of the following mechanisms:
    capabilities enabled. You can enable and disable capabilities on a
    per process and per file basis (if allowed to do so).
 
+How does Singularity do it?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Singularity must allow users to run containers as themselves which rules
 out options 1 and 2 from the above list. Singularity supports the rest
 of the options to following degrees of functionally:
@@ -248,7 +254,7 @@ of the options to following degrees of functionally:
    transparency in mind. The code is written with attention to
    simplicity and readability and Singularity increases the effective
    permission set only when it is necessary, and drops it immediately
-   (as can be seen with the –debug run flag). There have been several
+   (as can be seen with the ``–debug`` run flag). There have been several
    independent audits of the source code, and while they are not
    definitive, it is a good assurance.
 
@@ -264,8 +270,8 @@ Where are the Singularity priviledged components
 When you install Singularity as root, it will automatically setup the
 necessary files as SetUID (as of version 2.4, this is the default run
 mode). The location of these files is dependent on how Singularity was
-installed and the options passed to the script. Assuming a default run
-which installs files into of you can find the SetUID programs as
+installed and the options passed to the ``configure`` script. Assuming a default ``./configure`` run
+which installs files into ``--prefix`` of ``/usr/local`` you can find the SetUID programs as
 follows:
 
 ::
@@ -288,7 +294,7 @@ follows:
 
 Removing any of these SUID binaries or changing the permissions on them
 would cause Singularity to utilize the non-SUID workflows. Each file
-with also has a non-suid equivalent:
+with ``*-suid`` also has a non-suid equivalent:
 
 ::
 
@@ -300,8 +306,8 @@ with also has a non-suid equivalent:
   SUID components, we have provided these fall back executables for
   sites that wish to limit the SETUID capabilities to the bare
   essentials/minimum. To disable the SetUID portions of Singularity, you
-  can either remove the above files, or you can edit the setting for at
-  the top of the file, which is typically located in .
+  can either remove the above ``*-suid`` files, or you can edit the setting for ``allow suid`` at
+  the top of the ``singularity.conf`` file, which is typically located in ``$PREFIX/etc/singularity/singularity.conf``.
 
 ::
 
@@ -316,7 +322,7 @@ with also has a non-suid equivalent:
     allow setuid = yes
 
 You can also install Singularity as root without any of the SetUID
-components with the configure option as follows:
+components with the configure option ``--disable-suid`` as follows:
 
 ::
 
@@ -342,9 +348,12 @@ Container permissions and usage strategy
   giving detail about which users are allowed to run containers, along
   with image curation and ownership.
 | These settings can all be found in the Singularity configuration file
-  which is installed to . When running in a privileged mode, the
+  which is installed to ``$PREFIX/etc/singularity/singularity.conf``. When running in a privileged mode, the
   configuration file **MUST** be owned by root and thus the system
   administrator always has the final control.
+
+controlling what kind of containers are allowed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | Singularity supports several different container formats:
 
@@ -368,6 +377,9 @@ containers Singularity will support:
     allow container extfs = yes
     allow container dir = yes
 
+limiting usage to specific container file owners
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 | One benefit of using container images is that they exist on the
   filesystem as any other file would. This means that POSIX permissions
   are mandatory. Here you can configure Singularity to only “trust”
@@ -388,7 +400,10 @@ enable this feature. Trusting container images to users could allow a
 malicious user to modify an image either before or while being used and
 cause unexpected behavior from the kernel (e.g. a `DOS
 attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__). For
-more information, please see: https://lwn.net/Articles/652468/
+more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
+
+limiting usage to specific paths
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The configuration file also gives you the ability to limit containers to
 specific paths. This is very useful to ensure that only trusted or
@@ -502,8 +517,11 @@ the container. Each line also describes what is the effective UID
 running the command, what is the PID, and what is the function emitting
 the debug message.
 
+A peek into the “rootless” program flow
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The above snippet was using the default SetUID program flow with a
-container image file named “ubuntu”. For comparison, if we also use the
+container image file named “ubuntu”. For comparison, if we also use the ``--userns``
 flag, and snip in the same places, you can see how the effective UID is
 never escalated, but we have the same outcome using a sandbox directory
 (chroot) style container.
@@ -556,13 +574,13 @@ never escalated, but we have the same outcome using a sandbox directory
     Singularity ubuntu.dir:~>
 
 | Here you can see that the output and functionality is very similar,
-  but we never increased any privilege and none of the program flow was
+  but we never increased any privilege and none of the ``*-suid`` program flow was
   utilized. We had to use a chroot style directory container (as images
   are not supported with the user namespace, but you can clearly see
   that the effective UID never had to change to run this container.
 | note: Singularity can natively create and manage chroot style
   containers just like images! The above image was created using the
-  command:
+  command: ``singularity build ubuntu.dir docker://ubuntu:latest``
 
 Summary
 ~~~~~~~
