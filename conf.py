@@ -28,7 +28,13 @@ import os
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinxcontrib.httpdomain',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -106,8 +112,6 @@ html_theme = 'sphinx_rtd_theme'
 #html_theme_options = {}
 html_theme_options = {
     'sticky_navigation': True,
-    'collapse_navigation': False,
-    'prev_next_buttons_location': 'bottom',
     'style_external_links': True,
     'includehidden': True,
     'navigation_depth': 4,
