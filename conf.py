@@ -106,7 +106,9 @@ html_theme = 'default'
 #html_theme_options = {}
 html_theme_options = {
     'sticky_navigation': True,
-    'collapsiblesidebar':True,
+    'collapse_navigation': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': True,
     'includehidden': True,
     'navigation_depth': 4,
 }
