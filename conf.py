@@ -114,6 +114,7 @@ html_theme_options = {
     'sticky_navigation': True,
     'style_external_links': True,
     'includehidden': True,
+    'collapse_navigation': True,
     'prev_next_buttons_location': 'bottom',
     'navigation_depth': 4,
 }

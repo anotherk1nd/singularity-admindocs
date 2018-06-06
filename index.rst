@@ -1,6 +1,6 @@
 .. toctree::
    :caption: Admin Documentation
-   :maxdepth: 3
+   :maxdepth: 4
 
       quickstart
       installation
