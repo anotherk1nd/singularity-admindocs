@@ -193,7 +193,7 @@ Untrusted users running untrusted containers!
   importance.
 
 Privilege escalation is necessary for containerization!
--------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As mentioned, there are several containerization system calls and
 functions which are considered “privileged” in that they must be
@@ -236,7 +236,7 @@ container systems must employ one of the following mechanisms:
    per process and per file basis (if allowed to do so).
 
 How does Singularity do it?
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Singularity must allow users to run containers as themselves which rules
 out options 1 and 2 from the above list. Singularity supports the rest
@@ -356,7 +356,7 @@ Container permissions and usage strategy
   administrator always has the final control.
 
 controlling what kind of containers are allowed
------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | Singularity supports several different container formats:
 
@@ -381,7 +381,7 @@ containers Singularity will support:
     allow container dir = yes
 
 limiting usage to specific container file owners
-------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | One benefit of using container images is that they exist on the
   filesystem as any other file would. This means that POSIX permissions
@@ -406,7 +406,7 @@ attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__). For
 more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
 
 limiting usage to specific paths
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The configuration file also gives you the ability to limit containers to
 specific paths. This is very useful to ensure that only trusted or
@@ -454,7 +454,10 @@ We can then peek into the system log to see what was recorded:
 
 **note: All errors are logged!**
 
-We can also add the argument to any command itself at runtime to see
+A peek into the SetUID program flow
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We can also add the ``--debug`` argument to any command itself at runtime to see
 everything that Singularity is doing. In this case we can run
 Singularity in debug mode and request use of the PID namespace so we can
 see what Singularity is doing there:
@@ -521,7 +524,7 @@ running the command, what is the PID, and what is the function emitting
 the debug message.
 
 A peek into the “rootless” program flow
----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The above snippet was using the default SetUID program flow with a
 container image file named “ubuntu”. For comparison, if we also use the ``--userns``
@@ -811,7 +814,7 @@ What is a check?
         $ singularity check --tag clean ubuntu.img
 
 Adding a Check
---------------
+~~~~~~~~~~~~~~
 
 | A check should be a bash (or other) script that will perform some
   action. The following is required:

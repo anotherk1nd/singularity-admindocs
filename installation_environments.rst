@@ -38,6 +38,9 @@ containers as part of your jobs:
 -  `MASSIVE M1 M2 and M3 <http://docs.massive.org.au/index.html>`__
    (Monash University and Australian National Merit Allocation Scheme)
 
+Integration with MPI
+~~~~~~~~~~~~~~~~~~~~
+
 Another result of the Singularity architecture is the ability to
 properly integrate with the Message Passing Interface (MPI). Work has
 already been done for out of the box compatibility with Open MPI (both
@@ -71,13 +74,13 @@ Below are example snippets of building and installing OpenMPI into a
 container and then running an example MPI program through Singularity.
 
 Tutorials
----------
+~~~~~~~~~
 
 -  `Using Host libraries: GPU drivers and OpenMPI BTLs
     <#tutorial-gpu-drivers-and-openmpi>`__
 
 MPI Development Example
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 **What are supported Open MPI Version(s)?** To achieve proper
 container’ized Open MPI support, you should use Open MPI version 2.1.
@@ -102,7 +105,7 @@ There are however three caveats:
    around)
 
 Code Example using Open MPI 2.1.0 Stable
-----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -131,7 +134,7 @@ Code Example using Open MPI 2.1.0 Stable
     $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 
 Code Example using Open MPI git master
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The previous example (using the Open MPI 2.1.0 stable release) should
 work fine on most hardware but if you have an issue, try running the
