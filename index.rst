@@ -2,10 +2,6 @@
    :caption: Admin Documentation
    :maxdepth: 4
 
-      quickstart
-      installation
-      appendix
-
 
 ***********
 Quick Start
