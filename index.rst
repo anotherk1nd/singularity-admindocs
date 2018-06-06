@@ -905,8 +905,9 @@ If one of these errors is reported, it is best to check the installation
 of Singularity and ensure that it was properly installed by the root
 user onto a local file system.
 
+*************************
 Installation Environments
-=========================
+*************************
 
 Singularity on HPC
 ------------------
@@ -1259,8 +1260,9 @@ have the standard BSD 3 clause terms (unless specifically and otherwise
 stated) and that the contribution is comprised of original new code that
 the contributor has authority to contribute.
 
+********
 Appendix
-========
+********
 
 Using Host libraries: GPU drivers and OpenMPI BTLs
 --------------------------------------------------
