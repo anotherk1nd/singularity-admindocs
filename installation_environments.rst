@@ -6,18 +6,18 @@ Installation Environments
 Singularity on HPC
 ------------------
 
-| One of the architecturally defined features in Singularity is that it
-  can execute containers like they are native programs or scripts on a
-  host computer. As a result, integration with schedulers is simple and
-  runs exactly as you would expect. All standard input, output, error,
-  pipes, IPC, and other communication pathways that locally running
-  programs employ are synchronized with the applications running locally
-  within the container.
-| Additionally, because Singularity is not emulating a full hardware
-  level virtualization paradigm, there is no need to separate out any
-  sandboxed networks or file systems because there is no concept of
-  user-escalation within a container. Users can run Singularity
-  containers just as they run any other program on the HPC resource.
+One of the architecturally defined features in Singularity is that it
+can execute containers like they are native programs or scripts on a
+host computer. As a result, integration with schedulers is simple and
+runs exactly as you would expect. All standard input, output, error,
+pipes, IPC, and other communication pathways that locally running
+programs employ are synchronized with the applications running locally
+within the container.
+Additionally, because Singularity is not emulating a full hardware
+level virtualization paradigm, there is no need to separate out any
+sandboxed networks or file systems because there is no concept of
+user-escalation within a container. Users can run Singularity
+containers just as they run any other program on the HPC resource.
 
 Workflows
 ~~~~~~~~~
@@ -64,20 +64,20 @@ MPI/Singularity workflow works as follows:
 #. At this point the processes within the container run as they would
    normally directly on the host.
 
-| This entire process happens behind the scenes, and from the user’s
-  perspective running via MPI is as simple as just calling mpirun on the
-  host as they would normally.
-| Below are example snippets of building and installing OpenMPI into a
-  container and then running an example MPI program through Singularity.
+This entire process happens behind the scenes, and from the user’s
+perspective running via MPI is as simple as just calling mpirun on the
+host as they would normally.
+Below are example snippets of building and installing OpenMPI into a
+container and then running an example MPI program through Singularity.
 
 Tutorials
-^^^^^^^^^
+---------
 
 -  `Using Host libraries: GPU drivers and OpenMPI BTLs
     <#tutorial-gpu-drivers-and-openmpi>`__
 
 MPI Development Example
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 **What are supported Open MPI Version(s)?** To achieve proper
 container’ized Open MPI support, you should use Open MPI version 2.1.
@@ -102,9 +102,7 @@ There are however three caveats:
    around)
 
 Code Example using Open MPI 2.1.0 Stable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-|
+----------------------------------------
 
 ::
 
@@ -133,7 +131,7 @@ Code Example using Open MPI 2.1.0 Stable
     $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 
 Code Example using Open MPI git master
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------
 
 The previous example (using the Open MPI 2.1.0 stable release) should
 work fine on most hardware but if you have an issue, try running the
@@ -227,14 +225,14 @@ cases, this will work flawlessly as follows:
     Singularity/container.img> exit
     $
 
-| For directory binds to function properly, there must be an existing
-  target endpoint within the container (just like a mount point). This
-  means that if your home directory exists in a non-standard base
-  directory like “/foobar/username” then the base directory “/foobar”
-  must already exist within the container.
-| Singularity will not create these base directories! You must enter the
-  container with the option ``--writable`` being set, and create the directory
-  manually.
+For directory binds to function properly, there must be an existing
+target endpoint within the container (just like a mount point). This
+means that if your home directory exists in a non-standard base
+directory like “/foobar/username” then the base directory “/foobar”
+must already exist within the container.
+Singularity will not create these base directories! You must enter the
+container with the option ``--writable`` being set, and create the directory
+manually.
 
 Current Working Directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~
