@@ -109,6 +109,8 @@ html_theme_options = {
     'collapsiblesidebar':True,
     'includehidden': True,
     'navigation_depth': 4,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': True,
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
