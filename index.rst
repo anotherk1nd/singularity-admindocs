@@ -1,4 +1,3 @@
-.. include:: quickstart.rst
 
 .. toctree::
    :caption: Admin Documentation
