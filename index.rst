@@ -1,3 +1,12 @@
+.. toctree::
+   :caption: Admin Documentation
+   :maxdepth: 3
+
+      quickstart
+      installation
+      appendix
+
+
 ***********
 Quick Start
 ***********
