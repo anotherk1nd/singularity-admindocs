@@ -1,6 +1,3 @@
-.. toctree::
-   :caption: Admin Documentation
-   :maxdepth: 4
 
 
 ***********
@@ -1651,3 +1648,7 @@ use a single InstallPkgs keyword to install multiple packages, as seen below:
 
 Using a single InstallPkgs keyword to install both ‘python’ and ‘wget’ allowed to decrease the number of InstallPkgs keywords we had to use in our definition file.
 This slimmed down our definition file and helped reduce clutter.
+
+.. toctree::
+   :caption: Admin Documentation
+   :maxdepth: 4
