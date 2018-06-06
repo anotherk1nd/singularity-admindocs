@@ -1,8 +1,8 @@
-.. include:: admin-doc.rst
+
 .. toctree::
    :caption: Admin Documentation
    :maxdepth: 4
 
-   quick-Start
+   quick-start
    installation-environments
    appendix
