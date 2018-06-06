@@ -25,7 +25,7 @@ have an appropriately setup build server:
     $ sudo yum groupinstall "Development Tools"
 
 Downloading the source
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 You can download the source code either from the latest stable tarball
 release or via the GitHub master repository. Here is an example
@@ -44,7 +44,7 @@ downloading and preparing the latest development code from GitHub:
   directory.
 
 Source Installation
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 | The following example demonstrates how to install Singularity into ``/usr/local``.
   You can install Singularity into any directory of your choosing, but
@@ -78,7 +78,7 @@ If you choose not to install ``squashfs-tools``, you will hit an error when your
 a pull from Docker Hub, for example.
 
 Prefix in special places (–localstatedir)
------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | As with most autotools-based build scripts, you are able to supply the ``--prefix``
   argument to the configure script to change where Singularity will be
@@ -122,7 +122,7 @@ normally created by the install make target; when using a local
 directory for ``--localstatedir`` these will only be created on the node ``make`` is run on.
 
 Building an RPM directly from the source
-----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Singularity includes all of the necessary bits to properly create an RPM
 package directly from the source tree, and you can create an RPM by
