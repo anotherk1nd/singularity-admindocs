@@ -10,7 +10,7 @@ Singularity for multi-tenant HPC resources and will not cover usage of
 the command line tools, container usage, or example use cases.
 
 Installation
-~~~~~~~~~~~~
+------------
 
 There are two common ways to install Singularity, from source code and
 via binary packages. This document will explain the process of
