@@ -1,7 +1,7 @@
 .. include:: quickstart.rst
 
 .. toctree::
-   :caption: Admin Documentation
+   :caption: Admin Guide
    :maxdepth: 2
 
    Quickstart <quickstart>
