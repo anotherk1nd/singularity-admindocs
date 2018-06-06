@@ -117,6 +117,7 @@ html_theme_options = {
     'collapse_navigation': True,
     'prev_next_buttons_location': 'bottom',
     'navigation_depth': 4,
+    'includehidden' : False
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

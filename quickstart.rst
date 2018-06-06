@@ -60,11 +60,11 @@ Source Installation
     $ make
     $ sudo make install
 
-
-| **NOTE: The** ``make install`` **above must be run as root to have Singularity properly
-  installed. Failure to install as root will cause Singularity to not
-  function properly or have limited functionality when run by a non-root
-  user.**
+    .. note::
+        **NOTE: The** ``make install`` **above must be run as root to have Singularity properly
+        installed. Failure to install as root will cause Singularity to not
+        function properly or have limited functionality when run by a non-root
+        user.**
 
 | Also note that when you configure, ``squashfs-tools`` is **not** required, however it is
   required for full functionality. You will see this message after the
