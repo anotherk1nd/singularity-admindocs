@@ -1,3 +1,7 @@
+.. toctree::
+   :caption: Admin Documentation
+   :maxdepth: 2
+
 
 ***********
 Quick Start
