@@ -1,15 +1,16 @@
+***********
 Quick Start
-===========
+***********
 
 Administration QuickStart
--------------------------
+=========================
 
 This document will cover installation and administration points of
 Singularity for multi-tenant HPC resources and will not cover usage of
 the command line tools, container usage, or example use cases.
 
 Installation
-~~~~~~~~~~~~
+------------
 
 There are two common ways to install Singularity, from source code and
 via binary packages. This document will explain the process of
@@ -23,7 +24,7 @@ have an appropriately setup build server:
     $ sudo yum groupinstall "Development Tools"
 
 Downloading the source
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 You can download the source code either from the latest stable tarball
 release or via the GitHub master repository. Here is an example
@@ -42,7 +43,7 @@ downloading and preparing the latest development code from GitHub:
   directory.
 
 Source Installation
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 | The following example demonstrates how to install Singularity into ``/usr/local``.
   You can install Singularity into any directory of your choosing, but
@@ -76,7 +77,7 @@ If you choose not to install ``squashfs-tools``, you will hit an error when your
 a pull from Docker Hub, for example.
 
 Prefix in special places (–localstatedir)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 | As with most autotools-based build scripts, you are able to supply the ``--prefix``
   argument to the configure script to change where Singularity will be
@@ -120,7 +121,7 @@ normally created by the install make target; when using a local
 directory for ``--localstatedir`` these will only be created on the node ``make`` is run on.
 
 Building an RPM directly from the source
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 Singularity includes all of the necessary bits to properly create an RPM
 package directly from the source tree, and you can create an RPM by
@@ -165,10 +166,10 @@ We recommend you look at our `security admin guide <#security>`_ to get further 
 privileges and mounting.
 
 Security
---------
+========
 
 Container security paradigms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 | First some background. Most container platforms operate on the
   premise, **trusted users running trusted containers**. This means that
@@ -182,7 +183,7 @@ Container security paradigms
   untrusted containers**.
 
 Untrusted users running untrusted containers!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------
 
 | This simple phrase describes the security perspective Singularity is
   designed with. And if you additionally consider the fact that running
@@ -191,7 +192,7 @@ Untrusted users running untrusted containers!
   importance.
 
 Privilege escalation is necessary for containerization!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------
 
 As mentioned, there are several containerization system calls and
 functions which are considered “privileged” in that they must be
@@ -234,7 +235,7 @@ container systems must employ one of the following mechanisms:
    per process and per file basis (if allowed to do so).
 
 How does Singularity do it?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 Singularity must allow users to run containers as themselves which rules
 out options 1 and 2 from the above list. Singularity supports the rest
@@ -266,7 +267,7 @@ of the options to following degrees of functionally:
    systems.
 
 Where are the Singularity priviledged components
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------
 
 When you install Singularity as root, it will automatically setup the
 necessary files as SetUID (as of version 2.4, this is the default run
@@ -332,7 +333,7 @@ components with the configure option ``--disable-suid`` as follows:
     $ sudo make install
 
 Can I install Singularity as a user?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 Yes, but don’t expect all of the functions to work. If the SetUID
 components are not present, Singularity will attempt to use the “user
@@ -341,7 +342,7 @@ fully, you will still not be able to access all of the Singularity
 features.
 
 Container permissions and usage strategy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 | As a system admin, you want to set up a configuration that is
   customized for your cluster or shared resource. In the following
@@ -354,7 +355,7 @@ Container permissions and usage strategy
   administrator always has the final control.
 
 controlling what kind of containers are allowed
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------
 
 | Singularity supports several different container formats:
 
@@ -379,7 +380,7 @@ containers Singularity will support:
     allow container dir = yes
 
 limiting usage to specific container file owners
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------
 
 | One benefit of using container images is that they exist on the
   filesystem as any other file would. This means that POSIX permissions
@@ -404,7 +405,7 @@ attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__). For
 more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
 
 limiting usage to specific paths
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 The configuration file also gives you the ability to limit containers to
 specific paths. This is very useful to ensure that only trusted or
@@ -423,7 +424,7 @@ containers are only being used on performant file systems).
     #limit container paths = /scratch, /tmp, /global
 
 Logging
-~~~~~~~
+-------
 
 Singularity offers a very comprehensive auditing mechanism via the
 system log. For each command that is issued, it prints the UID, PID, and
@@ -519,7 +520,7 @@ running the command, what is the PID, and what is the function emitting
 the debug message.
 
 A peek into the “rootless” program flow
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 The above snippet was using the default SetUID program flow with a
 container image file named “ubuntu”. For comparison, if we also use the ``--userns``
@@ -584,7 +585,7 @@ never escalated, but we have the same outcome using a sandbox directory
   command: ``singularity build ubuntu.dir docker://ubuntu:latest``
 
 Summary
-~~~~~~~
+-------
 
 Singularity supports multiple modes of operation to meet your security
 needs. For most HPC centers, and general usage scenarios, the default
@@ -594,7 +595,7 @@ becomes a balance security and functionality (the most secure systems do
 nothing).
 
 The Singularity Config File
----------------------------
+===========================
 
 | When Singularity is running via the SUID pathway, the configuration
   **must** be owned by the root user otherwise Singularity will error
@@ -608,7 +609,7 @@ The Singularity Config File
   are several things to pay special attention to:
 
 Parameters
-~~~~~~~~~~
+----------
 
 ALLOW SETUID (boolean, default=’yes’)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -718,14 +719,14 @@ AUTOFS BUG PATH (string)
     autofs bug path = /share/PI
 
 Logging
-~~~~~~~
+-------
 
 In order to facilitate monitoring and auditing, Singularity will
 syslog() every action and error that takes place to the ``LOCAL0`` syslog facility.
 You can define what to do with those logs in your syslog configuration.
 
 Loop Devices
-~~~~~~~~~~~~
+------------
 
 | Singularity images have ``ext3`` file systems embedded within them, and thus to
   mount them, we need to convert the raw file system image (with
@@ -766,7 +767,7 @@ unload/reload the loop device as root using the following commands:
     # modprobe loop
 
 Container Checks
-----------------
+================
 
 New to Singularity 2.4 is the ability to, on demand, run container
 “checks,” which can be anything from a filter for sensitive information,
@@ -775,7 +776,7 @@ Singularity, managed by the administrator, and `available to the
 user <http://singularity-userdoc.readthedocs.io/en/latest/#container-checks>`__.
 
 What is a check?
-~~~~~~~~~~~~~~~~
+----------------
 
 | Broadly, a check is a script that is run over a mounted filesystem,
   primary with the purpose of checking for some security issue. This
@@ -809,7 +810,7 @@ What is a check?
         $ singularity check --tag clean ubuntu.img
 
 Adding a Check
-~~~~~~~~~~~~~~
+--------------
 
 | A check should be a bash (or other) script that will perform some
   action. The following is required:
@@ -864,7 +865,7 @@ code is also set here with ``[SUCCESS]``. Currently, we aren’t doing anything 
 and thus perform all checks.
 
 How to tell users?
-~~~~~~~~~~~~~~~~~~
+------------------
 
 If you add a custom check that you want for your users to use, you
 should tell them about it. Better yet, `tell
@@ -872,13 +873,13 @@ us <https://github.com/singularityware/singularity/issues>`__ about it
 so it can be integrated into the Singularity software for others to use.
 
 Troubleshooting
----------------
+===============
 
 This section will help you debug (from the system administrator’s
 perspective) Singularity.
 
 Not installed correctly, or installed to a non-compatible location
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------------
 
 | Singularity must be installed by root into a location that allows for
   ``SUID`` programs to be executed (as described above in the installation
