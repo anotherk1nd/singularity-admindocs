@@ -62,9 +62,9 @@ Source Installation
     $ sudo make install
 
 .. note:: **The** ``make install`` **above must be run as root to have Singularity properly
-        installed. Failure to install as root will cause Singularity to not
-        function properly or have limited functionality when run by a non-root
-        user.**
+    installed. Failure to install as root will cause Singularity to not
+    function properly or have limited functionality when run by a non-root
+    user.**
 
 | Also note that when you configure, ``squashfs-tools`` is **not** required, however it is
   required for full functionality. You will see this message after the
@@ -400,11 +400,11 @@ limiting usage to specific container file owners
     #limit container owners = gmk, singularity, nobody
 
 .. note:: If you are in a high risk security environment, you may want to
-enable this feature. Trusting container images to users could allow a
-malicious user to modify an image either before or while being used and
-cause unexpected behavior from the kernel (e.g. a `DOS
-attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__). For
-more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
+    enable this feature. Trusting container images to users could allow a
+    malicious user to modify an image either before or while being used and
+    cause unexpected behavior from the kernel (e.g. a `DOS
+    attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__). For
+    more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
 
 limiting usage to specific paths
 --------------------------------
@@ -587,8 +587,8 @@ never escalated, but we have the same outcome using a sandbox directory
   that the effective UID never had to change to run this container.
 
 .. note:: Singularity can natively create and manage chroot style
-  containers just like images! The above image was created using the
-  command: ``singularity build ubuntu.dir docker://ubuntu:latest``
+    containers just like images! The above image was created using the
+    command: ``singularity build ubuntu.dir docker://ubuntu:latest``
 
 Summary
 =======
@@ -630,7 +630,7 @@ ALLOW SETUID (boolean, default=’yes’)
   kernel supports user namespaces and you choose to use user namespaces.
 
 .. note:: as of the time of this writing, the user namespace is rather
-  buggy
+    buggy
 
 ALLOW PID NS (boolean, default=’yes’)
 -------------------------------------
