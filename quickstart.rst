@@ -167,11 +167,12 @@ build:
 We recommend you look at our `security admin guide <#security>`_ to get further information about container
 privileges and mounting.
 
+--------
 Security
-========
+--------
 
 Container security paradigms
-----------------------------
+============================
 
 | First some background. Most container platforms operate on the
   premise, **trusted users running trusted containers**. This means that
@@ -185,7 +186,7 @@ Container security paradigms
   untrusted containers**.
 
 Untrusted users running untrusted containers!
----------------------------------------------
+=============================================
 
 | This simple phrase describes the security perspective Singularity is
   designed with. And if you additionally consider the fact that running
@@ -194,7 +195,7 @@ Untrusted users running untrusted containers!
   importance.
 
 Privilege escalation is necessary for containerization!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------
 
 As mentioned, there are several containerization system calls and
 functions which are considered “privileged” in that they must be
@@ -237,7 +238,7 @@ container systems must employ one of the following mechanisms:
    per process and per file basis (if allowed to do so).
 
 How does Singularity do it?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 Singularity must allow users to run containers as themselves which rules
 out options 1 and 2 from the above list. Singularity supports the rest
@@ -269,7 +270,7 @@ of the options to following degrees of functionally:
    systems.
 
 Where are the Singularity priviledged components
-------------------------------------------------
+================================================
 
 When you install Singularity as root, it will automatically setup the
 necessary files as SetUID (as of version 2.4, this is the default run
@@ -335,7 +336,7 @@ components with the configure option ``--disable-suid`` as follows:
     $ sudo make install
 
 Can I install Singularity as a user?
-------------------------------------
+====================================
 
 Yes, but don’t expect all of the functions to work. If the SetUID
 components are not present, Singularity will attempt to use the “user
@@ -344,7 +345,7 @@ fully, you will still not be able to access all of the Singularity
 features.
 
 Container permissions and usage strategy
-----------------------------------------
+========================================
 
 | As a system admin, you want to set up a configuration that is
   customized for your cluster or shared resource. In the following
@@ -357,7 +358,7 @@ Container permissions and usage strategy
   administrator always has the final control.
 
 controlling what kind of containers are allowed
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------
 
 | Singularity supports several different container formats:
 
@@ -382,7 +383,7 @@ containers Singularity will support:
     allow container dir = yes
 
 limiting usage to specific container file owners
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------
 
 | One benefit of using container images is that they exist on the
   filesystem as any other file would. This means that POSIX permissions
@@ -407,7 +408,7 @@ attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__). For
 more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
 
 limiting usage to specific paths
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 The configuration file also gives you the ability to limit containers to
 specific paths. This is very useful to ensure that only trusted or
@@ -426,7 +427,7 @@ containers are only being used on performant file systems).
     #limit container paths = /scratch, /tmp, /global
 
 Logging
--------
+=======
 
 Singularity offers a very comprehensive auditing mechanism via the
 system log. For each command that is issued, it prints the UID, PID, and
@@ -456,7 +457,7 @@ We can then peek into the system log to see what was recorded:
 **note: All errors are logged!**
 
 A peek into the SetUID program flow
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 We can also add the ``--debug`` argument to any command itself at runtime to see
 everything that Singularity is doing. In this case we can run
@@ -525,7 +526,7 @@ running the command, what is the PID, and what is the function emitting
 the debug message.
 
 A peek into the “rootless” program flow
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 The above snippet was using the default SetUID program flow with a
 container image file named “ubuntu”. For comparison, if we also use the ``--userns``
@@ -590,7 +591,7 @@ never escalated, but we have the same outcome using a sandbox directory
   command: ``singularity build ubuntu.dir docker://ubuntu:latest``
 
 Summary
--------
+=======
 
 Singularity supports multiple modes of operation to meet your security
 needs. For most HPC centers, and general usage scenarios, the default
@@ -599,8 +600,9 @@ implementations, the user namespace workflow maybe a better option. It
 becomes a balance security and functionality (the most secure systems do
 nothing).
 
+---------------------------
 The Singularity Config File
-===========================
+---------------------------
 
 | When Singularity is running via the SUID pathway, the configuration
   **must** be owned by the root user otherwise Singularity will error
@@ -614,10 +616,10 @@ The Singularity Config File
   are several things to pay special attention to:
 
 Parameters
-----------
+==========
 
 ALLOW SETUID (boolean, default=’yes’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 | This parameter toggles the global ability to execute the SETUID (SUID)
   portion of the code if it exists. As mentioned earlier, if the SUID
@@ -630,7 +632,7 @@ ALLOW SETUID (boolean, default=’yes’)
   buggy
 
 ALLOW PID NS (boolean, default=’yes’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 | While the PID namespace is a neat feature, it does not have much
   practical usage in an HPC context so it is recommended to disable this
@@ -643,7 +645,7 @@ ALLOW PID NS (boolean, default=’yes’)
   namespace as it must fork a child process.
 
 ENABLE OVERLAY (boolean, default=’no’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 The overlay file system creates a writable substrate to create bind
 points if necessary. This feature is very useful when implementing bind
@@ -654,7 +656,7 @@ within a kernel, but has not proved to be stable as of the time of this
 writing (e.g. the Red Hat 7.2 kernel).
 
 CONFIG PASSWD, GROUP, RESOLV_CONF (boolean, default=’yes’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------
 
 All of these options essentially do the same thing for different files
 within the container. This feature updates the described file (``/etc/passwd``, ``/etc/group`` , and ``/etc/resolv.conf``
@@ -663,7 +665,7 @@ uses binds and modifies temporary files such that the original files are
 not manipulated.
 
 MOUNT PROC,SYS,DEV,HOME,TMP (boolean, default=’yes’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 These configuration options control the mounting of these file systems
 within the container and of course can be overridden by the system
@@ -672,7 +674,7 @@ tree inside the container). In most useful cases, these are all best to
 leave enabled.
 
 MOUNT HOSTFS (boolean, default=’no’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 This feature will parse the host’s mounted file systems and attempt to
 replicate all mount points within the container. This maybe a desirable
@@ -681,7 +683,7 @@ what bind points you wish to encapsulate within the container by hand
 (using the below “bind path” feature).
 
 BIND PATH (string)
-~~~~~~~~~~~~~~~~~~
+------------------
 
 | With this configuration directive, you can specify any number of bind
   points that you want to extend from the host system into the
@@ -697,7 +699,7 @@ BIND PATH (string)
 
 
 USER BIND CONTROL (boolean, default=’yes’)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------
 
 | In addition to the system bind points as specified within this
   configuration file, you may also allow users to define their own bind
@@ -711,7 +713,7 @@ USER BIND CONTROL (boolean, default=’yes’)
   already exist in the container.
 
 AUTOFS BUG PATH (string)
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 | With some versions of autofs, Singularity will fail to run with a “Too
   many levels of symbolic links” error. This error happens by way of a
@@ -724,14 +726,14 @@ AUTOFS BUG PATH (string)
     autofs bug path = /share/PI
 
 Logging
--------
+=======
 
 In order to facilitate monitoring and auditing, Singularity will
 syslog() every action and error that takes place to the ``LOCAL0`` syslog facility.
 You can define what to do with those logs in your syslog configuration.
 
 Loop Devices
-------------
+============
 
 | Singularity images have ``ext3`` file systems embedded within them, and thus to
   mount them, we need to convert the raw file system image (with
@@ -771,8 +773,9 @@ unload/reload the loop device as root using the following commands:
     # modprobe -r loop
     # modprobe loop
 
+----------------
 Container Checks
-================
+----------------
 
 New to Singularity 2.4 is the ability to, on demand, run container
 “checks,” which can be anything from a filter for sensitive information,
@@ -781,7 +784,7 @@ Singularity, managed by the administrator, and `available to the
 user <http://singularity-userdoc.readthedocs.io/en/latest/#container-checks>`__.
 
 What is a check?
-----------------
+================
 
 | Broadly, a check is a script that is run over a mounted filesystem,
   primary with the purpose of checking for some security issue. This
@@ -815,7 +818,7 @@ What is a check?
         $ singularity check --tag clean ubuntu.img
 
 Adding a Check
-~~~~~~~~~~~~~~
+--------------
 
 | A check should be a bash (or other) script that will perform some
   action. The following is required:
@@ -870,15 +873,16 @@ code is also set here with ``[SUCCESS]``. Currently, we aren’t doing anything 
 and thus perform all checks.
 
 How to tell users?
-------------------
+==================
 
 If you add a custom check that you want for your users to use, you
 should tell them about it. Better yet, `tell
 us <https://github.com/singularityware/singularity/issues>`__ about it
 so it can be integrated into the Singularity software for others to use.
 
+---------------
 Troubleshooting
-===============
+---------------
 
 This section will help you debug (from the system administrator’s
 perspective) Singularity.
