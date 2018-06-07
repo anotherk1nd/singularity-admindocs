@@ -154,10 +154,12 @@ is ``singularity-2.3.el7.centos.x86_64.rpm`` , and you should install it with th
 
     $ sudo yum install /home/gmk/rpmbuild/RPMS/x86_64/singularity-2.3.el7.centos.x86_64.rpm
 
-Note: If you want to have the binary RPM install the files to an
-alternative location, you should define the environment variable
-‘PREFIX’ (below) to suit your needs, and use the following command to
-build:
+    .. note::
+
+    If you want to have the binary RPM install the files to an
+    alternative location, you should define the environment variable
+    ‘PREFIX’ (below) to suit your needs, and use the following command to
+    build:
 
 ::
 
@@ -846,7 +848,7 @@ or do the same in bash:
   if the check is found to have failed. If pass, the check’s name and
   status will be printed, with any relevant information. For more
   thorough checking, you might want to give more verbose output.
-  
+
 | **Return Code** The script return code of “success” is defined in
   `check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__, and other return
   codes are considered not success. When a non success return code is
