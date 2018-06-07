@@ -154,9 +154,7 @@ is ``singularity-2.3.el7.centos.x86_64.rpm`` , and you should install it with th
 
     $ sudo yum install /home/gmk/rpmbuild/RPMS/x86_64/singularity-2.3.el7.centos.x86_64.rpm
 
-    .. note::
-
-    If you want to have the binary RPM install the files to an
+.. note:: If you want to have the binary RPM install the files to an
     alternative location, you should define the environment variable
     ‘PREFIX’ (below) to suit your needs, and use the following command to
     build:
