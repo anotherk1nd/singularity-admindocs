@@ -47,7 +47,7 @@ Creating your image
 ===================
 
 Since we are building an ubuntu image, it may be easier to create an ubuntu VM to create the image.
-Alternatively you can follow the recipe `here <https://singularity-admindoc.readthedocs.io/en/latest/#building-an-ubuntu-image-on-a-rhel-host>`_.
+Alternatively you can follow the recipe `here <https://singularity-admindoc.readthedocs.io/en/latest/appendix.html#building-an-ubuntu-image-on-a-rhel-host>`_.
 
 Use the following def file to create the image.
 
