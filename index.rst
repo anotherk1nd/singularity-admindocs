@@ -1,8 +1,7 @@
-.. include:: quickstart.rst
 
 .. toctree::
    :caption: Admin Guide
-   :maxdepth: 2
+   :maxdepth: 5
 
    Quickstart <quickstart>
    Installation Environments <installation_environments>

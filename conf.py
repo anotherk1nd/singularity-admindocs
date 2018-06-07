@@ -108,7 +108,7 @@ html_theme_options = {
     'sticky_navigation': True,
     'collapsiblesidebar':True,
     'includehidden': True,
-    'navigation_depth': 4,
+    'navigation_depth': 5,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': True,
 }

@@ -781,7 +781,7 @@ New to Singularity 2.4 is the ability to, on demand, run container
 “checks,” which can be anything from a filter for sensitive information,
 to an analysis of content on the filesystem. Checks are installed with
 Singularity, managed by the administrator, and `available to the
-user <http://singularity-userdoc.readthedocs.io/en/latest/#container-checks>`__.
+user <http://singularity-userdoc.readthedocs.io/en/latest/getting_started.html#container-checks>`__.
 
 What is a check?
 ================
@@ -823,7 +823,7 @@ Adding a Check
 | A check should be a bash (or other) script that will perform some
   action. The following is required:
 | **Relative to SINGULARITY\_ROOTFS** The script must perform check
-  actions relative to ``SINGULARITY\_ROOTFS``. For example, in python you might change
+  actions relative to ``SINGULARITY_ROOTFS``. For example, in python you might change
   directory to this location:
 
 ::
@@ -841,10 +841,12 @@ or do the same in bash:
 
 | Since we are doing a mount, all checks must be static relative to this
   base, otherwise you are likely checking the host system.
+
 | **Verbose** The script should indicate any warning/message to the user
   if the check is found to have failed. If pass, the check’s name and
   status will be printed, with any relevant information. For more
   thorough checking, you might want to give more verbose output.
+  
 | **Return Code** The script return code of “success” is defined in
   `check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__, and other return
   codes are considered not success. When a non success return code is
