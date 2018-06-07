@@ -77,7 +77,7 @@ container and then running an example MPI program through Singularity.
 Tutorials
 ---------
 
--  `Using Host libraries: GPU drivers and OpenMPI BTLs <https://singularity-admindoc.readthedocs.io/en/latest/appendix.html#using-host-libraries-gpu-drivers-and-openmpi-btls>`__
+`Using Host libraries: GPU drivers and OpenMPI BTLs <https://singularity-admindoc.readthedocs.io/en/latest/appendix.html#using-host-libraries-gpu-drivers-and-openmpi-btls>`__
 
 MPI Development Example
 -----------------------
