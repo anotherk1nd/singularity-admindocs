@@ -61,8 +61,7 @@ Source Installation
     $ make
     $ sudo make install
 
-    .. note::
-        **NOTE: The** ``make install`` **above must be run as root to have Singularity properly
+.. note:: **The** ``make install`` **above must be run as root to have Singularity properly
         installed. Failure to install as root will cause Singularity to not
         function properly or have limited functionality when run by a non-root
         user.**
@@ -400,7 +399,7 @@ limiting usage to specific container file owners
     # SUID mode and the user is non-root.
     #limit container owners = gmk, singularity, nobody
 
-note: If you are in a high risk security environment, you may want to
+.. note:: If you are in a high risk security environment, you may want to
 enable this feature. Trusting container images to users could allow a
 malicious user to modify an image either before or while being used and
 cause unexpected behavior from the kernel (e.g. a `DOS
@@ -454,7 +453,7 @@ We can then peek into the system log to see what was recorded:
     Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)> What are you doing gmk, this is highly irregular!
     Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)> Retval = 255
 
-**note: All errors are logged!**
+.. note::**All errors are logged!**
 
 A peek into the SetUID program flow
 -----------------------------------
@@ -586,7 +585,8 @@ never escalated, but we have the same outcome using a sandbox directory
   utilized. We had to use a chroot style directory container (as images
   are not supported with the user namespace, but you can clearly see
   that the effective UID never had to change to run this container.
-| note: Singularity can natively create and manage chroot style
+
+.. note:: Singularity can natively create and manage chroot style
   containers just like images! The above image was created using the
   command: ``singularity build ubuntu.dir docker://ubuntu:latest``
 
@@ -628,7 +628,8 @@ ALLOW SETUID (boolean, default=’yes’)
 | You can however disable SUID support **iff** (if and only if) you do
   not need to use the default Singularity image file format and if your
   kernel supports user namespaces and you choose to use user namespaces.
-| note: as of the time of this writing, the user namespace is rather
+
+.. note:: as of the time of this writing, the user namespace is rather
   buggy
 
 ALLOW PID NS (boolean, default=’yes’)
