@@ -629,7 +629,7 @@ ALLOW SETUID (boolean, default=’yes’)
   not need to use the default Singularity image file format and if your
   kernel supports user namespaces and you choose to use user namespaces.
 
-.. note:: as of the time of this writing, the user namespace is rather
+.. note:: As of the time of this writing, the user namespace is rather
     buggy
 
 ALLOW PID NS (boolean, default=’yes’)
