@@ -1,8 +1,9 @@
 
-********
+========
 Appendix
-********
+========
 
+--------------------------------------------------
 Using Host libraries: GPU drivers and OpenMPI BTLs
 --------------------------------------------------
 
@@ -20,7 +21,7 @@ networking. There are many ways to solve these problems. Some people build a con
 the version of the libs (installed on the host) into the container.
 
 What We will learn today
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 This document describes how to use a bind mount, symlinks and ldconfig so that when the host
 libraries are updated the container does not need to be rebuilt.
@@ -30,7 +31,7 @@ which is part of the (current) development branch, and thus it should work with 
 that is released. The version of OpenMPI used is 2.1.0 (versions above 2.1 should work).
 
 Environment
-~~~~~~~~~~~
+===========
 
 In our environment we run CentOS 7 hosts with:
 
@@ -43,7 +44,7 @@ In our environment we run CentOS 7 hosts with:
 
 
 Creating your image
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Since we are building an ubuntu image, it may be easier to create an ubuntu VM to create the image.
 Alternatively you can follow the recipe `here <https://singularity-admindoc.readthedocs.io/en/latest/#building-an-ubuntu-image-on-a-rhel-host>`_.
@@ -173,7 +174,7 @@ Also note:
    all the bits of OpenMPI and Mellanox and Slurm that we need.
 
 Executing your image
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 On our system we do:
 
@@ -189,7 +190,7 @@ then
     srun  singularity exec -B /usr/local/openmpi:/usr/local/openmpi -B /opt:/opt -B /lib64:/all_hostlibs hostlibs.img <path to binary>
 
 
-
+---------------------------------------
 Building an Ubuntu image on a RHEL host
 ---------------------------------------
 
@@ -204,7 +205,7 @@ a definition file that will describe how to build your Ubuntu image. Finally, yo
 commands ‘create’ and ``bootstrap``.
 
 Preparation
-~~~~~~~~~~~
+===========
 
 This recipe assumes that you have already installed Singularity on your computer. If you have not, follow the instructions here
 to install. After Singularity is installed on your computer, you will need to install the ‘debootstrap’ package. The ‘debootstrap’
@@ -225,7 +226,7 @@ version of the RPM for your release.
     $ sudo yum install debootstrap
 
 Creating the Definition File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 You will need to create a definition file to describe how to build your Ubuntu image. Definition files are plain text files that contain Singularity
 keywords. By using certain Singularity keywords, you can specify how you want your image to be built. The extension ‘.def’ is recommended for user clarity.
@@ -285,7 +286,7 @@ MirrorURL, and OSVersion. However, after Setup and Bootstrap, we used the Instal
 and then to install ‘pip’. Subsequently, we also used RunCmd to pip install ``TensorFlow``. Thus, we have created a definition file that will install ‘python’, ‘pip’, and ‘Tensorflow’ onto the new image.
 
 Creating your image
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 Once you have created your definition file, you will be ready to actually create your image. You will do this by utilizing the Singularity ‘create’ and ‘bootstrap’ subcommands. The process for doing this
 can be seen below (note that we have saved our definition file as “ubuntu.def”):
@@ -329,7 +330,7 @@ can be seen below (note that we have saved our definition file as “ubuntu.def�
     Here are some tips and tricks that you can use to create more efficient definition files:
 
 Use here documents with RunCmd
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Using here documents with conjunction with RunCmd can be a great way to decrease the number of RunCmd keywords that you need to include
 in your definition file. For example, we can substitute a here document into the previous example:
@@ -358,7 +359,7 @@ As you can see, using a here document allowed us to decrease the number of RunCm
 has a lot of RunCmd keywords and can also ease copying and pasting command line recipes from other sources.
 
 Use InstallPkgs with multiple packages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 The InstallPkgs keyword is able to install multiple packages with a single keyword. Thus, another way you can increase the efficiency of your code is to
 use a single InstallPkgs keyword to install multiple packages, as seen below:

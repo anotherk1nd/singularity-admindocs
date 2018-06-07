@@ -1,8 +1,9 @@
 
-*************************
+=========================
 Installation Environments
-*************************
+=========================
 
+------------------
 Singularity on HPC
 ------------------
 
@@ -20,7 +21,7 @@ user-escalation within a container. Users can run Singularity
 containers just as they run any other program on the HPC resource.
 
 Workflows
-~~~~~~~~~
+=========
 
 We are in the process of developing Singularity Hub, which will allow
 for generation of workflows using Singularity containers in an online
@@ -39,7 +40,7 @@ containers as part of your jobs:
    (Monash University and Australian National Merit Allocation Scheme)
 
 Integration with MPI
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Another result of the Singularity architecture is the ability to
 properly integrate with the Message Passing Interface (MPI). Work has
@@ -74,13 +75,13 @@ Below are example snippets of building and installing OpenMPI into a
 container and then running an example MPI program through Singularity.
 
 Tutorials
-~~~~~~~~~
+---------
 
 -  `Using Host libraries: GPU drivers and OpenMPI BTLs
     <#tutorial-gpu-drivers-and-openmpi>`__
 
 MPI Development Example
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 **What are supported Open MPI Version(s)?** To achieve proper
 container’ized Open MPI support, you should use Open MPI version 2.1.
@@ -105,7 +106,7 @@ There are however three caveats:
    around)
 
 Code Example using Open MPI 2.1.0 Stable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 ::
 
@@ -134,7 +135,7 @@ Code Example using Open MPI 2.1.0 Stable
     $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 
 Code Example using Open MPI git master
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 The previous example (using the Open MPI 2.1.0 stable release) should
 work fine on most hardware but if you have an issue, try running the
@@ -201,11 +202,12 @@ example below (using the Open MPI Master branch):
     Process 18 exiting
     Process 19 exiting
 
+-----------------
 Image Environment
 -----------------
 
 Directory access
-~~~~~~~~~~~~~~~~
+================
 
 By default Singularity tries to create a seamless user experience
 between the host and the container. To do this, Singularity makes
@@ -238,7 +240,7 @@ container with the option ``--writable`` being set, and create the directory
 manually.
 
 Current Working Directory
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 Singularity will try to replicate your current working directory within
 the container. Sometimes this is straight forward and possible, other
@@ -269,7 +271,7 @@ But notice how even though the directory location is not resolvable, the
 directory contents are available.
 
 Standard IO and pipes
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Singularity automatically sends and receives all standard IO from the
 host to the applications within the container to facilitate expected
@@ -285,12 +287,13 @@ example:
     By default, containers are accessed as read only. This is both to enable parallel container execution (e.g. MPI). To enter a container using exec, run, or shell you must pass the --writable flag in order to open the image as read/writable.
 
 Containing the container
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 By providing the argument ``--contain`` to ``exec``, ``run`` or ``shell`` you will find that shared directories
 are no longer shared. For example, the user’s home directory is
 writable, but it is non-persistent between non-overlapping runs.
 
+-------
 License
 -------
 
@@ -344,7 +347,7 @@ License
     perform publicly and display publicly, and to permit other to do so.
 
 In layman terms...
-~~~~~~~~~~~~~~~~~~
+==================
 
 In addition to the (already widely used and very free open source)
 standard BSD 3 clause license, there is also wording specific to
