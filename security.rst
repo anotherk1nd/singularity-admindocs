@@ -1,179 +1,10 @@
-
-===========
-Quick Start
-===========
-
--------------------------
-Administration QuickStart
--------------------------
-
-This document will cover installation and administration points of
-Singularity for multi-tenant HPC resources and will not cover usage of
-the command line tools, container usage, or example use cases.
-
-Installation
-============
-
-There are two common ways to install Singularity, from source code and
-via binary packages. This document will explain the process of
-installation from source, and it will depend on your build host to have
-the appropriate development tools and packages installed. For Red Hat
-and derivatives, you should install the following ``yum`` group to ensure you
-have an appropriately setup build server:
-
-::
-
-    $ sudo yum groupinstall "Development Tools"
-
-Downloading the source
-----------------------
-
-You can download the source code either from the latest stable tarball
-release or via the GitHub master repository. Here is an example
-downloading and preparing the latest development code from GitHub:
-
-::
-
-    $ mkdir ~/git
-    $ cd ~/git
-    $ git clone https://github.com/singularityware/singularity.git
-    $ cd singularity
-    $ ./autogen.sh
-
-Once you have downloaded the source, the following installation
-procedures will assume you are running from the root of the source
-directory.
-
-Source Installation
--------------------
-
-The following example demonstrates how to install Singularity into ``/usr/local``.
-You can install Singularity into any directory of your choosing, but
-you must ensure that the location you select supports programs running
-as ``SUID``. It is common for people to disable ``SUID`` with the mount option ``nosuid`` for
-various network mounted file systems. To ensure proper support, it is
-easiest to make sure you install Singularity to a local file system.
-
-Assuming that ``/usr/local`` is a local file system:
-
-::
-
-    $ ./configure --prefix=/usr/local --sysconfdir=/etc
-    $ make
-    $ sudo make install
-
-.. note:: **The** ``make install`` **above must be run as root to have Singularity properly
-    installed. Failure to install as root will cause Singularity to not
-    function properly or have limited functionality when run by a non-root
-    user.**
-
-Also note that when you configure, ``squashfs-tools`` is **not** required, however it is
-required for full functionality. You will see this message after the
-configuration:
-
-::
-
-    mksquashfs from squash-tools is required for full functionality
-
-If you choose not to install ``squashfs-tools``, you will hit an error when your users try
-a pull from Docker Hub, for example.
-
-Prefix in special places (–localstatedir)
------------------------------------------
-
-As with most autotools-based build scripts, you are able to supply the ``--prefix``
-argument to the configure script to change where Singularity will be
-installed. Care must be taken when this path is not a local filesystem
-or has atypical permissions. The local state directories used by
-Singularity at runtime will also be placed under the supplied ``--prefix`` and this
-will cause malfunction if the tree is read-only. You may also
-experience issues if this directory is shared between several
-hosts/nodes that might run Singularity simultaneously.
-
-In such cases, you should specify the ``--localstatedir`` variable in addition to ``--prefix``. This
-will override the prefix, instead placing the local state directories
-within the path explicitly provided. Ideally this should be within the
-local filesystem, specific to only a single host or node.
-For example, the Makefile contains this variable by default:
-
-::
-
-    CONTAINER_OVERLAY = ${prefix}/var/singularity/mnt/overlay
-
-By supplying the configure argument ``--localstatedir=/some/other/place`` Singularity will instead be built
-with the following. Note that ``${prefix}/var`` that has been replaced by the supplied
-value:
-
-::
-
-    CONTAINER_OVERLAY = /some/other/place/singularity/mnt/overlay
-
-In the case of cluster nodes, you will need to ensure the following
-directories are created on all nodes, with ``root:root`` ownership and ``0755`` permissions:
-
-::
-
-    ${localstatedir}/singularity/mnt
-    ${localstatedir}/singularity/mnt/container
-    ${localstatedir}/singularity/mnt/final
-    ${localstatedir}/singularity/mnt/overlay
-    ${localstatedir}/singularity/mnt/session
-
-Singularity will fail to execute without these directories. They are
-normally created by the install make target; when using a local
-directory for ``--localstatedir`` these will only be created on the node ``make`` is run on.
-
-Building an RPM directly from the source
-----------------------------------------
-
-Singularity includes all of the necessary bits to properly create an RPM
-package directly from the source tree, and you can create an RPM by
-doing the following:
-
-::
-
-    $ ./configure
-    $ make dist
-    $ rpmbuild -ta singularity-*.tar.gz
-
-Near the bottom of the build output you will see several lines like:
-
-::
-
-    ...
-    Wrote: /home/gmk/rpmbuild/SRPMS/singularity-2.3.el7.centos.src.rpm
-    Wrote: /home/gmk/rpmbuild/RPMS/x86_64/singularity-2.3.el7.centos.x86_64.rpm
-    Wrote: /home/gmk/rpmbuild/RPMS/x86_64/singularity-devel-2.3.el7.centos.x86_64.rpm
-    Wrote: /home/gmk/rpmbuild/RPMS/x86_64/singularity-debuginfo-2.3.el7.centos.x86_64.rpm
-    ...
-
-You will want to identify the appropriate path to the binary RPM that
-you wish to install, in the above example the package we want to install
-is ``singularity-2.3.el7.centos.x86_64.rpm`` , and you should install it with the following command:
-
-::
-
-    $ sudo yum install /home/gmk/rpmbuild/RPMS/x86_64/singularity-2.3.el7.centos.x86_64.rpm
-
-.. note:: If you want to have the binary RPM install the files to an
-    alternative location, you should define the environment variable
-    ‘PREFIX’ (below) to suit your needs, and use the following command to
-    build:
-
-::
-
-    $ PREFIX=/opt/singularity
-    $ rpmbuild -ta --define="_prefix $PREFIX" --define "_sysconfdir $PREFIX/etc" --define "_defaultdocdir $PREFIX/share" singularity-*.tar.gz
-
-We recommend you look at our `security admin guide <#security>`_ to get further information about container
-privileges and mounting.
-
---------
+========
 Security
---------
+========
 
+----------------------------
 Container security paradigms
-============================
+----------------------------
 
 First some background. Most container platforms operate on the
 premise, **trusted users running trusted containers**. This means that
@@ -186,8 +17,9 @@ none of which are considered trusted. This means the paradigm is
 considerably different as we must support **untrusted users running
 untrusted containers**.
 
+---------------------------------------------
 Untrusted users running untrusted containers!
-=============================================
+---------------------------------------------
 
 This simple phrase describes the security perspective Singularity is
 designed with. And if you additionally consider the fact that running
@@ -196,7 +28,7 @@ escalation, means that attention to security is of the utmost
 importance.
 
 Privilege escalation is necessary for containerization!
--------------------------------------------------------
+=======================================================
 
 As mentioned, there are several containerization system calls and
 functions which are considered “privileged” in that they must be
@@ -239,7 +71,7 @@ container systems must employ one of the following mechanisms:
    per process and per file basis (if allowed to do so).
 
 How does Singularity do it?
----------------------------
+===========================
 
 Singularity must allow users to run containers as themselves which rules
 out options 1 and 2 from the above list. Singularity supports the rest
@@ -270,8 +102,9 @@ of the options to following degrees of functionally:
    The downside is that it is not supported equally on shared file
    systems.
 
+------------------------------------------------
 Where are the Singularity priviledged components
-================================================
+------------------------------------------------
 
 When you install Singularity as root, it will automatically setup the
 necessary files as SetUID (as of version 2.4, this is the default run
@@ -336,8 +169,9 @@ components with the configure option ``--disable-suid`` as follows:
     $ make
     $ sudo make install
 
+------------------------------------
 Can I install Singularity as a user?
-====================================
+------------------------------------
 
 Yes, but don’t expect all of the functions to work. If the SetUID
 components are not present, Singularity will attempt to use the “user
@@ -345,8 +179,9 @@ namespace”. Even if the kernel you are using supports this namespace
 fully, you will still not be able to access all of the Singularity
 features.
 
+----------------------------------------
 Container permissions and usage strategy
-========================================
+----------------------------------------
 
 As a system admin, you want to set up a configuration that is
 customized for your cluster or shared resource. In the following
@@ -360,7 +195,7 @@ configuration file **MUST** be owned by root and thus the system
 administrator always has the final control.
 
 controlling what kind of containers are allowed
------------------------------------------------
+===============================================
 
 Singularity supports several different container formats:
 
@@ -385,7 +220,7 @@ containers Singularity will support:
     allow container dir = yes
 
 limiting usage to specific container file owners
-------------------------------------------------
+================================================
 
 One benefit of using container images is that they exist on the
 filesystem as any other file would. This means that POSIX permissions
@@ -410,7 +245,7 @@ containers that are owned by a particular set of users.
     more information, please see: `https://lwn.net/Articles/652468/ <https://lwn.net/Articles/652468/>`__
 
 limiting usage to specific paths
---------------------------------
+================================
 
 The configuration file also gives you the ability to limit containers to
 specific paths. This is very useful to ensure that only trusted or
@@ -428,8 +263,9 @@ containers are only being used on performant file systems).
     # non-root.
     #limit container paths = /scratch, /tmp, /global
 
+-------
 Logging
-=======
+-------
 
 Singularity offers a very comprehensive auditing mechanism via the
 system log. For each command that is issued, it prints the UID, PID, and
@@ -459,7 +295,7 @@ We can then peek into the system log to see what was recorded:
 .. note::**All errors are logged!**
 
 A peek into the SetUID program flow
------------------------------------
+===================================
 
 We can also add the ``--debug`` argument to any command itself at runtime to see
 everything that Singularity is doing. In this case we can run
@@ -528,7 +364,7 @@ running the command, what is the PID, and what is the function emitting
 the debug message.
 
 A peek into the “rootless” program flow
----------------------------------------
+=======================================
 
 The above snippet was using the default SetUID program flow with a
 container image file named “ubuntu”. For comparison, if we also use the ``--userns``
@@ -593,8 +429,9 @@ that the effective UID never had to change to run this container.
     containers just like images! The above image was created using the
     command: ``singularity build ubuntu.dir docker://ubuntu:latest``
 
+-------
 Summary
-=======
+-------
 
 Singularity supports multiple modes of operation to meet your security
 needs. For most HPC centers, and general usage scenarios, the default
@@ -602,320 +439,3 @@ run mode is most effective and featurefull. For the security critical
 implementations, the user namespace workflow maybe a better option. It
 becomes a balance security and functionality (the most secure systems do
 nothing).
-
----------------------------
-The Singularity Config File
----------------------------
-
-When Singularity is running via the SUID pathway, the configuration
-**must** be owned by the root user otherwise Singularity will error
-out. This ensures that the system administrators have direct say as to
-what functions the users can utilize when running as root. If
-Singularity is installed as a non-root user, the SUID components are
-not installed, and the configuration file can be owned by the user
-(but again, this will limit functionality).
-The Configuration file can be found at ``$SYSCONFDIR/singularity/singularity.conf``. The template in the
-repository is located at ``etc/singularity.conf``. It is generally self documenting but there
-are several things to pay special attention to:
-
-Parameters
-==========
-
-ALLOW SETUID (boolean, default=’yes’)
--------------------------------------
-
-This parameter toggles the global ability to execute the SETUID (SUID)
-portion of the code if it exists. As mentioned earlier, if the SUID
-features are disabled, various Singularity features will not function
-(e.g. mounting of the Singularity image file format).
-You can however disable SUID support **iff** (if and only if) you do
-not need to use the default Singularity image file format and if your
-kernel supports user namespaces and you choose to use user namespaces.
-
-.. note:: As of the time of this writing, the user namespace is rather
-    buggy
-
-ALLOW PID NS (boolean, default=’yes’)
--------------------------------------
-
-While the PID namespace is a neat feature, it does not have much
-practical usage in an HPC context so it is recommended to disable this
-if you are running on an HPC system where a resource manager is
-involved as it has been known to cause confusion on some kernels with
-enforcement of user limits.
-Even if the PID namespace is enabled by the system administrator here,
-it is not implemented by default when running containers. The user
-will have to specify they wish to implement un-sharing of the PID
-namespace as it must fork a child process.
-
-ENABLE OVERLAY (boolean, default=’no’)
---------------------------------------
-
-The overlay file system creates a writable substrate to create bind
-points if necessary. This feature is very useful when implementing bind
-points within containers where the bind point may not already exist so
-it helps with portability of containers. Enabling this option has been
-known to cause some kernels to panic as this feature maybe present
-within a kernel, but has not proved to be stable as of the time of this
-writing (e.g. the Red Hat 7.2 kernel).
-
-CONFIG PASSWD, GROUP, RESOLV_CONF (boolean, default=’yes’)
-----------------------------------------------------------
-
-All of these options essentially do the same thing for different files
-within the container. This feature updates the described file (``/etc/passwd``, ``/etc/group`` , and ``/etc/resolv.conf``
-respectively) to be updated dynamically as the container is executed. It
-uses binds and modifies temporary files such that the original files are
-not manipulated.
-
-MOUNT PROC,SYS,DEV,HOME,TMP (boolean, default=’yes’)
-----------------------------------------------------
-
-These configuration options control the mounting of these file systems
-within the container and of course can be overridden by the system
-administrator (e.g. the system admin decides not to include the /dev
-tree inside the container). In most useful cases, these are all best to
-leave enabled.
-
-MOUNT HOSTFS (boolean, default=’no’)
-------------------------------------
-
-This feature will parse the host’s mounted file systems and attempt to
-replicate all mount points within the container. This maybe a desirable
-feature for the lazy, but it is generally better to statically define
-what bind points you wish to encapsulate within the container by hand
-(using the below “bind path” feature).
-
-BIND PATH (string)
-------------------
-
-With this configuration directive, you can specify any number of bind
-points that you want to extend from the host system into the
-container. Bind points on the host file system must be either real
-files or directories (no special files supported at this time). If the
-overlayFS is not supported on your host, or if ``enable overlay = no`` in this configuration
-file, a bind point must exist for the file or directory within the
-container.
-The syntax for this consists of a bind path source and an optional
-bind path destination separated by a colon. If no bind path
-destination is specified, the bind path source is used also as the
-destination.
-
-
-USER BIND CONTROL (boolean, default=’yes’)
-------------------------------------------
-
-In addition to the system bind points as specified within this
-configuration file, you may also allow users to define their own bind
-points inside the container. This feature is used via multiple command
-line arguments (e.g. ``--bind``, ``--scratch`` , and ``--home``) so disabling user bind control will
-also disable those command line options.
-Singularity will automatically disable this feature if the host does
-not support the prctl option ``PR_SET_NO_NEW_PRIVS``. In addition, ``enable overlay`` must be set to ``yes`` and the
-host system must support overlayFS (generally kernel versions 3.18 and
-later) for users to bind host directories to bind points that do not
-already exist in the container.
-
-AUTOFS BUG PATH (string)
-------------------------
-
-With some versions of autofs, Singularity will fail to run with a “Too
-many levels of symbolic links” error. This error happens by way of a
-user requested bind (done with -B/–bind) or one specified via the
-configuration file. To handle this, you will want to specify those
-paths using this directive. For example:
-
-::
-
-    autofs bug path = /share/PI
-
-Logging
-=======
-
-In order to facilitate monitoring and auditing, Singularity will
-syslog() every action and error that takes place to the ``LOCAL0`` syslog facility.
-You can define what to do with those logs in your syslog configuration.
-
-Loop Devices
-============
-
-Singularity images have ``ext3`` file systems embedded within them, and thus to
-mount them, we need to convert the raw file system image (with
-variable offset) to a block device. To do this, Singularity utilizes
-the ``/dev/loop*`` block devices on the host system and manages the devices
-programmatically within Singularity itself. Singularity also uses the ``LO_FLAGS_AUTOCLEAR``
-loop device ``ioctl()`` flag which tells the kernel to automatically free the loop
-device when there are no more open file descriptors to the device
-itself.
-Earlier versions of Singularity managed the loop devices via a
-background watchdog process, but since version 2.2 we leverage the ``LO_FLAGS_AUTOCLEAR``
-functionality and we forego the watchdog process. Unfortunately, this
-means that some older Linux distributions are no longer supported
-(e.g. RHEL <= 5).
-Given that loop devices are consumable (there are a limited number of
-them on a system), Singularity attempts to be smart in how loop
-devices are allocated. For example, if a given user executes a
-specific container it will bind that image to the next available loop
-device automatically. If that same user executes another command on
-the same container, it will use the loop device that has already been
-allocated instead of binding to another loop device. Most Linux
-distributions only support 8 loop devices by default, so if you find
-that you have a lot of different users running Singularity containers,
-you may need to increase the number of loop devices that your system
-supports by doing the following:
-Edit or create the file ``/etc/modprobe.d/loop.conf`` and add the following line:
-
-::
-
-    options loop max_loop=128
-
-After making this change, you should be able to reboot your system or
-unload/reload the loop device as root using the following commands:
-
-::
-
-    # modprobe -r loop
-    # modprobe loop
-
-----------------
-Container Checks
-----------------
-
-New to Singularity 2.4 is the ability to, on demand, run container
-“checks,” which can be anything from a filter for sensitive information,
-to an analysis of content on the filesystem. Checks are installed with
-Singularity, managed by the administrator, and `available to the
-user <http://singularity-userdoc.readthedocs.io/en/latest/getting_started.html#container-checks>`__.
-
-What is a check?
-================
-
-Broadly, a check is a script that is run over a mounted filesystem,
-primary with the purpose of checking for some security issue. This
-process is tightly controlled, meaning that the script names in the
-`checks <https://github.com/singularityware/singularity/tree/development/libexec/helpers/checks>`__
-folder are hard coded into the script
-`check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__.
-The flow of checks is the following:
-
--  the user calls ``singularity check container.img`` to invoke
-   `check.exec <https://github.com/singularityware/singularity/blob/development/libexec/cli/check.exec>`__
-
--  specification of ``--low``(3), ``--med``(2), or ``--high``(1) sets the level to perform. The
-   level is a filter, meaning that a level of 3 will include 3,2,1, and
-   a level of 1 (high) will only call checks of high priority.
-
--  specification of ``-t/--tag`` will allow the user (or execution script) to specify
-   a kind of check. This is primarily to allow for extending the checks
-   to do other types of things. For example, for this initial batch,
-   these are all considered ``default`` checks. The
-   `check.help <https://github.com/singularityware/singularity/blob/development/libexec/cli/check.help>`__
-   displays examples of how the user specifies a tag:
-
-::
-
-        # Perform all default checks, these are the same
-        $ singularity check ubuntu.img
-        $ singularity check --tag default ubuntu.img
-
-        # Perform checks with tag "clean"
-        $ singularity check --tag clean ubuntu.img
-
-Adding a Check
---------------
-
-A check should be a bash (or other) script that will perform some
-action. The following is required:
-**Relative to SINGULARITY\_ROOTFS** The script must perform check
-actions relative to ``SINGULARITY_ROOTFS``. For example, in python you might change
-directory to this location:
-
-::
-
-    import os
-    base = os.environ["SINGULARITY_ROOTFS"]
-    os.chdir(base)
-
-or do the same in bash:
-
-::
-
-    cd $SINGULARITY_ROOTFS
-    ls $SINGULARITY_ROOTFS/var
-
-Since we are doing a mount, all checks must be static relative to this
-base, otherwise you are likely checking the host system.
-
-**Verbose** The script should indicate any warning/message to the user
-if the check is found to have failed. If pass, the check’s name and
-status will be printed, with any relevant information. For more
-thorough checking, you might want to give more verbose output.
-
-**Return Code** The script return code of “success” is defined in
-`check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__, and other return
-codes are considered not success. When a non success return code is
-found, the rest of the checks continue running, and no action is
-taken. We might want to give some admin an ability to specify a check,
-a level, and prevent continuation of the build/bootstrap given a fail.
-**Check.sh** The script level, path, and tags should be added to
-`check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__ in the following
-  format:
-
-::
-
-    ##################################################################################
-    # CHECK SCRIPTS
-    ##################################################################################
-
-    #        [SUCCESS] [LEVEL]  [SCRIPT]                                                                         [TAGS]
-    execute_check    0    HIGH  "bash $SINGULARITY_libexecdir/singularity/helpers/checks/1-hello-world.sh"       security
-    execute_check    0     LOW  "python $SINGULARITY_libexecdir/singularity/helpers/checks/2-cache-content.py"   clean
-    execute_check    0    HIGH  "python $SINGULARITY_libexecdir/singularity/helpers/checks/3-cve.py"             security
-
-The function ``execute_check`` will compare the level (``[LEVEL]``) with the user specified (or
-default) ``SINGULARITY_CHECKLEVEL`` and execute the check only given it is under the specified
-threshold, and (not yet implemented) has the relevant tag. The success
-code is also set here with ``[SUCCESS]``. Currently, we aren’t doing anything with ``[TAGS]``
-and thus perform all checks.
-
-How to tell users?
-==================
-
-If you add a custom check that you want for your users to use, you
-should tell them about it. Better yet, `tell
-us <https://github.com/singularityware/singularity/issues>`__ about it
-so it can be integrated into the Singularity software for others to use.
-
----------------
-Troubleshooting
----------------
-
-This section will help you debug (from the system administrator’s
-perspective) Singularity.
-
-Not installed correctly, or installed to a non-compatible location
-------------------------------------------------------------------
-
-Singularity must be installed by root into a location that allows for
-``SUID`` programs to be executed (as described above in the installation
-section of this manual). If you fail to do that, you may have user’s
-reporting one of the following error conditions:
-
-::
-
-    ERROR  : Singularity must be executed in privileged mode to use images
-    ABORT  : Retval = 255
-
-::
-
-    ERROR  : User namespace not supported, and program not running privileged.
-    ABORT  : Retval = 255
-
-::
-
-    ABORT  : This program must be SUID root
-    ABORT  : Retval = 255
-
-If one of these errors is reported, it is best to check the installation
-of Singularity and ensure that it was properly installed by the root
-user onto a local file system.
