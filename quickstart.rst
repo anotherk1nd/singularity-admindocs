@@ -40,20 +40,21 @@ downloading and preparing the latest development code from GitHub:
     $ cd singularity
     $ ./autogen.sh
 
-| Once you have downloaded the source, the following installation
-  procedures will assume you are running from the root of the source
-  directory.
+Once you have downloaded the source, the following installation
+procedures will assume you are running from the root of the source
+directory.
 
 Source Installation
 -------------------
 
-| The following example demonstrates how to install Singularity into ``/usr/local``.
-  You can install Singularity into any directory of your choosing, but
-  you must ensure that the location you select supports programs running
-  as ``SUID``. It is common for people to disable ``SUID`` with the mount option ``nosuid`` for
-  various network mounted file systems. To ensure proper support, it is
-  easiest to make sure you install Singularity to a local file system.
-| Assuming that ``/usr/local`` is a local file system:
+The following example demonstrates how to install Singularity into ``/usr/local``.
+You can install Singularity into any directory of your choosing, but
+you must ensure that the location you select supports programs running
+as ``SUID``. It is common for people to disable ``SUID`` with the mount option ``nosuid`` for
+various network mounted file systems. To ensure proper support, it is
+easiest to make sure you install Singularity to a local file system.
+
+Assuming that ``/usr/local`` is a local file system:
 
 ::
 
@@ -66,9 +67,9 @@ Source Installation
     function properly or have limited functionality when run by a non-root
     user.**
 
-| Also note that when you configure, ``squashfs-tools`` is **not** required, however it is
-  required for full functionality. You will see this message after the
-  configuration:
+Also note that when you configure, ``squashfs-tools`` is **not** required, however it is
+required for full functionality. You will see this message after the
+configuration:
 
 ::
 
@@ -80,19 +81,20 @@ a pull from Docker Hub, for example.
 Prefix in special places (–localstatedir)
 -----------------------------------------
 
-| As with most autotools-based build scripts, you are able to supply the ``--prefix``
-  argument to the configure script to change where Singularity will be
-  installed. Care must be taken when this path is not a local filesystem
-  or has atypical permissions. The local state directories used by
-  Singularity at runtime will also be placed under the supplied ``--prefix`` and this
-  will cause malfunction if the tree is read-only. You may also
-  experience issues if this directory is shared between several
-  hosts/nodes that might run Singularity simultaneously.
-| In such cases, you should specify the ``--localstatedir`` variable in addition to ``--prefix``. This
-  will override the prefix, instead placing the local state directories
-  within the path explicitly provided. Ideally this should be within the
-  local filesystem, specific to only a single host or node.
-| For example, the Makefile contains this variable by default:
+As with most autotools-based build scripts, you are able to supply the ``--prefix``
+argument to the configure script to change where Singularity will be
+installed. Care must be taken when this path is not a local filesystem
+or has atypical permissions. The local state directories used by
+Singularity at runtime will also be placed under the supplied ``--prefix`` and this
+will cause malfunction if the tree is read-only. You may also
+experience issues if this directory is shared between several
+hosts/nodes that might run Singularity simultaneously.
+
+In such cases, you should specify the ``--localstatedir`` variable in addition to ``--prefix``. This
+will override the prefix, instead placing the local state directories
+within the path explicitly provided. Ideally this should be within the
+local filesystem, specific to only a single host or node.
+For example, the Makefile contains this variable by default:
 
 ::
 
@@ -173,25 +175,25 @@ Security
 Container security paradigms
 ============================
 
-| First some background. Most container platforms operate on the
-  premise, **trusted users running trusted containers**. This means that
-  the primary UNIX account controlling the container platform is either
-  “root” or user(s) that root has deputized (either via ``sudo`` or given access
-  to a control socket of a root owned daemon process).
-| Singularity on the other hand, operates on a different premise because
-  it was developed for HPC type infrastructures where you have users,
-  none of which are considered trusted. This means the paradigm is
-  considerably different as we must support **untrusted users running
-  untrusted containers**.
+First some background. Most container platforms operate on the
+premise, **trusted users running trusted containers**. This means that
+the primary UNIX account controlling the container platform is either
+“root” or user(s) that root has deputized (either via ``sudo`` or given access
+to a control socket of a root owned daemon process).
+Singularity on the other hand, operates on a different premise because
+it was developed for HPC type infrastructures where you have users,
+none of which are considered trusted. This means the paradigm is
+considerably different as we must support **untrusted users running
+untrusted containers**.
 
 Untrusted users running untrusted containers!
 =============================================
 
-| This simple phrase describes the security perspective Singularity is
-  designed with. And if you additionally consider the fact that running
-  containers at all typically requires some level of privilege
-  escalation, means that attention to security is of the utmost
-  importance.
+This simple phrase describes the security perspective Singularity is
+designed with. And if you additionally consider the fact that running
+containers at all typically requires some level of privilege
+escalation, means that attention to security is of the utmost
+importance.
 
 Privilege escalation is necessary for containerization!
 -------------------------------------------------------
@@ -285,10 +287,10 @@ follows:
     /usr/local/libexec/singularity/bin/action-suid
     /usr/local/libexec/singularity/bin/mount-suid
 
-| Each of the binaries is named accordingly to the action that it is
-  suited for, and generally, each handles the required privilege
-  escalation necessary for Singularity to operate. What specifically
-  requires escalated privileges?
+Each of the binaries is named accordingly to the action that it is
+suited for, and generally, each handles the required privilege
+escalation necessary for Singularity to operate. What specifically
+requires escalated privileges?
 
 #. Mounting (and looping) the Singularity container image
 
@@ -306,12 +308,12 @@ with ``*-suid`` also has a non-suid equivalent:
     /usr/local/libexec/singularity/bin/action
     /usr/local/libexec/singularity/bin/mount
 
-| While most of these workflows will not properly function without the
-  SUID components, we have provided these fall back executables for
-  sites that wish to limit the SETUID capabilities to the bare
-  essentials/minimum. To disable the SetUID portions of Singularity, you
-  can either remove the above ``*-suid`` files, or you can edit the setting for ``allow suid`` at
-  the top of the ``singularity.conf`` file, which is typically located in ``$PREFIX/etc/singularity/singularity.conf``.
+While most of these workflows will not properly function without the
+SUID components, we have provided these fall back executables for
+sites that wish to limit the SETUID capabilities to the bare
+essentials/minimum. To disable the SetUID portions of Singularity, you
+can either remove the above ``*-suid`` files, or you can edit the setting for ``allow suid`` at
+the top of the ``singularity.conf`` file, which is typically located in ``$PREFIX/etc/singularity/singularity.conf``.
 
 ::
 
@@ -346,20 +348,21 @@ features.
 Container permissions and usage strategy
 ========================================
 
-| As a system admin, you want to set up a configuration that is
-  customized for your cluster or shared resource. In the following
-  paragraphs, we will elaborate on this container permissions strategy,
-  giving detail about which users are allowed to run containers, along
-  with image curation and ownership.
-| These settings can all be found in the Singularity configuration file
-  which is installed to ``$PREFIX/etc/singularity/singularity.conf``. When running in a privileged mode, the
-  configuration file **MUST** be owned by root and thus the system
-  administrator always has the final control.
+As a system admin, you want to set up a configuration that is
+customized for your cluster or shared resource. In the following
+paragraphs, we will elaborate on this container permissions strategy,
+giving detail about which users are allowed to run containers, along
+with image curation and ownership.
+
+These settings can all be found in the Singularity configuration file
+which is installed to ``$PREFIX/etc/singularity/singularity.conf``. When running in a privileged mode, the
+configuration file **MUST** be owned by root and thus the system
+administrator always has the final control.
 
 controlling what kind of containers are allowed
 -----------------------------------------------
 
-| Singularity supports several different container formats:
+Singularity supports several different container formats:
 
 -  **squashfs:** Compressed immutable (read only) container images
    (default in version 2.4)
@@ -384,10 +387,10 @@ containers Singularity will support:
 limiting usage to specific container file owners
 ------------------------------------------------
 
-| One benefit of using container images is that they exist on the
-  filesystem as any other file would. This means that POSIX permissions
-  are mandatory. Here you can configure Singularity to only “trust”
-  containers that are owned by a particular set of users.
+One benefit of using container images is that they exist on the
+filesystem as any other file would. This means that POSIX permissions
+are mandatory. Here you can configure Singularity to only “trust”
+containers that are owned by a particular set of users.
 
 ::
 
@@ -542,7 +545,7 @@ never escalated, but we have the same outcome using a sandbox directory
     Exec'ing: /usr/local/libexec/singularity/cli/shell.exec
     Evaluating args: '--pid --userns ubuntu.dir/'
 
-| (snipped to PID namespace implementation, same place as above)
+(snipped to PID namespace implementation, same place as above)
 
 ::
 
@@ -580,11 +583,11 @@ never escalated, but we have the same outcome using a sandbox directory
     gmk
     Singularity ubuntu.dir:~>
 
-| Here you can see that the output and functionality is very similar,
-  but we never increased any privilege and none of the ``*-suid`` program flow was
-  utilized. We had to use a chroot style directory container (as images
-  are not supported with the user namespace, but you can clearly see
-  that the effective UID never had to change to run this container.
+Here you can see that the output and functionality is very similar,
+but we never increased any privilege and none of the ``*-suid`` program flow was
+utilized. We had to use a chroot style directory container (as images
+are not supported with the user namespace, but you can clearly see
+that the effective UID never had to change to run this container.
 
 .. note:: Singularity can natively create and manage chroot style
     containers just like images! The above image was created using the
@@ -604,16 +607,16 @@ nothing).
 The Singularity Config File
 ---------------------------
 
-| When Singularity is running via the SUID pathway, the configuration
-  **must** be owned by the root user otherwise Singularity will error
-  out. This ensures that the system administrators have direct say as to
-  what functions the users can utilize when running as root. If
-  Singularity is installed as a non-root user, the SUID components are
-  not installed, and the configuration file can be owned by the user
-  (but again, this will limit functionality).
-| The Configuration file can be found at ``$SYSCONFDIR/singularity/singularity.conf``. The template in the
-  repository is located at ``etc/singularity.conf``. It is generally self documenting but there
-  are several things to pay special attention to:
+When Singularity is running via the SUID pathway, the configuration
+**must** be owned by the root user otherwise Singularity will error
+out. This ensures that the system administrators have direct say as to
+what functions the users can utilize when running as root. If
+Singularity is installed as a non-root user, the SUID components are
+not installed, and the configuration file can be owned by the user
+(but again, this will limit functionality).
+The Configuration file can be found at ``$SYSCONFDIR/singularity/singularity.conf``. The template in the
+repository is located at ``etc/singularity.conf``. It is generally self documenting but there
+are several things to pay special attention to:
 
 Parameters
 ==========
@@ -621,13 +624,13 @@ Parameters
 ALLOW SETUID (boolean, default=’yes’)
 -------------------------------------
 
-| This parameter toggles the global ability to execute the SETUID (SUID)
-  portion of the code if it exists. As mentioned earlier, if the SUID
-  features are disabled, various Singularity features will not function
-  (e.g. mounting of the Singularity image file format).
-| You can however disable SUID support **iff** (if and only if) you do
-  not need to use the default Singularity image file format and if your
-  kernel supports user namespaces and you choose to use user namespaces.
+This parameter toggles the global ability to execute the SETUID (SUID)
+portion of the code if it exists. As mentioned earlier, if the SUID
+features are disabled, various Singularity features will not function
+(e.g. mounting of the Singularity image file format).
+You can however disable SUID support **iff** (if and only if) you do
+not need to use the default Singularity image file format and if your
+kernel supports user namespaces and you choose to use user namespaces.
 
 .. note:: As of the time of this writing, the user namespace is rather
     buggy
@@ -635,15 +638,15 @@ ALLOW SETUID (boolean, default=’yes’)
 ALLOW PID NS (boolean, default=’yes’)
 -------------------------------------
 
-| While the PID namespace is a neat feature, it does not have much
-  practical usage in an HPC context so it is recommended to disable this
-  if you are running on an HPC system where a resource manager is
-  involved as it has been known to cause confusion on some kernels with
-  enforcement of user limits.
-| Even if the PID namespace is enabled by the system administrator here,
-  it is not implemented by default when running containers. The user
-  will have to specify they wish to implement un-sharing of the PID
-  namespace as it must fork a child process.
+While the PID namespace is a neat feature, it does not have much
+practical usage in an HPC context so it is recommended to disable this
+if you are running on an HPC system where a resource manager is
+involved as it has been known to cause confusion on some kernels with
+enforcement of user limits.
+Even if the PID namespace is enabled by the system administrator here,
+it is not implemented by default when running containers. The user
+will have to specify they wish to implement un-sharing of the PID
+namespace as it must fork a child process.
 
 ENABLE OVERLAY (boolean, default=’no’)
 --------------------------------------
@@ -686,41 +689,41 @@ what bind points you wish to encapsulate within the container by hand
 BIND PATH (string)
 ------------------
 
-| With this configuration directive, you can specify any number of bind
-  points that you want to extend from the host system into the
-  container. Bind points on the host file system must be either real
-  files or directories (no special files supported at this time). If the
-  overlayFS is not supported on your host, or if ``enable overlay = no`` in this configuration
-  file, a bind point must exist for the file or directory within the
-  container.
-| The syntax for this consists of a bind path source and an optional
-  bind path destination separated by a colon. If no bind path
-  destination is specified, the bind path source is used also as the
-  destination.
+With this configuration directive, you can specify any number of bind
+points that you want to extend from the host system into the
+container. Bind points on the host file system must be either real
+files or directories (no special files supported at this time). If the
+overlayFS is not supported on your host, or if ``enable overlay = no`` in this configuration
+file, a bind point must exist for the file or directory within the
+container.
+The syntax for this consists of a bind path source and an optional
+bind path destination separated by a colon. If no bind path
+destination is specified, the bind path source is used also as the
+destination.
 
 
 USER BIND CONTROL (boolean, default=’yes’)
 ------------------------------------------
 
-| In addition to the system bind points as specified within this
-  configuration file, you may also allow users to define their own bind
-  points inside the container. This feature is used via multiple command
-  line arguments (e.g. ``--bind``, ``--scratch`` , and ``--home``) so disabling user bind control will
-  also disable those command line options.
-| Singularity will automatically disable this feature if the host does
-  not support the prctl option ``PR_SET_NO_NEW_PRIVS``. In addition, ``enable overlay`` must be set to ``yes`` and the
-  host system must support overlayFS (generally kernel versions 3.18 and
-  later) for users to bind host directories to bind points that do not
-  already exist in the container.
+In addition to the system bind points as specified within this
+configuration file, you may also allow users to define their own bind
+points inside the container. This feature is used via multiple command
+line arguments (e.g. ``--bind``, ``--scratch`` , and ``--home``) so disabling user bind control will
+also disable those command line options.
+Singularity will automatically disable this feature if the host does
+not support the prctl option ``PR_SET_NO_NEW_PRIVS``. In addition, ``enable overlay`` must be set to ``yes`` and the
+host system must support overlayFS (generally kernel versions 3.18 and
+later) for users to bind host directories to bind points that do not
+already exist in the container.
 
 AUTOFS BUG PATH (string)
 ------------------------
 
-| With some versions of autofs, Singularity will fail to run with a “Too
-  many levels of symbolic links” error. This error happens by way of a
-  user requested bind (done with -B/–bind) or one specified via the
-  configuration file. To handle this, you will want to specify those
-  paths using this directive. For example:
+With some versions of autofs, Singularity will fail to run with a “Too
+many levels of symbolic links” error. This error happens by way of a
+user requested bind (done with -B/–bind) or one specified via the
+configuration file. To handle this, you will want to specify those
+paths using this directive. For example:
 
 ::
 
@@ -736,31 +739,31 @@ You can define what to do with those logs in your syslog configuration.
 Loop Devices
 ============
 
-| Singularity images have ``ext3`` file systems embedded within them, and thus to
-  mount them, we need to convert the raw file system image (with
-  variable offset) to a block device. To do this, Singularity utilizes
-  the ``/dev/loop*`` block devices on the host system and manages the devices
-  programmatically within Singularity itself. Singularity also uses the ``LO_FLAGS_AUTOCLEAR``
-  loop device ``ioctl()`` flag which tells the kernel to automatically free the loop
-  device when there are no more open file descriptors to the device
-  itself.
-| Earlier versions of Singularity managed the loop devices via a
-  background watchdog process, but since version 2.2 we leverage the ``LO_FLAGS_AUTOCLEAR``
-  functionality and we forego the watchdog process. Unfortunately, this
-  means that some older Linux distributions are no longer supported
-  (e.g. RHEL <= 5).
-| Given that loop devices are consumable (there are a limited number of
-  them on a system), Singularity attempts to be smart in how loop
-  devices are allocated. For example, if a given user executes a
-  specific container it will bind that image to the next available loop
-  device automatically. If that same user executes another command on
-  the same container, it will use the loop device that has already been
-  allocated instead of binding to another loop device. Most Linux
-  distributions only support 8 loop devices by default, so if you find
-  that you have a lot of different users running Singularity containers,
-  you may need to increase the number of loop devices that your system
-  supports by doing the following:
-| Edit or create the file ``/etc/modprobe.d/loop.conf`` and add the following line:
+Singularity images have ``ext3`` file systems embedded within them, and thus to
+mount them, we need to convert the raw file system image (with
+variable offset) to a block device. To do this, Singularity utilizes
+the ``/dev/loop*`` block devices on the host system and manages the devices
+programmatically within Singularity itself. Singularity also uses the ``LO_FLAGS_AUTOCLEAR``
+loop device ``ioctl()`` flag which tells the kernel to automatically free the loop
+device when there are no more open file descriptors to the device
+itself.
+Earlier versions of Singularity managed the loop devices via a
+background watchdog process, but since version 2.2 we leverage the ``LO_FLAGS_AUTOCLEAR``
+functionality and we forego the watchdog process. Unfortunately, this
+means that some older Linux distributions are no longer supported
+(e.g. RHEL <= 5).
+Given that loop devices are consumable (there are a limited number of
+them on a system), Singularity attempts to be smart in how loop
+devices are allocated. For example, if a given user executes a
+specific container it will bind that image to the next available loop
+device automatically. If that same user executes another command on
+the same container, it will use the loop device that has already been
+allocated instead of binding to another loop device. Most Linux
+distributions only support 8 loop devices by default, so if you find
+that you have a lot of different users running Singularity containers,
+you may need to increase the number of loop devices that your system
+supports by doing the following:
+Edit or create the file ``/etc/modprobe.d/loop.conf`` and add the following line:
 
 ::
 
@@ -787,13 +790,13 @@ user <http://singularity-userdoc.readthedocs.io/en/latest/getting_started.html#c
 What is a check?
 ================
 
-| Broadly, a check is a script that is run over a mounted filesystem,
-  primary with the purpose of checking for some security issue. This
-  process is tightly controlled, meaning that the script names in the
-  `checks <https://github.com/singularityware/singularity/tree/development/libexec/helpers/checks>`__
-  folder are hard coded into the script
-  `check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__.
-  The flow of checks is the following:
+Broadly, a check is a script that is run over a mounted filesystem,
+primary with the purpose of checking for some security issue. This
+process is tightly controlled, meaning that the script names in the
+`checks <https://github.com/singularityware/singularity/tree/development/libexec/helpers/checks>`__
+folder are hard coded into the script
+`check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__.
+The flow of checks is the following:
 
 -  the user calls ``singularity check container.img`` to invoke
    `check.exec <https://github.com/singularityware/singularity/blob/development/libexec/cli/check.exec>`__
@@ -821,11 +824,11 @@ What is a check?
 Adding a Check
 --------------
 
-| A check should be a bash (or other) script that will perform some
-  action. The following is required:
-| **Relative to SINGULARITY\_ROOTFS** The script must perform check
-  actions relative to ``SINGULARITY_ROOTFS``. For example, in python you might change
-  directory to this location:
+A check should be a bash (or other) script that will perform some
+action. The following is required:
+**Relative to SINGULARITY\_ROOTFS** The script must perform check
+actions relative to ``SINGULARITY_ROOTFS``. For example, in python you might change
+directory to this location:
 
 ::
 
@@ -840,22 +843,22 @@ or do the same in bash:
     cd $SINGULARITY_ROOTFS
     ls $SINGULARITY_ROOTFS/var
 
-| Since we are doing a mount, all checks must be static relative to this
-  base, otherwise you are likely checking the host system.
+Since we are doing a mount, all checks must be static relative to this
+base, otherwise you are likely checking the host system.
 
-| **Verbose** The script should indicate any warning/message to the user
-  if the check is found to have failed. If pass, the check’s name and
-  status will be printed, with any relevant information. For more
-  thorough checking, you might want to give more verbose output.
+**Verbose** The script should indicate any warning/message to the user
+if the check is found to have failed. If pass, the check’s name and
+status will be printed, with any relevant information. For more
+thorough checking, you might want to give more verbose output.
 
-| **Return Code** The script return code of “success” is defined in
-  `check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__, and other return
-  codes are considered not success. When a non success return code is
-  found, the rest of the checks continue running, and no action is
-  taken. We might want to give some admin an ability to specify a check,
-  a level, and prevent continuation of the build/bootstrap given a fail.
-| **Check.sh** The script level, path, and tags should be added to
-  `check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__ in the following
+**Return Code** The script return code of “success” is defined in
+`check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__, and other return
+codes are considered not success. When a non success return code is
+found, the rest of the checks continue running, and no action is
+taken. We might want to give some admin an ability to specify a check,
+a level, and prevent continuation of the build/bootstrap given a fail.
+**Check.sh** The script level, path, and tags should be added to
+`check.sh <https://github.com/singularityware/singularity/blob/development/libexec/helpers/check.sh>`__ in the following
   format:
 
 ::
@@ -893,10 +896,10 @@ perspective) Singularity.
 Not installed correctly, or installed to a non-compatible location
 ------------------------------------------------------------------
 
-| Singularity must be installed by root into a location that allows for
-  ``SUID`` programs to be executed (as described above in the installation
-  section of this manual). If you fail to do that, you may have user’s
-  reporting one of the following error conditions:
+Singularity must be installed by root into a location that allows for
+``SUID`` programs to be executed (as described above in the installation
+section of this manual). If you fail to do that, you may have user’s
+reporting one of the following error conditions:
 
 ::
 

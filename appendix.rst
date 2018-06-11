@@ -9,9 +9,9 @@ Using Host libraries: GPU drivers and OpenMPI BTLs
 
 .. _sec:tutorial-gpu-drivers-and-openmpi:
 
-**Note: Much of the GPU portion of this tutorial is deprecated by the** ``--nv`` **option
-that automatically binds host system driver libraries into your container at
-runtime. See the** ``exec`` **command for an example**
+.. note:: Much of the GPU portion of this tutorial is deprecated by the** ``--nv`` **option
+    that automatically binds host system driver libraries into your container at
+    runtime. See the** ``exec`` **command for an example**
 
 Singularity does a fantastic job of isolating you from the host so you don’t have to muck
 about with ``LD_LIBRARY_PATH``, you just get exactly the library versions you want. However,
@@ -198,7 +198,8 @@ Building an Ubuntu image on a RHEL host
 
 This recipe describes how to build an Ubuntu image using Singularity on a RHEL compatible host.
 
-NOTE: this tutorial is intended for Singularity release 2.1.2, and reflects standards for that version.
+.. note:: This tutorial is intended for Singularity release 2.1.2,
+    and reflects standards for that version.
 
 In order to do this, you will need to first install the ‘debootstrap’ package onto your host. Then, you will create
 a definition file that will describe how to build your Ubuntu image. Finally, you will build the image using the Singularity
@@ -289,7 +290,9 @@ Creating your image
 -------------------
 
 Once you have created your definition file, you will be ready to actually create your image. You will do this by utilizing the Singularity ‘create’ and ‘bootstrap’ subcommands. The process for doing this
-can be seen below (note that we have saved our definition file as “ubuntu.def”):
+can be seen below:
+
+.. note:: We have saved our definition file as “ubuntu.def”
 
 ::
 
