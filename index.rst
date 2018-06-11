@@ -1,6 +1,8 @@
+===========
+Admin Guide
+===========
 
 .. toctree::
-   :caption: Admin Guide
    :maxdepth: 5
 
    Quickstart <quickstart>
