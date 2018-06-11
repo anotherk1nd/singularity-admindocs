@@ -9,9 +9,9 @@ Using Host libraries: GPU drivers and OpenMPI BTLs
 
 .. _sec:tutorial-gpu-drivers-and-openmpi:
 
-.. note:: Much of the GPU portion of this tutorial is deprecated by the** ``--nv`` **option
+.. note:: **Much of the GPU portion of this tutorial is deprecated by the** ``--nv`` **option
     that automatically binds host system driver libraries into your container at
-    runtime. See the** ``exec`` **command for an example**
+    runtime. See the** ``exec`` **command for an example.**
 
 Singularity does a fantastic job of isolating you from the host so you don’t have to muck
 about with ``LD_LIBRARY_PATH``, you just get exactly the library versions you want. However,

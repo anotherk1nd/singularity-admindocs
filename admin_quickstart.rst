@@ -161,5 +161,5 @@ is ``singularity-2.3.el7.centos.x86_64.rpm`` , and you should install it with th
     $ PREFIX=/opt/singularity
     $ rpmbuild -ta --define="_prefix $PREFIX" --define "_sysconfdir $PREFIX/etc" --define "_defaultdocdir $PREFIX/share" singularity-*.tar.gz
 
-We recommend you look at our `security admin guide <#security>`_ to get further information about container
+We recommend you look at our `security admin guide <https://singularity-admindoc.readthedocs.io/en/latest/security.html>`_ to get further information about container
 privileges and mounting.

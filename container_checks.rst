@@ -6,7 +6,7 @@ New to Singularity 2.4 is the ability to, on demand, run container
 “checks,” which can be anything from a filter for sensitive information,
 to an analysis of content on the filesystem. Checks are installed with
 Singularity, managed by the administrator, and `available to the
-user <http://singularity-userdoc.readthedocs.io/en/latest/getting_started.html#container-checks>`__.
+user <https://singularity-userdoc.readthedocs.io/en/latest/container_checks.html>`__.
 
 ----------------
 What is a check?
