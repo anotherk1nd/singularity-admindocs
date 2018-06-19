@@ -37,11 +37,16 @@ The flow of checks is the following:
 ::
 
         # Perform all default checks, these are the same
+
         $ singularity check ubuntu.img
+
         $ singularity check --tag default ubuntu.img
 
+
         # Perform checks with tag "clean"
+
         $ singularity check --tag clean ubuntu.img
+
 
 Adding a Check
 ==============
@@ -55,14 +60,18 @@ directory to this location:
 ::
 
     import os
+
     base = os.environ["SINGULARITY_ROOTFS"]
+
     os.chdir(base)
+
 
 or do the same in bash:
 
 ::
 
     cd $SINGULARITY_ROOTFS
+
     ls $SINGULARITY_ROOTFS/var
 
 Since we are doing a mount, all checks must be static relative to this
@@ -86,13 +95,20 @@ a level, and prevent continuation of the build/bootstrap given a fail.
 ::
 
     ##################################################################################
+
     # CHECK SCRIPTS
+
     ##################################################################################
 
+
     #        [SUCCESS] [LEVEL]  [SCRIPT]                                                                         [TAGS]
+
     execute_check    0    HIGH  "bash $SINGULARITY_libexecdir/singularity/helpers/checks/1-hello-world.sh"       security
+
     execute_check    0     LOW  "python $SINGULARITY_libexecdir/singularity/helpers/checks/2-cache-content.py"   clean
+
     execute_check    0    HIGH  "python $SINGULARITY_libexecdir/singularity/helpers/checks/3-cve.py"             security
+    
 
 The function ``execute_check`` will compare the level (``[LEVEL]``) with the user specified (or
 default) ``SINGULARITY_CHECKLEVEL`` and execute the check only given it is under the specified

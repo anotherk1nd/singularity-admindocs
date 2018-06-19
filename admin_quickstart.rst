@@ -31,9 +31,13 @@ downloading and preparing the latest development code from GitHub:
 ::
 
     $ mkdir ~/git
+
     $ cd ~/git
+
     $ git clone https://github.com/singularityware/singularity.git
+
     $ cd singularity
+
     $ ./autogen.sh
 
 Once you have downloaded the source, the following installation
@@ -55,8 +59,11 @@ Assuming that ``/usr/local`` is a local file system:
 ::
 
     $ ./configure --prefix=/usr/local --sysconfdir=/etc
+
     $ make
+
     $ sudo make install
+
 
 .. note:: **The** ``make install`` **above must be run as root to have Singularity properly
     installed. Failure to install as root will cause Singularity to not
@@ -110,10 +117,15 @@ directories are created on all nodes, with ``root:root`` ownership and ``0755`` 
 ::
 
     ${localstatedir}/singularity/mnt
+
     ${localstatedir}/singularity/mnt/container
+
     ${localstatedir}/singularity/mnt/final
+
     ${localstatedir}/singularity/mnt/overlay
+
     ${localstatedir}/singularity/mnt/session
+
 
 Singularity will fail to execute without these directories. They are
 normally created by the install make target; when using a local
@@ -129,8 +141,11 @@ doing the following:
 ::
 
     $ ./configure
+
     $ make dist
+
     $ rpmbuild -ta singularity-*.tar.gz
+
 
 Near the bottom of the build output you will see several lines like:
 
@@ -138,9 +153,13 @@ Near the bottom of the build output you will see several lines like:
 
     ...
     Wrote: /home/gmk/rpmbuild/SRPMS/singularity-2.3.el7.centos.src.rpm
+
     Wrote: /home/gmk/rpmbuild/RPMS/x86_64/singularity-2.3.el7.centos.x86_64.rpm
+
     Wrote: /home/gmk/rpmbuild/RPMS/x86_64/singularity-devel-2.3.el7.centos.x86_64.rpm
+
     Wrote: /home/gmk/rpmbuild/RPMS/x86_64/singularity-debuginfo-2.3.el7.centos.x86_64.rpm
+
     ...
 
 You will want to identify the appropriate path to the binary RPM that
@@ -159,6 +178,7 @@ is ``singularity-2.3.el7.centos.x86_64.rpm`` , and you should install it with th
 ::
 
     $ PREFIX=/opt/singularity
+
     $ rpmbuild -ta --define="_prefix $PREFIX" --define "_sysconfdir $PREFIX/etc" --define "_defaultdocdir $PREFIX/share" singularity-*.tar.gz
 
 We recommend you look at our `security admin guide <https://singularity-admindoc.readthedocs.io/en/latest/security.html>`_ to get further information about container
