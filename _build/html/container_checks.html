@@ -196,10 +196,14 @@ these are all considered <code class="docutils literal notranslate"><span class=
 displays examples of how the user specifies a tag:</li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Perform all default checks, these are the same
+
 $ singularity check ubuntu.img
+
 $ singularity check --tag default ubuntu.img
 
+
 # Perform checks with tag &quot;clean&quot;
+
 $ singularity check --tag clean ubuntu.img
 </pre></div>
 </div>
@@ -211,12 +215,15 @@ action. The following is required:
 actions relative to <code class="docutils literal notranslate"><span class="pre">SINGULARITY_ROOTFS</span></code>. For example, in python you might change
 directory to this location:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
 <span class="n">base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SINGULARITY_ROOTFS&quot;</span><span class="p">]</span>
+
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>or do the same in bash:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $SINGULARITY_ROOTFS
+
 ls $SINGULARITY_ROOTFS/var
 </pre></div>
 </div>
@@ -237,12 +244,18 @@ a level, and prevent continuation of the build/bootstrap given a fail.
 <blockquote>
 <div>format:</div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">##################################################################################</span>
+
 <span class="c1"># CHECK SCRIPTS</span>
+
 <span class="c1">##################################################################################</span>
 
+
 <span class="c1">#        [SUCCESS] [LEVEL]  [SCRIPT]                                                                         [TAGS]</span>
+
 <span class="n">execute_check</span>    <span class="mi">0</span>    <span class="n">HIGH</span>  <span class="s2">&quot;bash $SINGULARITY_libexecdir/singularity/helpers/checks/1-hello-world.sh&quot;</span>       <span class="n">security</span>
+
 <span class="n">execute_check</span>    <span class="mi">0</span>     <span class="n">LOW</span>  <span class="s2">&quot;python $SINGULARITY_libexecdir/singularity/helpers/checks/2-cache-content.py&quot;</span>   <span class="n">clean</span>
+
 <span class="n">execute_check</span>    <span class="mi">0</span>    <span class="n">HIGH</span>  <span class="s2">&quot;python $SINGULARITY_libexecdir/singularity/helpers/checks/3-cve.py&quot;</span>             <span class="n">security</span>
 </pre></div>
 </div>

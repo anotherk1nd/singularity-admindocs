@@ -17,16 +17,19 @@ reporting one of the following error conditions:
 ::
 
     ERROR  : Singularity must be executed in privileged mode to use images
+
     ABORT  : Retval = 255
 
 ::
 
     ERROR  : User namespace not supported, and program not running privileged.
+
     ABORT  : Retval = 255
 
 ::
 
     ABORT  : This program must be SUID root
+    
     ABORT  : Retval = 255
 
 If one of these errors is reported, it is best to check the installation

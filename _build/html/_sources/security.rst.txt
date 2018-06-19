@@ -116,9 +116,13 @@ follows:
 ::
 
     $ find /usr/local/libexec/singularity/ -perm -4000
+
     /usr/local/libexec/singularity/bin/start-suid
+
     /usr/local/libexec/singularity/bin/action-suid
+
     /usr/local/libexec/singularity/bin/mount-suid
+
 
 Each of the binaries is named accordingly to the action that it is
 suited for, and generally, each handles the required privilege
@@ -138,7 +142,9 @@ with ``*-suid`` also has a non-suid equivalent:
 ::
 
     /usr/local/libexec/singularity/bin/start
+
     /usr/local/libexec/singularity/bin/action
+
     /usr/local/libexec/singularity/bin/mount
 
 While most of these workflows will not properly function without the
@@ -151,14 +157,23 @@ the top of the ``singularity.conf`` file, which is typically located in ``$PREFI
 ::
 
     # ALLOW SETUID: [BOOL]
+
     # DEFAULT: yes
+
     # Should we allow users to utilize the setuid program flow within Singularity?
+
     # note1: This is the default mode, and to utilize all features, this option
+
     # will need to be enabled.
+
     # note2: If this option is disabled, it will rely on the user namespace
+
     # exclusively which has not been integrated equally between the different
+
     # Linux distributions.
+
     allow setuid = yes
+
 
 You can also install Singularity as root without any of the SetUID
 components with the configure option ``--disable-suid`` as follows:
@@ -166,8 +181,11 @@ components with the configure option ``--disable-suid`` as follows:
 ::
 
     $ ./configure --disable-suid --prefix=/usr/local
+
     $ make
+
     $ sudo make install
+
 
 ------------------------------------
 Can I install Singularity as a user?
@@ -212,12 +230,19 @@ containers Singularity will support:
 ::
 
     # ALLOW CONTAINER ${TYPE}: [BOOL]
+
     # DEFAULT: yes
+
     # This feature limits what kind of containers that Singularity will allow
+
     # users to use (note this does not apply for root).
+
     allow container squashfs = yes
+
     allow container extfs = yes
+
     allow container dir = yes
+
 
 limiting usage to specific container file owners
 ================================================
@@ -255,13 +280,21 @@ containers are only being used on performant file systems).
 ::
 
     # LIMIT CONTAINER PATHS: [STRING]
+
     # DEFAULT: NULL
+
     # Only allow containers to be used that are located within an allowed path
+
     # prefix. If this configuration is undefined (commented or set to NULL),
+
     # containers will be allowed to run from anywhere on the file system. This
+
     # feature only applies when Singularity is running in SUID mode and the user is
+
     # non-root.
+
     #limit container paths = /scratch, /tmp, /global
+
 
 -------
 Logging
@@ -275,22 +308,33 @@ into an image:
 ::
 
     $ singularity exec ubuntu true
+
     $ singularity shell --home $HOME:/ ubuntu
+
     Singularity: Invoking an interactive shell within container...
 
+
     ERROR  : Failed to execv() /.singularity.d/actions/shell, continuing to /bin/sh: No such file or directory
+
     ERROR  : What are you doing gmk, this is highly irregular!
+
     ABORT  : Retval = 255
+
 
 We can then peek into the system log to see what was recorded:
 
 ::
 
     Oct  5 08:51:12 localhost Singularity: action-suid (U=1000,P=32320)> USER=gmk, IMAGE='ubuntu', COMMAND='exec'
+
     Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)> USER=gmk, IMAGE='ubuntu', COMMAND='shell'
+
     Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)> Failed to execv() /.singularity.d/actions/shell, continuing to /bin/sh: No such file or directory
+
     Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)> What are you doing gmk, this is highly irregular!
+
     Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)> Retval = 255
+
 
 .. note::**All errors are logged!**
 
@@ -305,55 +349,94 @@ see what Singularity is doing there:
 ::
 
     $ singularity --debug shell --pid ubuntu
+
     Enabling debugging
+
     Ending argument loop
+
     Singularity version: 2.3.9-development.gc35b753
+
     Exec'ing: /usr/local/libexec/singularity/cli/shell.exec
+
     Evaluating args: '--pid ubuntu'
+
 
 (snipped to PID namespace implementation)
 
 ::
 
     DEBUG   [U=1000,P=30961]   singularity_runtime_ns_pid()              Using PID namespace: CLONE_NEWPID
+
     DEBUG   [U=1000,P=30961]   singularity_runtime_ns_pid()              Virtualizing PID namespace
+
     DEBUG   [U=1000,P=30961]   singularity_registry_get()                Returning NULL on 'DAEMON_START'
+
     DEBUG   [U=1000,P=30961]   prepare_fork()                            Creating parent/child coordination pipes.
+
     VERBOSE [U=1000,P=30961]   singularity_fork()                        Forking child process
+
     DEBUG   [U=1000,P=30961]   singularity_priv_escalate()               Temporarily escalating privileges (U=1000)
+
     DEBUG   [U=0,P=30961]      singularity_priv_escalate()               Clearing supplementary GIDs.
+
     DEBUG   [U=0,P=30961]      singularity_priv_drop()                   Dropping privileges to UID=1000, GID=1000 (8 supplementary GIDs)
+
     DEBUG   [U=0,P=30961]      singularity_priv_drop()                   Restoring supplementary groups
+
     DEBUG   [U=1000,P=30961]   singularity_priv_drop()                   Confirming we have correct UID/GID
+
     VERBOSE [U=1000,P=30961]   singularity_fork()                        Hello from parent process
+
     DEBUG   [U=1000,P=30961]   install_generic_signal_handle()           Assigning generic sigaction()s
+
     DEBUG   [U=1000,P=30961]   install_generic_signal_handle()           Creating generic signal pipes
+
     DEBUG   [U=1000,P=30961]   install_sigchld_signal_handle()           Assigning SIGCHLD sigaction()
+
     DEBUG   [U=1000,P=30961]   install_sigchld_signal_handle()           Creating sigchld signal pipes
+
     DEBUG   [U=1000,P=30961]   singularity_fork()                        Dropping permissions
+
     DEBUG   [U=0,P=30961]      singularity_priv_drop()                   Dropping privileges to UID=1000, GID=1000 (8 supplementary GIDs)
+
     DEBUG   [U=0,P=30961]      singularity_priv_drop()                   Restoring supplementary groups
+
     DEBUG   [U=1000,P=30961]   singularity_priv_drop()                   Confirming we have correct UID/GID
+
     DEBUG   [U=1000,P=30961]   singularity_signal_go_ahead()             Sending go-ahead signal: 0
+
     DEBUG   [U=1000,P=30961]   wait_child()                              Parent process is waiting on child process
+
     DEBUG   [U=0,P=1]          singularity_priv_drop()                   Dropping privileges to UID=1000, GID=1000 (8 supplementary GIDs)
+
     DEBUG   [U=0,P=1]          singularity_priv_drop()                   Restoring supplementary groups
+
     DEBUG   [U=1000,P=1]       singularity_priv_drop()                   Confirming we have correct UID/GID
+
     VERBOSE [U=1000,P=1]       singularity_fork()                        Hello from child process
+
     DEBUG   [U=1000,P=1]       singularity_wait_for_go_ahead()           Waiting for go-ahead signal
+
     DEBUG   [U=1000,P=1]       singularity_wait_for_go_ahead()           Received go-ahead signal: 0
+
     VERBOSE [U=1000,P=1]       singularity_registry_set()                Adding value to registry: 'PIDNS_ENABLED' = '1'
+
 
 (snipped to end)
 
 ::
 
     DEBUG   [U=1000,P=1]       envar_set()                               Unsetting environment variable: SINGULARITY_APPNAME
+
     DEBUG   [U=1000,P=1]       singularity_registry_get()                Returning value from registry: 'COMMAND' = 'shell'
+
     LOG     [U=1000,P=1]       main()                                    USER=gmk, IMAGE='ubuntu', COMMAND='shell'
+
     INFO    [U=1000,P=1]       action_shell()                            Singularity: Invoking an interactive shell within container...
 
+
     DEBUG   [U=1000,P=1]       action_shell()                            Exec'ing /.singularity.d/actions/shell
+
     Singularity ubuntu:~>
 
 Not only do I see all of the configuration options that I (probably
@@ -375,10 +458,15 @@ never escalated, but we have the same outcome using a sandbox directory
 ::
 
     $ singularity -d shell --pid --userns ubuntu.dir/
+
     Enabling debugging
+
     Ending argument loop
+
     Singularity version: 2.3.9-development.gc35b753
+
     Exec'ing: /usr/local/libexec/singularity/cli/shell.exec
+
     Evaluating args: '--pid --userns ubuntu.dir/'
 
 (snipped to PID namespace implementation, same place as above)
@@ -386,38 +474,65 @@ never escalated, but we have the same outcome using a sandbox directory
 ::
 
     DEBUG   [U=1000,P=32081]   singularity_runtime_ns_pid()              Using PID namespace: CLONE_NEWPID
+
     DEBUG   [U=1000,P=32081]   singularity_runtime_ns_pid()              Virtualizing PID namespace
+
     DEBUG   [U=1000,P=32081]   singularity_registry_get()                Returning NULL on 'DAEMON_START'
+
     DEBUG   [U=1000,P=32081]   prepare_fork()                            Creating parent/child coordination pipes.
+
     VERBOSE [U=1000,P=32081]   singularity_fork()                        Forking child process
+
     DEBUG   [U=1000,P=32081]   singularity_priv_escalate()               Not escalating privileges, user namespace enabled
+
     DEBUG   [U=1000,P=32081]   singularity_priv_drop()                   Not dropping privileges, user namespace enabled
+
     VERBOSE [U=1000,P=32081]   singularity_fork()                        Hello from parent process
+
     DEBUG   [U=1000,P=32081]   install_generic_signal_handle()           Assigning generic sigaction()s
+
     DEBUG   [U=1000,P=32081]   install_generic_signal_handle()           Creating generic signal pipes
+
     DEBUG   [U=1000,P=32081]   install_sigchld_signal_handle()           Assigning SIGCHLD sigaction()
+
     DEBUG   [U=1000,P=32081]   install_sigchld_signal_handle()           Creating sigchld signal pipes
+
     DEBUG   [U=1000,P=32081]   singularity_signal_go_ahead()             Sending go-ahead signal: 0
+
     DEBUG   [U=1000,P=32081]   wait_child()                              Parent process is waiting on child process
+
     DEBUG   [U=1000,P=1]       singularity_priv_drop()                   Not dropping privileges, user namespace enabled
+
     VERBOSE [U=1000,P=1]       singularity_fork()                        Hello from child process
+
     DEBUG   [U=1000,P=1]       singularity_wait_for_go_ahead()           Waiting for go-ahead signal
+
     DEBUG   [U=1000,P=1]       singularity_wait_for_go_ahead()           Received go-ahead signal: 0
+
     VERBOSE [U=1000,P=1]       singularity_registry_set()                Adding value to registry: 'PIDNS_ENABLED' = '1'
+
 
 (snipped to end)
 
 ::
 
     DEBUG   [U=1000,P=1]       envar_set()                               Unsetting environment variable: SINGULARITY_APPNAME
+
     DEBUG   [U=1000,P=1]       singularity_registry_get()                Returning value from registry: 'COMMAND' = 'shell'
+
     LOG     [U=1000,P=1]       main()                                    USER=gmk, IMAGE='ubuntu.dir', COMMAND='shell'
+
     INFO    [U=1000,P=1]       action_shell()                            Singularity: Invoking an interactive shell within container...
 
+
     DEBUG   [U=1000,P=1]       action_shell()                            Exec'ing /.singularity.d/actions/shell
+
     Singularity ubuntu.dir:~> whoami
+
     gmk
+
     Singularity ubuntu.dir:~>
+    
 
 Here you can see that the output and functionality is very similar,
 but we never increased any privilege and none of the ``*-suid`` program flow was

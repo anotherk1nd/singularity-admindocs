@@ -274,27 +274,49 @@ around)</li>
 <div class="section" id="code-example-using-open-mpi-2-1-0-stable">
 <h4>Code Example using Open MPI 2.1.0 Stable<a class="headerlink" href="#code-example-using-open-mpi-2-1-0-stable" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ # Include the appropriate development tools into the container (notice we are calling
+
 $ # singularity as root and the container is writable)
+
 $ sudo singularity exec -w /tmp/Centos-7.img yum groupinstall &quot;Development Tools&quot;
+
 $
+
 $ # Obtain the development version of Open MPI
+
 $ wget https://www.open-mpi.org/software/ompi/v2.1/downloads/openmpi-2.1.0.tar.bz2
+
 $ tar jtf openmpi-2.1.0.tar.bz2
+
 $ cd openmpi-2.1.0
+
 $
+
 $ singularity exec /tmp/Centos-7.img ./configure --prefix=/usr/local
+
 $ singularity exec /tmp/Centos-7.img make
+
 $
+
 $ # Install OpenMPI into the container (notice now running as root and container is writable)
+
 $ sudo singularity exec -w -B /home /tmp/Centos-7.img make install
+
 $
+
 $ # Build the OpenMPI ring example and place the binary in this directory
+
 $ singularity exec /tmp/Centos-7.img mpicc examples/ring_c.c -o ring
+
 $
+
 $ # Install the MPI binary into the container at /usr/bin/ring
+
 $ sudo singularity copy /tmp/Centos-7.img ./ring /usr/bin/
+
 $
+
 $ # Run the MPI program within the container by calling the MPIRUN on the host
+
 $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 </pre></div>
 </div>
@@ -305,62 +327,117 @@ $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 work fine on most hardware but if you have an issue, try running the
 example below (using the Open MPI Master branch):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ # Include the appropriate development tools into the container (notice we are calling
+
 $ # singularity as root and the container is writable)
+
 $ sudo singularity exec -w /tmp/Centos-7.img yum groupinstall &quot;Development Tools&quot;
+
 $
+
 $ # Clone the OpenMPI GitHub master branch in current directory (on host)
+
 $ git clone https://github.com/open-mpi/ompi.git
+
 $ cd ompi
+
 $
+
 $ # Build OpenMPI in the working directory, using the tool chain within the container
+
 $ singularity exec /tmp/Centos-7.img ./autogen.pl
+
 $ singularity exec /tmp/Centos-7.img ./configure --prefix=/usr/local
+
 $ singularity exec /tmp/Centos-7.img make
+
 $
+
 $ # Install OpenMPI into the container (notice now running as root and container is writable)
+
 $ sudo singularity exec -w -B /home /tmp/Centos-7.img make install
+
 $
+
 $ # Build the OpenMPI ring example and place the binary in this directory
+
 $ singularity exec /tmp/Centos-7.img mpicc examples/ring_c.c -o ring
+
 $
+
 $ # Install the MPI binary into the container at /usr/bin/ring
+
 $ sudo singularity copy /tmp/Centos-7.img ./ring /usr/bin/
+
 $
+
 $ # Run the MPI program within the container by calling the MPIRUN on the host
+
 $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 
 
+
 Process 0 sending 10 to 1, tag 201 (20 processes in ring)
+
 Process 0 sent to 1
+
 Process 0 decremented value: 9
+
 Process 0 decremented value: 8
+
 Process 0 decremented value: 7
+
 Process 0 decremented value: 6
+
 Process 0 decremented value: 5
+
 Process 0 decremented value: 4
+
 Process 0 decremented value: 3
+
 Process 0 decremented value: 2
+
 Process 0 decremented value: 1
+
 Process 0 decremented value: 0
+
 Process 0 exiting
+
 Process 1 exiting
+
 Process 2 exiting
+
 Process 3 exiting
+
 Process 4 exiting
+
 Process 5 exiting
+
 Process 6 exiting
+
 Process 7 exiting
+
 Process 8 exiting
+
 Process 9 exiting
+
 Process 10 exiting
+
 Process 11 exiting
+
 Process 12 exiting
+
 Process 13 exiting
+
 Process 14 exiting
+
 Process 15 exiting
+
 Process 16 exiting
+
 Process 17 exiting
+
 Process 18 exiting
+
 Process 19 exiting
 </pre></div>
 </div>
@@ -380,13 +457,21 @@ is /tmp and /var/tmp. Additionally your current working directory
 system directory or already accessible via another mount. For almost all
 cases, this will work flawlessly as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+
 /home/gmk/demo
+
 $ singularity shell container.img
+
 Singularity/container.img&gt; pwd
+
 /home/gmk/demo
+
 Singularity/container.img&gt; ls -l debian.def
+
 -rw-rw-r--. 1 gmk gmk 125 May 28 10:35 debian.def
+
 Singularity/container.img&gt; exit
+
 $
 </pre></div>
 </div>
@@ -408,18 +493,31 @@ descriptor to your current directory and change you back to it. If you
 do a ‘pwd’ within the container, you may see some weird things. For
 example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+
 /foobar
+
 $ ls -l
+
 total 0
+
 -rw-r--r--. 1 root root 0 Jun  1 11:32 mooooo
+
 $ singularity shell ~/demo/container.img
+
 WARNING: CWD bind directory not present: /foobar
+
 Singularity/container.img&gt; pwd
+
 (unreachable)/foobar
+
 Singularity/container.img&gt; ls -l
+
 total 0
+
 -rw-r--r--. 1 root root 0 Jun  1 18:32 mooooo
+
 Singularity/container.img&gt; exit
+
 $
 </pre></div>
 </div>
@@ -434,9 +532,13 @@ host to the applications within the container to facilitate expected
 behavior from the interaction between the host and the container. For
 example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat debian.def | singularity exec container.img grep &#39;MirrorURL&#39;
+
 MirrorURL &quot;http://ftp.us.debian.org/debian/&quot;
+
 $
+
 Making changes to the container (writable)
+
 By default, containers are accessed as read only. This is both to enable parallel container execution (e.g. MPI). To enter a container using exec, run, or shell you must pass the --writable flag in order to open the image as read/writable.
 </pre></div>
 </div>

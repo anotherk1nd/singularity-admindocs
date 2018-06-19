@@ -282,8 +282,11 @@ installed and the options passed to the <code class="docutils literal notranslat
 which installs files into <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> of <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> you can find the SetUID programs as
 follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ find /usr/local/libexec/singularity/ -perm -4000
+
 /usr/local/libexec/singularity/bin/start-suid
+
 /usr/local/libexec/singularity/bin/action-suid
+
 /usr/local/libexec/singularity/bin/mount-suid
 </pre></div>
 </div>
@@ -300,7 +303,9 @@ requires escalated privileges?</p>
 would cause Singularity to utilize the non-SUID workflows. Each file
 with <code class="docutils literal notranslate"><span class="pre">*-suid</span></code> also has a non-suid equivalent:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">singularity</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">start</span>
+
 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">singularity</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">action</span>
+
 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">singularity</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mount</span>
 </pre></div>
 </div>
@@ -311,20 +316,30 @@ essentials/minimum. To disable the SetUID portions of Singularity, you
 can either remove the above <code class="docutils literal notranslate"><span class="pre">*-suid</span></code> files, or you can edit the setting for <code class="docutils literal notranslate"><span class="pre">allow</span> <span class="pre">suid</span></code> at
 the top of the <code class="docutils literal notranslate"><span class="pre">singularity.conf</span></code> file, which is typically located in <code class="docutils literal notranslate"><span class="pre">$PREFIX/etc/singularity/singularity.conf</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ALLOW SETUID: [BOOL]</span>
+
 <span class="c1"># DEFAULT: yes</span>
+
 <span class="c1"># Should we allow users to utilize the setuid program flow within Singularity?</span>
+
 <span class="c1"># note1: This is the default mode, and to utilize all features, this option</span>
+
 <span class="c1"># will need to be enabled.</span>
+
 <span class="c1"># note2: If this option is disabled, it will rely on the user namespace</span>
+
 <span class="c1"># exclusively which has not been integrated equally between the different</span>
+
 <span class="c1"># Linux distributions.</span>
+
 <span class="n">allow</span> <span class="n">setuid</span> <span class="o">=</span> <span class="n">yes</span>
 </pre></div>
 </div>
 <p>You can also install Singularity as root without any of the SetUID
 components with the configure option <code class="docutils literal notranslate"><span class="pre">--disable-suid</span></code> as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure --disable-suid --prefix=/usr/local
+
 $ make
+
 $ sudo make install
 </pre></div>
 </div>
@@ -360,11 +375,17 @@ administrator always has the final control.</p>
 <p>Using the Singularity configuration file, you can control what types of
 containers Singularity will support:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ALLOW CONTAINER ${TYPE}: [BOOL]</span>
+
 <span class="c1"># DEFAULT: yes</span>
+
 <span class="c1"># This feature limits what kind of containers that Singularity will allow</span>
+
 <span class="c1"># users to use (note this does not apply for root).</span>
+
 <span class="n">allow</span> <span class="n">container</span> <span class="n">squashfs</span> <span class="o">=</span> <span class="n">yes</span>
+
 <span class="n">allow</span> <span class="n">container</span> <span class="n">extfs</span> <span class="o">=</span> <span class="n">yes</span>
+
 <span class="n">allow</span> <span class="n">container</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">yes</span>
 </pre></div>
 </div>
@@ -401,12 +422,19 @@ specific paths. This is very useful to ensure that only trusted or
 blessed container’s are being used (it is also beneficial to ensure that
 containers are only being used on performant file systems).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># LIMIT CONTAINER PATHS: [STRING]</span>
+
 <span class="c1"># DEFAULT: NULL</span>
+
 <span class="c1"># Only allow containers to be used that are located within an allowed path</span>
+
 <span class="c1"># prefix. If this configuration is undefined (commented or set to NULL),</span>
+
 <span class="c1"># containers will be allowed to run from anywhere on the file system. This</span>
+
 <span class="c1"># feature only applies when Singularity is running in SUID mode and the user is</span>
+
 <span class="c1"># non-root.</span>
+
 <span class="c1">#limit container paths = /scratch, /tmp, /global</span>
 </pre></div>
 </div>
@@ -419,19 +447,28 @@ system log. For each command that is issued, it prints the UID, PID, and
 location of the command. For example, let’s see what happens if we shell
 into an image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ singularity exec ubuntu true
+
 $ singularity shell --home $HOME:/ ubuntu
+
 Singularity: Invoking an interactive shell within container...
 
+
 ERROR  : Failed to execv() /.singularity.d/actions/shell, continuing to /bin/sh: No such file or directory
+
 ERROR  : What are you doing gmk, this is highly irregular!
+
 ABORT  : Retval = 255
 </pre></div>
 </div>
 <p>We can then peek into the system log to see what was recorded:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Oct  5 08:51:12 localhost Singularity: action-suid (U=1000,P=32320)&gt; USER=gmk, IMAGE=&#39;ubuntu&#39;, COMMAND=&#39;exec&#39;
+
 Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)&gt; USER=gmk, IMAGE=&#39;ubuntu&#39;, COMMAND=&#39;shell&#39;
+
 Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)&gt; Failed to execv() /.singularity.d/actions/shell, continuing to /bin/sh: No such file or directory
+
 Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)&gt; What are you doing gmk, this is highly irregular!
+
 Oct  5 08:53:13 localhost Singularity: action-suid (U=1000,P=32311)&gt; Retval = 255
 </pre></div>
 </div>
@@ -442,51 +479,88 @@ everything that Singularity is doing. In this case we can run
 Singularity in debug mode and request use of the PID namespace so we can
 see what Singularity is doing there:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ singularity --debug shell --pid ubuntu
+
 Enabling debugging
+
 Ending argument loop
+
 Singularity version: 2.3.9-development.gc35b753
+
 Exec&#39;ing: /usr/local/libexec/singularity/cli/shell.exec
+
 Evaluating args: &#39;--pid ubuntu&#39;
 </pre></div>
 </div>
 <p>(snipped to PID namespace implementation)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_runtime_ns_pid</span><span class="p">()</span>              <span class="n">Using</span> <span class="n">PID</span> <span class="n">namespace</span><span class="p">:</span> <span class="n">CLONE_NEWPID</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_runtime_ns_pid</span><span class="p">()</span>              <span class="n">Virtualizing</span> <span class="n">PID</span> <span class="n">namespace</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_registry_get</span><span class="p">()</span>                <span class="n">Returning</span> <span class="n">NULL</span> <span class="n">on</span> <span class="s1">&#39;DAEMON_START&#39;</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">prepare_fork</span><span class="p">()</span>                            <span class="n">Creating</span> <span class="n">parent</span><span class="o">/</span><span class="n">child</span> <span class="n">coordination</span> <span class="n">pipes</span><span class="o">.</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Forking</span> <span class="n">child</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_priv_escalate</span><span class="p">()</span>               <span class="n">Temporarily</span> <span class="n">escalating</span> <span class="n">privileges</span> <span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>      <span class="n">singularity_priv_escalate</span><span class="p">()</span>               <span class="n">Clearing</span> <span class="n">supplementary</span> <span class="n">GIDs</span><span class="o">.</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>      <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Dropping</span> <span class="n">privileges</span> <span class="n">to</span> <span class="n">UID</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">GID</span><span class="o">=</span><span class="mi">1000</span> <span class="p">(</span><span class="mi">8</span> <span class="n">supplementary</span> <span class="n">GIDs</span><span class="p">)</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>      <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Restoring</span> <span class="n">supplementary</span> <span class="n">groups</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Confirming</span> <span class="n">we</span> <span class="n">have</span> <span class="n">correct</span> <span class="n">UID</span><span class="o">/</span><span class="n">GID</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Hello</span> <span class="kn">from</span> <span class="nn">parent</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">install_generic_signal_handle</span><span class="p">()</span>           <span class="n">Assigning</span> <span class="n">generic</span> <span class="n">sigaction</span><span class="p">()</span><span class="n">s</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">install_generic_signal_handle</span><span class="p">()</span>           <span class="n">Creating</span> <span class="n">generic</span> <span class="n">signal</span> <span class="n">pipes</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">install_sigchld_signal_handle</span><span class="p">()</span>           <span class="n">Assigning</span> <span class="n">SIGCHLD</span> <span class="n">sigaction</span><span class="p">()</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">install_sigchld_signal_handle</span><span class="p">()</span>           <span class="n">Creating</span> <span class="n">sigchld</span> <span class="n">signal</span> <span class="n">pipes</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Dropping</span> <span class="n">permissions</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>      <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Dropping</span> <span class="n">privileges</span> <span class="n">to</span> <span class="n">UID</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">GID</span><span class="o">=</span><span class="mi">1000</span> <span class="p">(</span><span class="mi">8</span> <span class="n">supplementary</span> <span class="n">GIDs</span><span class="p">)</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>      <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Restoring</span> <span class="n">supplementary</span> <span class="n">groups</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Confirming</span> <span class="n">we</span> <span class="n">have</span> <span class="n">correct</span> <span class="n">UID</span><span class="o">/</span><span class="n">GID</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">singularity_signal_go_ahead</span><span class="p">()</span>             <span class="n">Sending</span> <span class="n">go</span><span class="o">-</span><span class="n">ahead</span> <span class="n">signal</span><span class="p">:</span> <span class="mi">0</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">30961</span><span class="p">]</span>   <span class="n">wait_child</span><span class="p">()</span>                              <span class="n">Parent</span> <span class="n">process</span> <span class="ow">is</span> <span class="n">waiting</span> <span class="n">on</span> <span class="n">child</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>          <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Dropping</span> <span class="n">privileges</span> <span class="n">to</span> <span class="n">UID</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">GID</span><span class="o">=</span><span class="mi">1000</span> <span class="p">(</span><span class="mi">8</span> <span class="n">supplementary</span> <span class="n">GIDs</span><span class="p">)</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>          <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Restoring</span> <span class="n">supplementary</span> <span class="n">groups</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Confirming</span> <span class="n">we</span> <span class="n">have</span> <span class="n">correct</span> <span class="n">UID</span><span class="o">/</span><span class="n">GID</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Hello</span> <span class="kn">from</span> <span class="nn">child</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_wait_for_go_ahead</span><span class="p">()</span>           <span class="n">Waiting</span> <span class="k">for</span> <span class="n">go</span><span class="o">-</span><span class="n">ahead</span> <span class="n">signal</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_wait_for_go_ahead</span><span class="p">()</span>           <span class="n">Received</span> <span class="n">go</span><span class="o">-</span><span class="n">ahead</span> <span class="n">signal</span><span class="p">:</span> <span class="mi">0</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_registry_set</span><span class="p">()</span>                <span class="n">Adding</span> <span class="n">value</span> <span class="n">to</span> <span class="n">registry</span><span class="p">:</span> <span class="s1">&#39;PIDNS_ENABLED&#39;</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
 </pre></div>
 </div>
 <p>(snipped to end)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">envar_set</span><span class="p">()</span>                               <span class="n">Unsetting</span> <span class="n">environment</span> <span class="n">variable</span><span class="p">:</span> <span class="n">SINGULARITY_APPNAME</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_registry_get</span><span class="p">()</span>                <span class="n">Returning</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">registry</span><span class="p">:</span> <span class="s1">&#39;COMMAND&#39;</span> <span class="o">=</span> <span class="s1">&#39;shell&#39;</span>
+
 <span class="n">LOG</span>     <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">main</span><span class="p">()</span>                                    <span class="n">USER</span><span class="o">=</span><span class="n">gmk</span><span class="p">,</span> <span class="n">IMAGE</span><span class="o">=</span><span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="n">COMMAND</span><span class="o">=</span><span class="s1">&#39;shell&#39;</span>
+
 <span class="n">INFO</span>    <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">action_shell</span><span class="p">()</span>                            <span class="n">Singularity</span><span class="p">:</span> <span class="n">Invoking</span> <span class="n">an</span> <span class="n">interactive</span> <span class="n">shell</span> <span class="n">within</span> <span class="n">container</span><span class="o">...</span>
 
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">action_shell</span><span class="p">()</span>                            <span class="n">Exec</span><span class="s1">&#39;ing /.singularity.d/actions/shell</span>
+
 <span class="n">Singularity</span> <span class="n">ubuntu</span><span class="p">:</span><span class="o">~&gt;</span>
 </pre></div>
 </div>
@@ -505,44 +579,74 @@ flag, and snip in the same places, you can see how the effective UID is
 never escalated, but we have the same outcome using a sandbox directory
 (chroot) style container.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ singularity -d shell --pid --userns ubuntu.dir/
+
 Enabling debugging
+
 Ending argument loop
+
 Singularity version: 2.3.9-development.gc35b753
+
 Exec&#39;ing: /usr/local/libexec/singularity/cli/shell.exec
+
 Evaluating args: &#39;--pid --userns ubuntu.dir/&#39;
 </pre></div>
 </div>
 <p>(snipped to PID namespace implementation, same place as above)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_runtime_ns_pid</span><span class="p">()</span>              <span class="n">Using</span> <span class="n">PID</span> <span class="n">namespace</span><span class="p">:</span> <span class="n">CLONE_NEWPID</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_runtime_ns_pid</span><span class="p">()</span>              <span class="n">Virtualizing</span> <span class="n">PID</span> <span class="n">namespace</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_registry_get</span><span class="p">()</span>                <span class="n">Returning</span> <span class="n">NULL</span> <span class="n">on</span> <span class="s1">&#39;DAEMON_START&#39;</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">prepare_fork</span><span class="p">()</span>                            <span class="n">Creating</span> <span class="n">parent</span><span class="o">/</span><span class="n">child</span> <span class="n">coordination</span> <span class="n">pipes</span><span class="o">.</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Forking</span> <span class="n">child</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_priv_escalate</span><span class="p">()</span>               <span class="n">Not</span> <span class="n">escalating</span> <span class="n">privileges</span><span class="p">,</span> <span class="n">user</span> <span class="n">namespace</span> <span class="n">enabled</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Not</span> <span class="n">dropping</span> <span class="n">privileges</span><span class="p">,</span> <span class="n">user</span> <span class="n">namespace</span> <span class="n">enabled</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Hello</span> <span class="kn">from</span> <span class="nn">parent</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">install_generic_signal_handle</span><span class="p">()</span>           <span class="n">Assigning</span> <span class="n">generic</span> <span class="n">sigaction</span><span class="p">()</span><span class="n">s</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">install_generic_signal_handle</span><span class="p">()</span>           <span class="n">Creating</span> <span class="n">generic</span> <span class="n">signal</span> <span class="n">pipes</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">install_sigchld_signal_handle</span><span class="p">()</span>           <span class="n">Assigning</span> <span class="n">SIGCHLD</span> <span class="n">sigaction</span><span class="p">()</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">install_sigchld_signal_handle</span><span class="p">()</span>           <span class="n">Creating</span> <span class="n">sigchld</span> <span class="n">signal</span> <span class="n">pipes</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">singularity_signal_go_ahead</span><span class="p">()</span>             <span class="n">Sending</span> <span class="n">go</span><span class="o">-</span><span class="n">ahead</span> <span class="n">signal</span><span class="p">:</span> <span class="mi">0</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">32081</span><span class="p">]</span>   <span class="n">wait_child</span><span class="p">()</span>                              <span class="n">Parent</span> <span class="n">process</span> <span class="ow">is</span> <span class="n">waiting</span> <span class="n">on</span> <span class="n">child</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_priv_drop</span><span class="p">()</span>                   <span class="n">Not</span> <span class="n">dropping</span> <span class="n">privileges</span><span class="p">,</span> <span class="n">user</span> <span class="n">namespace</span> <span class="n">enabled</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_fork</span><span class="p">()</span>                        <span class="n">Hello</span> <span class="kn">from</span> <span class="nn">child</span> <span class="n">process</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_wait_for_go_ahead</span><span class="p">()</span>           <span class="n">Waiting</span> <span class="k">for</span> <span class="n">go</span><span class="o">-</span><span class="n">ahead</span> <span class="n">signal</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_wait_for_go_ahead</span><span class="p">()</span>           <span class="n">Received</span> <span class="n">go</span><span class="o">-</span><span class="n">ahead</span> <span class="n">signal</span><span class="p">:</span> <span class="mi">0</span>
+
 <span class="n">VERBOSE</span> <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_registry_set</span><span class="p">()</span>                <span class="n">Adding</span> <span class="n">value</span> <span class="n">to</span> <span class="n">registry</span><span class="p">:</span> <span class="s1">&#39;PIDNS_ENABLED&#39;</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
 </pre></div>
 </div>
 <p>(snipped to end)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">envar_set</span><span class="p">()</span>                               <span class="n">Unsetting</span> <span class="n">environment</span> <span class="n">variable</span><span class="p">:</span> <span class="n">SINGULARITY_APPNAME</span>
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">singularity_registry_get</span><span class="p">()</span>                <span class="n">Returning</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">registry</span><span class="p">:</span> <span class="s1">&#39;COMMAND&#39;</span> <span class="o">=</span> <span class="s1">&#39;shell&#39;</span>
+
 <span class="n">LOG</span>     <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">main</span><span class="p">()</span>                                    <span class="n">USER</span><span class="o">=</span><span class="n">gmk</span><span class="p">,</span> <span class="n">IMAGE</span><span class="o">=</span><span class="s1">&#39;ubuntu.dir&#39;</span><span class="p">,</span> <span class="n">COMMAND</span><span class="o">=</span><span class="s1">&#39;shell&#39;</span>
+
 <span class="n">INFO</span>    <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">action_shell</span><span class="p">()</span>                            <span class="n">Singularity</span><span class="p">:</span> <span class="n">Invoking</span> <span class="n">an</span> <span class="n">interactive</span> <span class="n">shell</span> <span class="n">within</span> <span class="n">container</span><span class="o">...</span>
 
+
 <span class="n">DEBUG</span>   <span class="p">[</span><span class="n">U</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">1</span><span class="p">]</span>       <span class="n">action_shell</span><span class="p">()</span>                            <span class="n">Exec</span><span class="s1">&#39;ing /.singularity.d/actions/shell</span>
+
 <span class="n">Singularity</span> <span class="n">ubuntu</span><span class="o">.</span><span class="n">dir</span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">whoami</span>
+
 <span class="n">gmk</span>
+
 <span class="n">Singularity</span> <span class="n">ubuntu</span><span class="o">.</span><span class="n">dir</span><span class="p">:</span><span class="o">~&gt;</span>
 </pre></div>
 </div>

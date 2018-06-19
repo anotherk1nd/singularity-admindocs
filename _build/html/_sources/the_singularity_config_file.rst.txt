@@ -174,4 +174,5 @@ unload/reload the loop device as root using the following commands:
 ::
 
     # modprobe -r loop
+    
     # modprobe loop

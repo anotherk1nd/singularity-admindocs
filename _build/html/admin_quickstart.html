@@ -190,9 +190,13 @@ have an appropriately setup build server:</p>
 release or via the GitHub master repository. Here is an example
 downloading and preparing the latest development code from GitHub:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/git
+
 $ cd ~/git
+
 $ git clone https://github.com/singularityware/singularity.git
+
 $ cd singularity
+
 $ ./autogen.sh
 </pre></div>
 </div>
@@ -210,7 +214,9 @@ various network mounted file systems. To ensure proper support, it is
 easiest to make sure you install Singularity to a local file system.</p>
 <p>Assuming that <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> is a local file system:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure --prefix=/usr/local --sysconfdir=/etc
+
 $ make
+
 $ sudo make install
 </pre></div>
 </div>
@@ -257,9 +263,13 @@ value:</p>
 <p>In the case of cluster nodes, you will need to ensure the following
 directories are created on all nodes, with <code class="docutils literal notranslate"><span class="pre">root:root</span></code> ownership and <code class="docutils literal notranslate"><span class="pre">0755</span></code> permissions:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${localstatedir}/singularity/mnt
+
 ${localstatedir}/singularity/mnt/container
+
 ${localstatedir}/singularity/mnt/final
+
 ${localstatedir}/singularity/mnt/overlay
+
 ${localstatedir}/singularity/mnt/session
 </pre></div>
 </div>
@@ -273,16 +283,22 @@ directory for <code class="docutils literal notranslate"><span class="pre">--loc
 package directly from the source tree, and you can create an RPM by
 doing the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure
+
 $ make dist
+
 $ rpmbuild -ta singularity-*.tar.gz
 </pre></div>
 </div>
 <p>Near the bottom of the build output you will see several lines like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 <span class="n">Wrote</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gmk</span><span class="o">/</span><span class="n">rpmbuild</span><span class="o">/</span><span class="n">SRPMS</span><span class="o">/</span><span class="n">singularity</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="n">el7</span><span class="o">.</span><span class="n">centos</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">rpm</span>
+
 <span class="n">Wrote</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gmk</span><span class="o">/</span><span class="n">rpmbuild</span><span class="o">/</span><span class="n">RPMS</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span><span class="n">singularity</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="n">el7</span><span class="o">.</span><span class="n">centos</span><span class="o">.</span><span class="n">x86_64</span><span class="o">.</span><span class="n">rpm</span>
+
 <span class="n">Wrote</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gmk</span><span class="o">/</span><span class="n">rpmbuild</span><span class="o">/</span><span class="n">RPMS</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span><span class="n">singularity</span><span class="o">-</span><span class="n">devel</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="n">el7</span><span class="o">.</span><span class="n">centos</span><span class="o">.</span><span class="n">x86_64</span><span class="o">.</span><span class="n">rpm</span>
+
 <span class="n">Wrote</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gmk</span><span class="o">/</span><span class="n">rpmbuild</span><span class="o">/</span><span class="n">RPMS</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span><span class="n">singularity</span><span class="o">-</span><span class="n">debuginfo</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="n">el7</span><span class="o">.</span><span class="n">centos</span><span class="o">.</span><span class="n">x86_64</span><span class="o">.</span><span class="n">rpm</span>
+
 <span class="o">...</span>
 </pre></div>
 </div>
@@ -300,6 +316,7 @@ alternative location, you should define the environment variable
 build:</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ PREFIX=/opt/singularity
+
 $ rpmbuild -ta --define=&quot;_prefix $PREFIX&quot; --define &quot;_sysconfdir $PREFIX/etc&quot; --define &quot;_defaultdocdir $PREFIX/share&quot; singularity-*.tar.gz
 </pre></div>
 </div>

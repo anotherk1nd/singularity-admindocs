@@ -218,114 +218,216 @@ network for Lustre and MPI communications)</li>
 Alternatively you can follow the recipe <a class="reference external" href="https://singularity-admindoc.readthedocs.io/en/latest/appendix.html#building-an-ubuntu-image-on-a-rhel-host">here</a>.</p>
 <p>Use the following def file to create the image.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bootstrap</span><span class="p">:</span> <span class="n">debootstrap</span>
+
 <span class="n">MirrorURL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span>
+
 <span class="n">OSVersion</span><span class="p">:</span> <span class="n">xenial</span>
+
 <span class="n">Include</span><span class="p">:</span> <span class="n">apt</span>
 
 
+
 <span class="o">%</span><span class="n">post</span>
+
 <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span>
+
 <span class="n">apt</span><span class="o">-</span><span class="n">add</span><span class="o">-</span><span class="n">repository</span> <span class="o">-</span><span class="n">y</span> <span class="n">universe</span>
+
 <span class="n">apt</span> <span class="n">update</span>
+
 <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">wget</span>
+
 <span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">openmpi</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;Directory exists&quot;</span>
+
 <span class="n">mkdir</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">mellanox</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;Directory exists&quot;</span>
+
 <span class="n">mkdir</span> <span class="o">/</span><span class="n">all_hostlibs</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;Directory exists&quot;</span>
+
 <span class="n">mkdir</span> <span class="o">/</span><span class="n">desired_hostlibs</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;Directory exists&quot;</span>
+
 <span class="n">mkdir</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">libibverbs</span><span class="o">.</span><span class="n">d</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;Directory exists&quot;</span>
+
 <span class="n">echo</span> <span class="s2">&quot;driver mlx4&quot;</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">libibverbs</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">mlx4</span><span class="o">.</span><span class="n">driver</span>
+
 <span class="n">echo</span> <span class="s2">&quot;driver mlx5&quot;</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">libibverbs</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">mlx5</span><span class="o">.</span><span class="n">driver</span>
+
 <span class="n">adduser</span> <span class="n">slurm</span> <span class="o">||</span> <span class="n">echo</span> <span class="s2">&quot;User exists&quot;</span>
+
 <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gist</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">l1ll1</span><span class="o">/</span><span class="mi">89</span><span class="n">b3f067d5b790ace6e6767be5ea2851</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="mi">422</span><span class="n">c8b5446c6479285cd29d1bf5be60f1b359b90</span><span class="o">/</span><span class="n">desired_hostlibs</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">desired_hostlibs</span><span class="o">.</span><span class="n">txt</span>
+
 <span class="n">cat</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">desired_hostlibs</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">xargs</span> <span class="o">-</span><span class="n">I</span><span class="p">{}</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">all_hostlibs</span><span class="o">/</span><span class="p">{}</span> <span class="o">/</span><span class="n">desired_hostlibs</span><span class="o">/</span><span class="p">{}</span>
+
 <span class="n">rm</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">desired_hostlibs</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>The mysterious <code class="docutils literal notranslate"><span class="pre">wget</span></code> line gets a list of all the libraries that the CentOS host has in <code class="docutils literal notranslate"><span class="pre">/lib64</span></code> that we
 think its safe to use in the container. Specifically these are things like nvidia drivers.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libvdpau_nvidia</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">opencl</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">ml</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">ml</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">ifr</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">ifr</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">fbc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">fbc</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">encode</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">encode</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnvidia</span><span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libicudata</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">50</span>
+
 <span class="n">libicudata</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libcuda</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libcuda</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libGLX_nvidia</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libGLESv2_nvidia</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">2</span>
+
 <span class="n">libGLESv1_CM_nvidia</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libEGL_nvidia</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libibcm</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibcm</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibcm</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libibcm</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libibdiag</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">1.</span><span class="n">so</span>
+
 <span class="n">libibdiag</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibdiag</span><span class="o">.</span><span class="n">la</span>
+
 <span class="n">libibdiag</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibdiagnet_plugins_ifc</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">1.</span><span class="n">so</span>
+
 <span class="n">libibdiagnet_plugins_ifc</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibdiagnet_plugins_ifc</span><span class="o">.</span><span class="n">la</span>
+
 <span class="n">libibdiagnet_plugins_ifc</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibdmcom</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">1.</span><span class="n">so</span>
+
 <span class="n">libibdmcom</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibdmcom</span><span class="o">.</span><span class="n">la</span>
+
 <span class="n">libibdmcom</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libiberty</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibis</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">1.</span><span class="n">so</span><span class="o">.</span><span class="mi">3</span>
+
 <span class="n">libibis</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">1.</span><span class="n">so</span><span class="o">.</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">3</span>
+
 <span class="n">libibis</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibis</span><span class="o">.</span><span class="n">la</span>
+
 <span class="n">libibis</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibmad</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibmad</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibmad</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">5</span>
+
 <span class="n">libibmad</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">5.5</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libibnetdisc</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibnetdisc</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibnetdisc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">5</span>
+
 <span class="n">libibnetdisc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">5.3</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libibsysapi</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">1.</span><span class="n">so</span>
+
 <span class="n">libibsysapi</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibsysapi</span><span class="o">.</span><span class="n">la</span>
+
 <span class="n">libibsysapi</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibumad</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibumad</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibumad</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">3</span>
+
 <span class="n">libibumad</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">3.1</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libibus</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">5</span>
+
 <span class="n">libibus</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">5.0</span><span class="o">.</span><span class="mi">503</span>
+
 <span class="n">libibus</span><span class="o">-</span><span class="n">qt</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libibus</span><span class="o">-</span><span class="n">qt</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">libibverbs</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libibverbs</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libibverbs</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libibverbs</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">liblustreapi</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libmlx4</span><span class="o">-</span><span class="n">rdmav2</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libmlx4</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libmlx5</span><span class="o">-</span><span class="n">rdmav2</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libmlx5</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libnl</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libnuma</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libosmcomp</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libosmcomp</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libosmcomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">3</span>
+
 <span class="n">libosmcomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">6</span>
+
 <span class="n">libosmvendor</span><span class="o">.</span><span class="n">a</span>
+
 <span class="n">libosmvendor</span><span class="o">.</span><span class="n">so</span>
+
 <span class="n">libosmvendor</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">3</span>
+
 <span class="n">libosmvendor</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">8</span>
+
 <span class="n">libpciaccess</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
+
 <span class="n">librdmacm</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span>
+
 <span class="n">libwrap</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -340,6 +442,7 @@ all the bits of OpenMPI and Mellanox and Slurm that we need.</li>
 <h3>Executing your image<a class="headerlink" href="#executing-your-image" title="Permalink to this headline">¶</a></h3>
 <p>On our system we do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">gcc4</span><span class="o">/</span><span class="n">lib</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">munge</span><span class="o">-</span><span class="mf">0.5</span><span class="o">.</span><span class="mi">11</span><span class="o">/</span><span class="n">lib</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">slurm</span><span class="o">-</span><span class="mf">16.05</span><span class="o">.</span><span class="mi">4</span><span class="o">/</span><span class="n">lib</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">slurm</span><span class="o">-</span><span class="mf">16.05</span><span class="o">.</span><span class="mi">4</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">slurm</span><span class="p">:</span><span class="o">/</span><span class="n">desired_hostlibs</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">mellanox</span><span class="o">/</span><span class="n">mxm</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span>
+
 <span class="n">export</span> <span class="n">SINGULARITYENV_LD_LIBRARY_PATH</span>
 </pre></div>
 </div>
@@ -368,13 +471,19 @@ package is a tool that will allow you to create Debian-based distributions such 
 also need to install ‘epel-release’. You will need to download the appropriate RPM from the EPEL website. Make sure you download the correct
 version of the RPM for your release.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># First, wget the appropriate RPM from the EPEL website (https://dl.fedoraproject.org/pub/epel/)
+
 # In this example we used RHEL 7, so we downloaded epel-release-latest-7.noarch.rpm
+
 $ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
+
 # Then, install your epel-release RPM
+
 $ sudo yum install epel-release-latest-7.noarch.rpm
 
+
 # Finally, install debootstrap
+
 $ sudo yum install debootstrap
 </pre></div>
 </div>
@@ -384,13 +493,21 @@ $ sudo yum install debootstrap
 keywords. By using certain Singularity keywords, you can specify how you want your image to be built. The extension ‘.def’ is recommended for user clarity.
 Below is a definition file for a minimal Ubuntu image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DistType</span> <span class="s2">&quot;debian&quot;</span>
+
 <span class="n">MirrorURL</span> <span class="s2">&quot;http://us.archive.ubuntu.com/ubuntu/&quot;</span>
+
 <span class="n">OSVersion</span> <span class="s2">&quot;trusty&quot;</span>
 
+
+
 <span class="n">Setup</span>
+
 <span class="n">Bootstrap</span>
 
+
+
 <span class="n">Cleanup</span>
+
 <span class="n">The</span> <span class="n">following</span> <span class="n">keywords</span> <span class="n">were</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">definition</span> <span class="n">file</span><span class="p">:</span>
 </pre></div>
 </div>
@@ -406,18 +523,29 @@ Below is a definition file for a minimal Ubuntu image:</p>
 <p>While this definition file is enough to create a working Ubuntu image, you may want increased customization of your image. There are several Singularity keywords that allow the user to do
 things such as install packages or files. Some of these keywords are used in the example below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DistType</span> <span class="s2">&quot;debian&quot;</span>
+
 <span class="n">MirrorURL</span> <span class="s2">&quot;http://us.archive.ubuntu.com/ubuntu/&quot;</span>
+
 <span class="n">OSVersion</span> <span class="s2">&quot;trusty&quot;</span>
 
+
 <span class="n">Setup</span>
+
 <span class="n">Bootstrap</span>
 
+
 <span class="n">InstallPkgs</span> <span class="n">python</span>
+
 <span class="n">InstallPkgs</span> <span class="n">wget</span>
+
 <span class="n">RunCmd</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">pypa</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+
 <span class="n">RunCmd</span> <span class="n">python</span> <span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+
 <span class="n">RunCmd</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span>
+
 <span class="n">RunCmd</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">storage</span><span class="o">.</span><span class="n">googleapis</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">cpu</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">-</span><span class="mf">0.9</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">cp27</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="n">linux_x86_64</span><span class="o">.</span><span class="n">whl</span>
+
 
 <span class="n">Cleanup</span>
 </pre></div>
@@ -442,39 +570,72 @@ can be seen below:</p>
 <p class="last">We have saved our definition file as “ubuntu.def”</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># First we will create an empty image container called ubuntu.img
+
 $ sudo singularity create ubuntu.img
+
 Creating a sparse image with a maximum size of 1024MiB...
+
 INFO   : Using given image size of 1024
+
 Formatting image (/sbin/mkfs.ext3)
+
 Done. Image can be found at: ubuntu.img
 
+
 # Next we will bootstrap the image with the operating system specified in our definition file
+
 $ sudo singularity bootstrap ubuntu.img ubuntu.def
+
 W: Cannot check Release signature; keyring file not available /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
 I: Retrieving Release
+
 I: Retrieving Packages
+
 I: Validating Packages
+
 I: Resolving dependencies of required packages...
+
 I: Resolving dependencies of base packages...
+
 I: Found additional base dependencies: gcc-4.8-base gnupg gpgv libapt-pkg4.12 libreadline6 libstdc++6 libusb-0.1-4 readline-common ubuntu-keyring
+
 I: Checking component main on http://us.archive.ubuntu.com/ubuntu...
+
 I: Retrieving adduser 3.113+nmu3ubuntu3
+
 I: Validating adduser 3.113+nmu3ubuntu3
+
 I: Retrieving apt 1.0.1ubuntu2
+
 I: Validating apt 1.0.1ubuntu2
+
 snip...
+
 Downloading pip-8.1.2-py2.py3-none-any.whl (1.2MB)
+
 100% |################################| 1.2MB 1.1MB/s
+
 Collecting setuptools
+
 Downloading setuptools-24.0.2-py2.py3-none-any.whl (441kB)
+
 100% |################################| 450kB 2.7MB/s
+
 Collecting wheel
+
 Downloading wheel-0.29.0-py2.py3-none-any.whl (66kB)
+
 100% |################################| 71kB 9.9MB/s
+
 Installing collected packages: pip, setuptools, wheel
+
 Successfully installed pip-8.1.2 setuptools-24.0.2 wheel-0.29.0
+
 At this point, you have successfully created an Ubuntu image with &#39;python&#39;, &#39;pip&#39;, and &#39;TensorFlow&#39; on your RHEL computer.
+
 Tips and Tricks
+
 Here are some tips and tricks that you can use to create more efficient definition files:
 </pre></div>
 </div>
@@ -484,20 +645,33 @@ Here are some tips and tricks that you can use to create more efficient definiti
 <p>Using here documents with conjunction with RunCmd can be a great way to decrease the number of RunCmd keywords that you need to include
 in your definition file. For example, we can substitute a here document into the previous example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DistType</span> <span class="s2">&quot;debian&quot;</span>
+
 <span class="n">MirrorURL</span> <span class="s2">&quot;http://us.archive.ubuntu.com/ubuntu/&quot;</span>
+
 <span class="n">OSVersion</span> <span class="s2">&quot;trusty&quot;</span>
 
+
 <span class="n">Setup</span>
+
 <span class="n">Bootstrap</span>
 
+
 <span class="n">InstallPkgs</span> <span class="n">python</span>
+
 <span class="n">InstallPkgs</span> <span class="n">wget</span>
+
 <span class="n">RunCmd</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sh</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span>
+
 <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">pypa</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+
 <span class="n">python</span> <span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+
 <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span>
+
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">storage</span><span class="o">.</span><span class="n">googleapis</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">cpu</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">-</span><span class="mf">0.9</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">cp27</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="n">linux_x86_64</span><span class="o">.</span><span class="n">whl</span>
+
 <span class="n">EOF</span>
+
 
 <span class="n">Cleanup</span>
 </pre></div>
@@ -510,19 +684,31 @@ has a lot of RunCmd keywords and can also ease copying and pasting command line 
 <p>The InstallPkgs keyword is able to install multiple packages with a single keyword. Thus, another way you can increase the efficiency of your code is to
 use a single InstallPkgs keyword to install multiple packages, as seen below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DistType</span> <span class="s2">&quot;debian&quot;</span>
+
 <span class="n">MirrorURL</span> <span class="s2">&quot;http://us.archive.ubuntu.com/ubuntu/&quot;</span>
+
 <span class="n">OSVersion</span> <span class="s2">&quot;trusty&quot;</span>
 
+
 <span class="n">Setup</span>
+
 <span class="n">Bootstrap</span>
 
+
 <span class="n">InstallPkgs</span> <span class="n">python</span> <span class="n">wget</span>
+
 <span class="n">RunCmd</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sh</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span>
+
 <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">pypa</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+
 <span class="n">python</span> <span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+
 <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span>
+
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">storage</span><span class="o">.</span><span class="n">googleapis</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">cpu</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">-</span><span class="mf">0.9</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">cp27</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="n">linux_x86_64</span><span class="o">.</span><span class="n">whl</span>
+
 <span class="n">EOF</span>
+
 
 <span class="n">Cleanup</span>
 </pre></div>

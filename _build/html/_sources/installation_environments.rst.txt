@@ -110,28 +110,51 @@ Code Example using Open MPI 2.1.0 Stable
 ::
 
     $ # Include the appropriate development tools into the container (notice we are calling
+
     $ # singularity as root and the container is writable)
+
     $ sudo singularity exec -w /tmp/Centos-7.img yum groupinstall "Development Tools"
+
     $
+
     $ # Obtain the development version of Open MPI
+
     $ wget https://www.open-mpi.org/software/ompi/v2.1/downloads/openmpi-2.1.0.tar.bz2
+
     $ tar jtf openmpi-2.1.0.tar.bz2
+
     $ cd openmpi-2.1.0
+
     $
+
     $ singularity exec /tmp/Centos-7.img ./configure --prefix=/usr/local
+
     $ singularity exec /tmp/Centos-7.img make
+
     $
+
     $ # Install OpenMPI into the container (notice now running as root and container is writable)
+
     $ sudo singularity exec -w -B /home /tmp/Centos-7.img make install
+
     $
+
     $ # Build the OpenMPI ring example and place the binary in this directory
+
     $ singularity exec /tmp/Centos-7.img mpicc examples/ring_c.c -o ring
+
     $
+
     $ # Install the MPI binary into the container at /usr/bin/ring
+
     $ sudo singularity copy /tmp/Centos-7.img ./ring /usr/bin/
+
     $
+
     $ # Run the MPI program within the container by calling the MPIRUN on the host
+
     $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
+
 
 Code Example using Open MPI git master
 --------------------------------------
@@ -143,63 +166,119 @@ example below (using the Open MPI Master branch):
 ::
 
     $ # Include the appropriate development tools into the container (notice we are calling
+
     $ # singularity as root and the container is writable)
+
     $ sudo singularity exec -w /tmp/Centos-7.img yum groupinstall "Development Tools"
+
     $
+
     $ # Clone the OpenMPI GitHub master branch in current directory (on host)
+
     $ git clone https://github.com/open-mpi/ompi.git
+
     $ cd ompi
+
     $
+
     $ # Build OpenMPI in the working directory, using the tool chain within the container
+
     $ singularity exec /tmp/Centos-7.img ./autogen.pl
+
     $ singularity exec /tmp/Centos-7.img ./configure --prefix=/usr/local
+
     $ singularity exec /tmp/Centos-7.img make
+
     $
+
     $ # Install OpenMPI into the container (notice now running as root and container is writable)
+
     $ sudo singularity exec -w -B /home /tmp/Centos-7.img make install
+
     $
+
     $ # Build the OpenMPI ring example and place the binary in this directory
+
     $ singularity exec /tmp/Centos-7.img mpicc examples/ring_c.c -o ring
+
     $
+
     $ # Install the MPI binary into the container at /usr/bin/ring
+
     $ sudo singularity copy /tmp/Centos-7.img ./ring /usr/bin/
+
     $
+
     $ # Run the MPI program within the container by calling the MPIRUN on the host
+
     $ mpirun -np 20 singularity exec /tmp/Centos-7.img /usr/bin/ring
 
 
+
     Process 0 sending 10 to 1, tag 201 (20 processes in ring)
+
     Process 0 sent to 1
+
     Process 0 decremented value: 9
+
     Process 0 decremented value: 8
+
     Process 0 decremented value: 7
+
     Process 0 decremented value: 6
+
     Process 0 decremented value: 5
+
     Process 0 decremented value: 4
+
     Process 0 decremented value: 3
+
     Process 0 decremented value: 2
+
     Process 0 decremented value: 1
+
     Process 0 decremented value: 0
+
     Process 0 exiting
+
     Process 1 exiting
+
     Process 2 exiting
+
     Process 3 exiting
+
     Process 4 exiting
+
     Process 5 exiting
+
     Process 6 exiting
+
     Process 7 exiting
+
     Process 8 exiting
+
     Process 9 exiting
+
     Process 10 exiting
+
     Process 11 exiting
+
     Process 12 exiting
+
     Process 13 exiting
+
     Process 14 exiting
+
     Process 15 exiting
+
     Process 16 exiting
+
     Process 17 exiting
+
     Process 18 exiting
+
     Process 19 exiting
+
 
 -----------------
 Image Environment
@@ -220,13 +299,21 @@ cases, this will work flawlessly as follows:
 ::
 
     $ pwd
+
     /home/gmk/demo
+
     $ singularity shell container.img
+
     Singularity/container.img> pwd
+
     /home/gmk/demo
+
     Singularity/container.img> ls -l debian.def
+
     -rw-rw-r--. 1 gmk gmk 125 May 28 10:35 debian.def
+
     Singularity/container.img> exit
+
     $
 
 For directory binds to function properly, there must be an existing
@@ -252,18 +339,31 @@ example:
 ::
 
     $ pwd
+
     /foobar
+
     $ ls -l
+
     total 0
+
     -rw-r--r--. 1 root root 0 Jun  1 11:32 mooooo
+
     $ singularity shell ~/demo/container.img
+
     WARNING: CWD bind directory not present: /foobar
+
     Singularity/container.img> pwd
+
     (unreachable)/foobar
+
     Singularity/container.img> ls -l
+
     total 0
+
     -rw-r--r--. 1 root root 0 Jun  1 18:32 mooooo
+
     Singularity/container.img> exit
+
     $
 
 But notice how even though the directory location is not resolvable, the
@@ -280,10 +380,15 @@ example:
 ::
 
     $ cat debian.def | singularity exec container.img grep 'MirrorURL'
+
     MirrorURL "http://ftp.us.debian.org/debian/"
+
     $
+
     Making changes to the container (writable)
+
     By default, containers are accessed as read only. This is both to enable parallel container execution (e.g. MPI). To enter a container using exec, run, or shell you must pass the --writable flag in order to open the image as read/writable.
+
 
 Containing the container
 ========================

@@ -54,27 +54,47 @@ Use the following def file to create the image.
 ::
 
     Bootstrap: debootstrap
+
     MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+
     OSVersion: xenial
+
     Include: apt
 
 
+
     %post
+
     apt install -y software-properties-common
+
     apt-add-repository -y universe
+
     apt update
+
     apt install -y wget
+
     mkdir /usr/local/openmpi || echo "Directory exists"
+
     mkdir /opt/mellanox || echo "Directory exists"
+
     mkdir /all_hostlibs || echo "Directory exists"
+
     mkdir /desired_hostlibs || echo "Directory exists"
+
     mkdir /etc/libibverbs.d || echo "Directory exists"
+
     echo "driver mlx4" > /etc/libibverbs.d/mlx4.driver
+
     echo "driver mlx5" > /etc/libibverbs.d/mlx5.driver
+
     adduser slurm || echo "User exists"
+
     wget https://gist.githubusercontent.com/l1ll1/89b3f067d5b790ace6e6767be5ea2851/raw/422c8b5446c6479285cd29d1bf5be60f1b359b90/desired_hostlibs.txt -O /tmp/desired_hostlibs.txt
+
     cat /tmp/desired_hostlibs.txt | xargs -I{} ln -s /all_hostlibs/{} /desired_hostlibs/{}
+
     rm /tmp/desired_hostlibs.txt
+
 
 The mysterious ``wget`` line gets a list of all the libraries that the CentOS host has in ``/lib64`` that we
 think its safe to use in the container. Specifically these are things like nvidia drivers.
@@ -82,89 +102,173 @@ think its safe to use in the container. Specifically these are things like nvidi
 ::
 
     libvdpau_nvidia.so
+
     libnvidia-opencl.so.1
+
     libnvidia-ml.so.1
+
     libnvidia-ml.so
+
     libnvidia-ifr.so.1
+
     libnvidia-ifr.so
+
     libnvidia-fbc.so.1
+
     libnvidia-fbc.so
+
     libnvidia-encode.so.1
+
     libnvidia-encode.so
+
     libnvidia-cfg.so.1
+
     libnvidia-cfg.so
+
     libicudata.so.50
+
     libicudata.so
+
     libcuda.so.1
+
     libcuda.so
+
     libGLX_nvidia.so.0
+
     libGLESv2_nvidia.so.2
+
     libGLESv1_CM_nvidia.so.1
+
     libEGL_nvidia.so.0
+
     libibcm.a
+
     libibcm.so
+
     libibcm.so.1
+
     libibcm.so.1.0.0
+
     libibdiag-2.1.1.so
+
     libibdiag.a
+
     libibdiag.la
+
     libibdiag.so
+
     libibdiagnet_plugins_ifc-2.1.1.so
+
     libibdiagnet_plugins_ifc.a
+
     libibdiagnet_plugins_ifc.la
+
     libibdiagnet_plugins_ifc.so
+
     libibdmcom-2.1.1.so
+
     libibdmcom.a
+
     libibdmcom.la
+
     libibdmcom.so
+
     libiberty.a
+
     libibis-2.1.1.so.3
+
     libibis-2.1.1.so.3.0.3
+
     libibis.a
+
     libibis.la
+
     libibis.so
+
     libibmad.a
+
     libibmad.so
+
     libibmad.so.5
+
     libibmad.so.5.5.0
+
     libibnetdisc.a
+
     libibnetdisc.so
+
     libibnetdisc.so.5
+
     libibnetdisc.so.5.3.0
+
     libibsysapi-2.1.1.so
+
     libibsysapi.a
+
     libibsysapi.la
+
     libibsysapi.so
+
     libibumad.a
+
     libibumad.so
+
     libibumad.so.3
+
     libibumad.so.3.1.0
+
     libibus-1.0.so.5
+
     libibus-1.0.so.5.0.503
+
     libibus-qt.so.1
+
     libibus-qt.so.1.3.0
+
     libibverbs.a
+
     libibverbs.so
+
     libibverbs.so.1
+
     libibverbs.so.1.0.0
+
     liblustreapi.so
+
     libmlx4-rdmav2.so
+
     libmlx4.a
+
     libmlx5-rdmav2.so
+
     libmlx5.a
+
     libnl.so.1
+
     libnuma.so.1
+
     libosmcomp.a
+
     libosmcomp.so
+
     libosmcomp.so.3
+
     libosmcomp.so.3.0.6
+
     libosmvendor.a
+
     libosmvendor.so
+
     libosmvendor.so.3
+
     libosmvendor.so.3.0.8
+
     libpciaccess.so.0
+
     librdmacm.so.1
+
     libwrap.so.0
+
 
 
 Also note:
@@ -181,6 +285,7 @@ On our system we do:
 ::
 
     SINGULARITYENV_LD_LIBRARY_PATH=/usr/local/openmpi/2.1.0-gcc4/lib:/opt/munge-0.5.11/lib:/opt/slurm-16.05.4/lib:/opt/slurm-16.05.4/lib/slurm:/desired_hostlibs:/opt/mellanox/mxm/lib/
+
     export SINGULARITYENV_LD_LIBRARY_PATH
 
 then
@@ -217,14 +322,21 @@ version of the RPM for your release.
 ::
 
     # First, wget the appropriate RPM from the EPEL website (https://dl.fedoraproject.org/pub/epel/)
+
     # In this example we used RHEL 7, so we downloaded epel-release-latest-7.noarch.rpm
+
     $ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
+
     # Then, install your epel-release RPM
+
     $ sudo yum install epel-release-latest-7.noarch.rpm
 
+
     # Finally, install debootstrap
+
     $ sudo yum install debootstrap
+
 
 Creating the Definition File
 ----------------------------
@@ -236,13 +348,21 @@ Below is a definition file for a minimal Ubuntu image:
 ::
 
     DistType "debian"
+
     MirrorURL "http://us.archive.ubuntu.com/ubuntu/"
+
     OSVersion "trusty"
 
+
+
     Setup
+
     Bootstrap
 
+
+
     Cleanup
+
     The following keywords were used in this definition file:
 
 
@@ -260,18 +380,29 @@ things such as install packages or files. Some of these keywords are used in the
 ::
 
     DistType "debian"
+
     MirrorURL "http://us.archive.ubuntu.com/ubuntu/"
+
     OSVersion "trusty"
 
+
     Setup
+
     Bootstrap
 
+
     InstallPkgs python
+
     InstallPkgs wget
+
     RunCmd wget https://bootstrap.pypa.io/get-pip.py
+
     RunCmd python get-pip.py
+
     RunCmd ln -s /usr/local/bin/pip /usr/bin/pip
+
     RunCmd pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+
 
     Cleanup
 
@@ -297,40 +428,74 @@ can be seen below:
 ::
 
     # First we will create an empty image container called ubuntu.img
+
     $ sudo singularity create ubuntu.img
+
     Creating a sparse image with a maximum size of 1024MiB...
+
     INFO   : Using given image size of 1024
+
     Formatting image (/sbin/mkfs.ext3)
+
     Done. Image can be found at: ubuntu.img
 
+
     # Next we will bootstrap the image with the operating system specified in our definition file
+
     $ sudo singularity bootstrap ubuntu.img ubuntu.def
+
     W: Cannot check Release signature; keyring file not available /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
     I: Retrieving Release
+
     I: Retrieving Packages
+
     I: Validating Packages
+
     I: Resolving dependencies of required packages...
+
     I: Resolving dependencies of base packages...
+
     I: Found additional base dependencies: gcc-4.8-base gnupg gpgv libapt-pkg4.12 libreadline6 libstdc++6 libusb-0.1-4 readline-common ubuntu-keyring
+
     I: Checking component main on http://us.archive.ubuntu.com/ubuntu...
+
     I: Retrieving adduser 3.113+nmu3ubuntu3
+
     I: Validating adduser 3.113+nmu3ubuntu3
+
     I: Retrieving apt 1.0.1ubuntu2
+
     I: Validating apt 1.0.1ubuntu2
+
     snip...
+
     Downloading pip-8.1.2-py2.py3-none-any.whl (1.2MB)
+
     100% |################################| 1.2MB 1.1MB/s
+
     Collecting setuptools
+
     Downloading setuptools-24.0.2-py2.py3-none-any.whl (441kB)
+
     100% |################################| 450kB 2.7MB/s
+
     Collecting wheel
+
     Downloading wheel-0.29.0-py2.py3-none-any.whl (66kB)
+
     100% |################################| 71kB 9.9MB/s
+
     Installing collected packages: pip, setuptools, wheel
+
     Successfully installed pip-8.1.2 setuptools-24.0.2 wheel-0.29.0
+
     At this point, you have successfully created an Ubuntu image with 'python', 'pip', and 'TensorFlow' on your RHEL computer.
+
     Tips and Tricks
+
     Here are some tips and tricks that you can use to create more efficient definition files:
+
 
 Use here documents with RunCmd
 ------------------------------
@@ -341,22 +506,36 @@ in your definition file. For example, we can substitute a here document into the
 ::
 
     DistType "debian"
+
     MirrorURL "http://us.archive.ubuntu.com/ubuntu/"
+
     OSVersion "trusty"
 
+
     Setup
+
     Bootstrap
 
+
     InstallPkgs python
+
     InstallPkgs wget
+
     RunCmd /bin/sh <<EOF
+
     wget https://bootstrap.pypa.io/get-pip.py
+
     python get-pip.py
+
     ln -s /usr/local/bin/pip /usr/bin/pip
+
     pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+
     EOF
 
+
     Cleanup
+
 
 As you can see, using a here document allowed us to decrease the number of RunCmd keywords from 4 to 1. This can be useful when your definition file
 has a lot of RunCmd keywords and can also ease copying and pasting command line recipes from other sources.
@@ -370,19 +549,31 @@ use a single InstallPkgs keyword to install multiple packages, as seen below:
 ::
 
     DistType "debian"
+
     MirrorURL "http://us.archive.ubuntu.com/ubuntu/"
+
     OSVersion "trusty"
 
+
     Setup
+
     Bootstrap
 
+
     InstallPkgs python wget
+
     RunCmd /bin/sh <<EOF
+
     wget https://bootstrap.pypa.io/get-pip.py
+
     python get-pip.py
+
     ln -s /usr/local/bin/pip /usr/bin/pip
+
     pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+
     EOF
+
 
     Cleanup
 
