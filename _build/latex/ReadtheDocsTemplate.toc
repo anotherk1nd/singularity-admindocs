@@ -17,7 +17,7 @@
 \contentsline {subsection}{\numberline {2.5.2}limiting usage to specific container file owners}{8}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}limiting usage to specific paths}{8}{subsection.2.5.3}
 \contentsline {section}{\numberline {2.6}Logging}{9}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}A peek into the SetUID program flow}{9}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.1}A peek into the SetUID program flow}{10}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}A peek into the \IeC {\textquotedblleft }rootless\IeC {\textquotedblright } program flow}{12}{subsection.2.6.2}
 \contentsline {section}{\numberline {2.7}Summary}{14}{section.2.7}
 \contentsline {chapter}{\numberline {3}The Singularity Config File}{15}{chapter.3}
@@ -54,15 +54,15 @@
 \contentsline {subsection}{\numberline {6.2.3}Containing the container}{29}{subsection.6.2.3}
 \contentsline {section}{\numberline {6.3}License}{29}{section.6.3}
 \contentsline {subsection}{\numberline {6.3.1}In layman terms\IeC {\textellipsis }}{30}{subsection.6.3.1}
-\contentsline {chapter}{\numberline {7}Appendix}{31}{chapter.7}
-\contentsline {section}{\numberline {7.1}Using Host libraries: GPU drivers and OpenMPI BTLs}{31}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}What We will learn today}{31}{subsection.7.1.1}
-\contentsline {subsection}{\numberline {7.1.2}Environment}{31}{subsection.7.1.2}
-\contentsline {subsection}{\numberline {7.1.3}Creating your image}{31}{subsection.7.1.3}
-\contentsline {subsection}{\numberline {7.1.4}Executing your image}{35}{subsection.7.1.4}
-\contentsline {section}{\numberline {7.2}Building an Ubuntu image on a RHEL host}{36}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Preparation}{36}{subsection.7.2.1}
-\contentsline {subsubsection}{\numberline {7.2.1.1}Creating the Definition File}{36}{subsubsection.7.2.1.1}
-\contentsline {subsubsection}{\numberline {7.2.1.2}Creating your image}{38}{subsubsection.7.2.1.2}
-\contentsline {subsubsection}{\numberline {7.2.1.3}Use here documents with RunCmd}{40}{subsubsection.7.2.1.3}
-\contentsline {subsubsection}{\numberline {7.2.1.4}Use InstallPkgs with multiple packages}{40}{subsubsection.7.2.1.4}
+\contentsline {chapter}{\numberline {7}Appendix}{33}{chapter.7}
+\contentsline {section}{\numberline {7.1}Using Host libraries: GPU drivers and OpenMPI BTLs}{33}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}What We will learn today}{33}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Environment}{33}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Creating your image}{33}{subsection.7.1.3}
+\contentsline {subsection}{\numberline {7.1.4}Executing your image}{37}{subsection.7.1.4}
+\contentsline {section}{\numberline {7.2}Building an Ubuntu image on a RHEL host}{38}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Preparation}{38}{subsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.1.1}Creating the Definition File}{38}{subsubsection.7.2.1.1}
+\contentsline {subsubsection}{\numberline {7.2.1.2}Creating your image}{40}{subsubsection.7.2.1.2}
+\contentsline {subsubsection}{\numberline {7.2.1.3}Use here documents with RunCmd}{42}{subsubsection.7.2.1.3}
+\contentsline {subsubsection}{\numberline {7.2.1.4}Use InstallPkgs with multiple packages}{42}{subsubsection.7.2.1.4}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.23)  20 JUN 2018 20:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.23)  20 JUN 2018 20:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1078,10 +1078,7 @@ Chapter 1.
 [1
 
 
-]
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 152.
-[2] [3] [4
+] [2] [3] [4
 
 ]
 Chapter 2.
@@ -1090,19 +1087,24 @@ LaTeX Font Info:    Try loading font information for TS1+ptm on input line 351.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [6]
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 440.
-[7] [8]
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 614.
+) [6] [7] [8]
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 620.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-) [9] [10]
-Overfull \vbox (2.68167pt too high) detected at line 725
+) [9]
+Overfull \vbox (2.18257pt too high) detected at line 713
  []
 
-[11] [12] [13] [14]
+[10]
+Overfull \vbox (2.68167pt too high) detected at line 731
+ []
+
+[11]
+Overfull \vbox (9.43935pt too high) detected at line 805
+ []
+
+[12] [13] [14]
 Chapter 3.
 [15
 
@@ -1119,79 +1121,77 @@ Chapter 5.
 ]
 Chapter 6.
 [23]
-Overfull \vbox (1.99889pt too high) detected at line 1368
+Overfull \vbox (1.99889pt too high) detected at line 1374
  []
 
 [24] [25]
-Underfull \vbox (badness 10000) detected at line 1492
+Underfull \vbox (badness 10000) detected at line 1498
  []
 
 
-Overfull \vbox (2.68169pt too high) detected at line 1492
+Overfull \vbox (2.68169pt too high) detected at line 1498
  []
 
-[26] [27] [28] [29] [30]
-Chapter 7.
-[31
+[26] [27] [28] [29] [30] [31] [32
 
 ]
-Underfull \vbox (badness 1253) detected at line 1951
- []
-
-[32]
-Underfull \vbox (badness 10000) detected at line 1951
- []
-
-
-Overfull \vbox (2.68169pt too high) detected at line 1951
- []
-
+Chapter 7.
 [33]
-Underfull \vbox (badness 10000) detected at line 1951
+Underfull \vbox (badness 1253) detected at line 1995
+ []
+
+[34]
+Underfull \vbox (badness 10000) detected at line 1995
  []
 
 
-Overfull \vbox (2.68169pt too high) detected at line 1951
+Overfull \vbox (2.68169pt too high) detected at line 1995
  []
 
-[34] [35] [36] [37]
-Overfull \vbox (11.43936pt too high) detected at line 2207
+[35]
+Underfull \vbox (badness 10000) detected at line 1995
  []
 
-[38] [39] [40] (./ReadtheDocsTemplate.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2297.
-[41]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2297.
+
+Overfull \vbox (2.68169pt too high) detected at line 1995
+ []
+
+[36] [37] [38] [39]
+Overfull \vbox (11.43936pt too high) detected at line 2251
+ []
+
+[40] [41] [42] (./ReadtheDocsTemplate.ind)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2341.
+[43]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2341.
 (./ReadtheDocsTemplate.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2297.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2297.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2341.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2341.
 
 Package rerunfilecheck Info: File `ReadtheDocsTemplate.out' has not changed.
 (rerunfilecheck)             Checksum: 6E5BA4AFD93983FCF1C1E7A747BE7C42;13712.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2297.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2341.
  ) 
 Here is how much of TeX's memory you used:
- 13878 strings out of 492982
- 194150 string characters out of 6134896
- 399717 words of memory out of 5000000
- 16989 multiletter control sequences out of 15000+600000
- 52159 words of font info for 73 fonts, out of 8000000 for 9000
+ 13868 strings out of 492982
+ 194042 string characters out of 6134896
+ 396796 words of memory out of 5000000
+ 16983 multiletter control sequences out of 15000+600000
+ 50801 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 37i,11n,49p,902b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,49p,781b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
-ro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on ReadtheDocsTemplate.pdf (45 pages, 251556 bytes).
+onts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ReadtheDocsTemplate.pdf (47 pages, 227521 bytes).
 PDF statistics:
  662 PDF objects out of 1000 (max. 8388607)
  592 compressed objects within 6 object streams
- 140 named destinations out of 1000 (max. 500000)
+ 142 named destinations out of 1000 (max. 500000)
  562 words of extra memory for PDF output out of 10000 (max. 10000000)
 

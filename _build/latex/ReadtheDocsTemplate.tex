@@ -149,7 +149,7 @@ configuration:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{mksquashfs} \PYG{k+kn}{from} \PYG{n+nn}{squash}\PYG{o}{\PYGZhy{}}\PYG{n}{tools} \PYG{o+ow}{is} \PYG{n}{required} \PYG{k}{for} \PYG{n}{full} \PYG{n}{functionality}
+mksquashfs from squash\PYGZhy{}tools is required for full functionality
 \end{sphinxVerbatim}
 
 If you choose not to install \sphinxcode{\sphinxupquote{squashfs-tools}}, you will hit an error when your users try
@@ -184,7 +184,7 @@ value:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{CONTAINER\PYGZus{}OVERLAY} \PYG{o}{=} \PYG{o}{/}\PYG{n}{some}\PYG{o}{/}\PYG{n}{other}\PYG{o}{/}\PYG{n}{place}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{/}\PYG{n}{mnt}\PYG{o}{/}\PYG{n}{overlay}
+CONTAINER\PYGZus{}OVERLAY = /some/other/place/singularity/mnt/overlay
 \end{sphinxVerbatim}
 
 In the case of cluster nodes, you will need to ensure the following
@@ -227,16 +227,16 @@ Near the bottom of the build output you will see several lines like:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
-\PYG{n}{Wrote}\PYG{p}{:} \PYG{o}{/}\PYG{n}{home}\PYG{o}{/}\PYG{n}{gmk}\PYG{o}{/}\PYG{n}{rpmbuild}\PYG{o}{/}\PYG{n}{SRPMS}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.3}\PYG{o}{.}\PYG{n}{el7}\PYG{o}{.}\PYG{n}{centos}\PYG{o}{.}\PYG{n}{src}\PYG{o}{.}\PYG{n}{rpm}
+...
+Wrote: /home/gmk/rpmbuild/SRPMS/singularity\PYGZhy{}2.3.el7.centos.src.rpm
 
-\PYG{n}{Wrote}\PYG{p}{:} \PYG{o}{/}\PYG{n}{home}\PYG{o}{/}\PYG{n}{gmk}\PYG{o}{/}\PYG{n}{rpmbuild}\PYG{o}{/}\PYG{n}{RPMS}\PYG{o}{/}\PYG{n}{x86\PYGZus{}64}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.3}\PYG{o}{.}\PYG{n}{el7}\PYG{o}{.}\PYG{n}{centos}\PYG{o}{.}\PYG{n}{x86\PYGZus{}64}\PYG{o}{.}\PYG{n}{rpm}
+Wrote: /home/gmk/rpmbuild/RPMS/x86\PYGZus{}64/singularity\PYGZhy{}2.3.el7.centos.x86\PYGZus{}64.rpm
 
-\PYG{n}{Wrote}\PYG{p}{:} \PYG{o}{/}\PYG{n}{home}\PYG{o}{/}\PYG{n}{gmk}\PYG{o}{/}\PYG{n}{rpmbuild}\PYG{o}{/}\PYG{n}{RPMS}\PYG{o}{/}\PYG{n}{x86\PYGZus{}64}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{\PYGZhy{}}\PYG{n}{devel}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.3}\PYG{o}{.}\PYG{n}{el7}\PYG{o}{.}\PYG{n}{centos}\PYG{o}{.}\PYG{n}{x86\PYGZus{}64}\PYG{o}{.}\PYG{n}{rpm}
+Wrote: /home/gmk/rpmbuild/RPMS/x86\PYGZus{}64/singularity\PYGZhy{}devel\PYGZhy{}2.3.el7.centos.x86\PYGZus{}64.rpm
 
-\PYG{n}{Wrote}\PYG{p}{:} \PYG{o}{/}\PYG{n}{home}\PYG{o}{/}\PYG{n}{gmk}\PYG{o}{/}\PYG{n}{rpmbuild}\PYG{o}{/}\PYG{n}{RPMS}\PYG{o}{/}\PYG{n}{x86\PYGZus{}64}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{\PYGZhy{}}\PYG{n}{debuginfo}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.3}\PYG{o}{.}\PYG{n}{el7}\PYG{o}{.}\PYG{n}{centos}\PYG{o}{.}\PYG{n}{x86\PYGZus{}64}\PYG{o}{.}\PYG{n}{rpm}
+Wrote: /home/gmk/rpmbuild/RPMS/x86\PYGZus{}64/singularity\PYGZhy{}debuginfo\PYGZhy{}2.3.el7.centos.x86\PYGZus{}64.rpm
 
-\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+...
 \end{sphinxVerbatim}
 
 You will want to identify the appropriate path to the binary RPM that
@@ -421,11 +421,11 @@ with \sphinxcode{\sphinxupquote{*-suid}} also has a non-suid equivalent:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{libexec}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{start}
+/usr/local/libexec/singularity/bin/start
 
-\PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{libexec}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{action}
+/usr/local/libexec/singularity/bin/action
 
-\PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{libexec}\PYG{o}{/}\PYG{n}{singularity}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{mount}
+/usr/local/libexec/singularity/bin/mount
 \end{sphinxVerbatim}
 
 While most of these workflows will not properly function without the
@@ -437,23 +437,23 @@ the top of the \sphinxcode{\sphinxupquote{singularity.conf}} file, which is typi
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} ALLOW SETUID: [BOOL]}
+\PYGZsh{} ALLOW SETUID: [BOOL]
 
-\PYG{c+c1}{\PYGZsh{} DEFAULT: yes}
+\PYGZsh{} DEFAULT: yes
 
-\PYG{c+c1}{\PYGZsh{} Should we allow users to utilize the setuid program flow within Singularity?}
+\PYGZsh{} Should we allow users to utilize the setuid program flow within Singularity?
 
-\PYG{c+c1}{\PYGZsh{} note1: This is the default mode, and to utilize all features, this option}
+\PYGZsh{} note1: This is the default mode, and to utilize all features, this option
 
-\PYG{c+c1}{\PYGZsh{} will need to be enabled.}
+\PYGZsh{} will need to be enabled.
 
-\PYG{c+c1}{\PYGZsh{} note2: If this option is disabled, it will rely on the user namespace}
+\PYGZsh{} note2: If this option is disabled, it will rely on the user namespace
 
-\PYG{c+c1}{\PYGZsh{} exclusively which has not been integrated equally between the different}
+\PYGZsh{} exclusively which has not been integrated equally between the different
 
-\PYG{c+c1}{\PYGZsh{} Linux distributions.}
+\PYGZsh{} Linux distributions.
 
-\PYG{n}{allow} \PYG{n}{setuid} \PYG{o}{=} \PYG{n}{yes}
+allow setuid = yes
 \end{sphinxVerbatim}
 
 You can also install Singularity as root without any of the SetUID
@@ -513,19 +513,19 @@ containers Singularity will support:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} ALLOW CONTAINER \PYGZdl{}\PYGZob{}TYPE\PYGZcb{}: [BOOL]}
+\PYGZsh{} ALLOW CONTAINER \PYGZdl{}\PYGZob{}TYPE\PYGZcb{}: [BOOL]
 
-\PYG{c+c1}{\PYGZsh{} DEFAULT: yes}
+\PYGZsh{} DEFAULT: yes
 
-\PYG{c+c1}{\PYGZsh{} This feature limits what kind of containers that Singularity will allow}
+\PYGZsh{} This feature limits what kind of containers that Singularity will allow
 
-\PYG{c+c1}{\PYGZsh{} users to use (note this does not apply for root).}
+\PYGZsh{} users to use (note this does not apply for root).
 
-\PYG{n}{allow} \PYG{n}{container} \PYG{n}{squashfs} \PYG{o}{=} \PYG{n}{yes}
+allow container squashfs = yes
 
-\PYG{n}{allow} \PYG{n}{container} \PYG{n}{extfs} \PYG{o}{=} \PYG{n}{yes}
+allow container extfs = yes
 
-\PYG{n}{allow} \PYG{n}{container} \PYG{n+nb}{dir} \PYG{o}{=} \PYG{n}{yes}
+allow container dir = yes
 \end{sphinxVerbatim}
 
 
@@ -538,13 +538,19 @@ containers that are owned by a particular set of users.
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} LIMIT CONTAINER OWNERS: [STRING]}
-\PYG{c+c1}{\PYGZsh{} DEFAULT: NULL}
-\PYG{c+c1}{\PYGZsh{} Only allow containers to be used that are owned by a given user. If this}
-\PYG{c+c1}{\PYGZsh{} configuration is undefined (commented or set to NULL), all containers are}
-\PYG{c+c1}{\PYGZsh{} allowed to be used. This feature only applies when Singularity is running in}
-\PYG{c+c1}{\PYGZsh{} SUID mode and the user is non\PYGZhy{}root.}
-\PYG{c+c1}{\PYGZsh{}limit container owners = gmk, singularity, nobody}
+\PYGZsh{} LIMIT CONTAINER OWNERS: [STRING]
+
+\PYGZsh{} DEFAULT: NULL
+
+\PYGZsh{} Only allow containers to be used that are owned by a given user. If this
+
+\PYGZsh{} configuration is undefined (commented or set to NULL), all containers are
+
+\PYGZsh{} allowed to be used. This feature only applies when Singularity is running in
+
+\PYGZsh{} SUID mode and the user is non\PYGZhy{}root.
+
+\PYGZsh{}limit container owners = gmk, singularity, nobody
 \end{sphinxVerbatim}
 
 \begin{sphinxadmonition}{note}{Note:}
@@ -566,21 +572,21 @@ containers are only being used on performant file systems).
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} LIMIT CONTAINER PATHS: [STRING]}
+\PYGZsh{} LIMIT CONTAINER PATHS: [STRING]
 
-\PYG{c+c1}{\PYGZsh{} DEFAULT: NULL}
+\PYGZsh{} DEFAULT: NULL
 
-\PYG{c+c1}{\PYGZsh{} Only allow containers to be used that are located within an allowed path}
+\PYGZsh{} Only allow containers to be used that are located within an allowed path
 
-\PYG{c+c1}{\PYGZsh{} prefix. If this configuration is undefined (commented or set to NULL),}
+\PYGZsh{} prefix. If this configuration is undefined (commented or set to NULL),
 
-\PYG{c+c1}{\PYGZsh{} containers will be allowed to run from anywhere on the file system. This}
+\PYGZsh{} containers will be allowed to run from anywhere on the file system. This
 
-\PYG{c+c1}{\PYGZsh{} feature only applies when Singularity is running in SUID mode and the user is}
+\PYGZsh{} feature only applies when Singularity is running in SUID mode and the user is
 
-\PYG{c+c1}{\PYGZsh{} non\PYGZhy{}root.}
+\PYGZsh{} non\PYGZhy{}root.
 
-\PYG{c+c1}{\PYGZsh{}limit container paths = /scratch, /tmp, /global}
+\PYGZsh{}limit container paths = /scratch, /tmp, /global
 \end{sphinxVerbatim}
 
 
@@ -649,79 +655,79 @@ Evaluating args: \PYGZsq{}\PYGZhy{}\PYGZhy{}pid ubuntu\PYGZsq{}
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid}\PYG{p}{(}\PYG{p}{)}              \PYG{n}{Using} \PYG{n}{PID} \PYG{n}{namespace}\PYG{p}{:} \PYG{n}{CLONE\PYGZus{}NEWPID}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid()              Using PID namespace: CLONE\PYGZus{}NEWPID
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid}\PYG{p}{(}\PYG{p}{)}              \PYG{n}{Virtualizing} \PYG{n}{PID} \PYG{n}{namespace}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid()              Virtualizing PID namespace
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}registry\PYGZus{}get}\PYG{p}{(}\PYG{p}{)}                \PYG{n}{Returning} \PYG{n}{NULL} \PYG{n}{on} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{DAEMON\PYGZus{}START}\PYG{l+s+s1}{\PYGZsq{}}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}registry\PYGZus{}get()                Returning NULL on \PYGZsq{}DAEMON\PYGZus{}START\PYGZsq{}
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{prepare\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                            \PYG{n}{Creating} \PYG{n}{parent}\PYG{o}{/}\PYG{n}{child} \PYG{n}{coordination} \PYG{n}{pipes}\PYG{o}{.}
+DEBUG   [U=1000,P=30961]   prepare\PYGZus{}fork()                            Creating parent/child coordination pipes.
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Forking} \PYG{n}{child} \PYG{n}{process}
+VERBOSE [U=1000,P=30961]   singularity\PYGZus{}fork()                        Forking child process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}priv\PYGZus{}escalate}\PYG{p}{(}\PYG{p}{)}               \PYG{n}{Temporarily} \PYG{n}{escalating} \PYG{n}{privileges} \PYG{p}{(}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}priv\PYGZus{}escalate()               Temporarily escalating privileges (U=1000)
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}      \PYG{n}{singularity\PYGZus{}priv\PYGZus{}escalate}\PYG{p}{(}\PYG{p}{)}               \PYG{n}{Clearing} \PYG{n}{supplementary} \PYG{n}{GIDs}\PYG{o}{.}
+DEBUG   [U=0,P=30961]      singularity\PYGZus{}priv\PYGZus{}escalate()               Clearing supplementary GIDs.
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}      \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Dropping} \PYG{n}{privileges} \PYG{n}{to} \PYG{n}{UID}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{GID}\PYG{o}{=}\PYG{l+m+mi}{1000} \PYG{p}{(}\PYG{l+m+mi}{8} \PYG{n}{supplementary} \PYG{n}{GIDs}\PYG{p}{)}
+DEBUG   [U=0,P=30961]      singularity\PYGZus{}priv\PYGZus{}drop()                   Dropping privileges to UID=1000, GID=1000 (8 supplementary GIDs)
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}      \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Restoring} \PYG{n}{supplementary} \PYG{n}{groups}
+DEBUG   [U=0,P=30961]      singularity\PYGZus{}priv\PYGZus{}drop()                   Restoring supplementary groups
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Confirming} \PYG{n}{we} \PYG{n}{have} \PYG{n}{correct} \PYG{n}{UID}\PYG{o}{/}\PYG{n}{GID}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}priv\PYGZus{}drop()                   Confirming we have correct UID/GID
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Hello} \PYG{k+kn}{from} \PYG{n+nn}{parent} \PYG{n}{process}
+VERBOSE [U=1000,P=30961]   singularity\PYGZus{}fork()                        Hello from parent process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Assigning} \PYG{n}{generic} \PYG{n}{sigaction}\PYG{p}{(}\PYG{p}{)}\PYG{n}{s}
+DEBUG   [U=1000,P=30961]   install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle()           Assigning generic sigaction()s
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Creating} \PYG{n}{generic} \PYG{n}{signal} \PYG{n}{pipes}
+DEBUG   [U=1000,P=30961]   install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle()           Creating generic signal pipes
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Assigning} \PYG{n}{SIGCHLD} \PYG{n}{sigaction}\PYG{p}{(}\PYG{p}{)}
+DEBUG   [U=1000,P=30961]   install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle()           Assigning SIGCHLD sigaction()
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Creating} \PYG{n}{sigchld} \PYG{n}{signal} \PYG{n}{pipes}
+DEBUG   [U=1000,P=30961]   install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle()           Creating sigchld signal pipes
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Dropping} \PYG{n}{permissions}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}fork()                        Dropping permissions
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}      \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Dropping} \PYG{n}{privileges} \PYG{n}{to} \PYG{n}{UID}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{GID}\PYG{o}{=}\PYG{l+m+mi}{1000} \PYG{p}{(}\PYG{l+m+mi}{8} \PYG{n}{supplementary} \PYG{n}{GIDs}\PYG{p}{)}
+DEBUG   [U=0,P=30961]      singularity\PYGZus{}priv\PYGZus{}drop()                   Dropping privileges to UID=1000, GID=1000 (8 supplementary GIDs)
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}      \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Restoring} \PYG{n}{supplementary} \PYG{n}{groups}
+DEBUG   [U=0,P=30961]      singularity\PYGZus{}priv\PYGZus{}drop()                   Restoring supplementary groups
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Confirming} \PYG{n}{we} \PYG{n}{have} \PYG{n}{correct} \PYG{n}{UID}\PYG{o}{/}\PYG{n}{GID}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}priv\PYGZus{}drop()                   Confirming we have correct UID/GID
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}signal\PYGZus{}go\PYGZus{}ahead}\PYG{p}{(}\PYG{p}{)}             \PYG{n}{Sending} \PYG{n}{go}\PYG{o}{\PYGZhy{}}\PYG{n}{ahead} \PYG{n}{signal}\PYG{p}{:} \PYG{l+m+mi}{0}
+DEBUG   [U=1000,P=30961]   singularity\PYGZus{}signal\PYGZus{}go\PYGZus{}ahead()             Sending go\PYGZhy{}ahead signal: 0
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{30961}\PYG{p}{]}   \PYG{n}{wait\PYGZus{}child}\PYG{p}{(}\PYG{p}{)}                              \PYG{n}{Parent} \PYG{n}{process} \PYG{o+ow}{is} \PYG{n}{waiting} \PYG{n}{on} \PYG{n}{child} \PYG{n}{process}
+DEBUG   [U=1000,P=30961]   wait\PYGZus{}child()                              Parent process is waiting on child process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}          \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Dropping} \PYG{n}{privileges} \PYG{n}{to} \PYG{n}{UID}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{GID}\PYG{o}{=}\PYG{l+m+mi}{1000} \PYG{p}{(}\PYG{l+m+mi}{8} \PYG{n}{supplementary} \PYG{n}{GIDs}\PYG{p}{)}
+DEBUG   [U=0,P=1]          singularity\PYGZus{}priv\PYGZus{}drop()                   Dropping privileges to UID=1000, GID=1000 (8 supplementary GIDs)
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}          \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Restoring} \PYG{n}{supplementary} \PYG{n}{groups}
+DEBUG   [U=0,P=1]          singularity\PYGZus{}priv\PYGZus{}drop()                   Restoring supplementary groups
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Confirming} \PYG{n}{we} \PYG{n}{have} \PYG{n}{correct} \PYG{n}{UID}\PYG{o}{/}\PYG{n}{GID}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}priv\PYGZus{}drop()                   Confirming we have correct UID/GID
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Hello} \PYG{k+kn}{from} \PYG{n+nn}{child} \PYG{n}{process}
+VERBOSE [U=1000,P=1]       singularity\PYGZus{}fork()                        Hello from child process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Waiting} \PYG{k}{for} \PYG{n}{go}\PYG{o}{\PYGZhy{}}\PYG{n}{ahead} \PYG{n}{signal}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead()           Waiting for go\PYGZhy{}ahead signal
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Received} \PYG{n}{go}\PYG{o}{\PYGZhy{}}\PYG{n}{ahead} \PYG{n}{signal}\PYG{p}{:} \PYG{l+m+mi}{0}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead()           Received go\PYGZhy{}ahead signal: 0
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}registry\PYGZus{}set}\PYG{p}{(}\PYG{p}{)}                \PYG{n}{Adding} \PYG{n}{value} \PYG{n}{to} \PYG{n}{registry}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PIDNS\PYGZus{}ENABLED}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1}\PYG{l+s+s1}{\PYGZsq{}}
+VERBOSE [U=1000,P=1]       singularity\PYGZus{}registry\PYGZus{}set()                Adding value to registry: \PYGZsq{}PIDNS\PYGZus{}ENABLED\PYGZsq{} = \PYGZsq{}1\PYGZsq{}
 \end{sphinxVerbatim}
 
 (snipped to end)
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{envar\PYGZus{}set}\PYG{p}{(}\PYG{p}{)}                               \PYG{n}{Unsetting} \PYG{n}{environment} \PYG{n}{variable}\PYG{p}{:} \PYG{n}{SINGULARITY\PYGZus{}APPNAME}
+DEBUG   [U=1000,P=1]       envar\PYGZus{}set()                               Unsetting environment variable: SINGULARITY\PYGZus{}APPNAME
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}registry\PYGZus{}get}\PYG{p}{(}\PYG{p}{)}                \PYG{n}{Returning} \PYG{n}{value} \PYG{k+kn}{from} \PYG{n+nn}{registry}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{COMMAND}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{shell}\PYG{l+s+s1}{\PYGZsq{}}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}registry\PYGZus{}get()                Returning value from registry: \PYGZsq{}COMMAND\PYGZsq{} = \PYGZsq{}shell\PYGZsq{}
 
-\PYG{n}{LOG}     \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{main}\PYG{p}{(}\PYG{p}{)}                                    \PYG{n}{USER}\PYG{o}{=}\PYG{n}{gmk}\PYG{p}{,} \PYG{n}{IMAGE}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ubuntu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{COMMAND}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{shell}\PYG{l+s+s1}{\PYGZsq{}}
+LOG     [U=1000,P=1]       main()                                    USER=gmk, IMAGE=\PYGZsq{}ubuntu\PYGZsq{}, COMMAND=\PYGZsq{}shell\PYGZsq{}
 
-\PYG{n}{INFO}    \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{action\PYGZus{}shell}\PYG{p}{(}\PYG{p}{)}                            \PYG{n}{Singularity}\PYG{p}{:} \PYG{n}{Invoking} \PYG{n}{an} \PYG{n}{interactive} \PYG{n}{shell} \PYG{n}{within} \PYG{n}{container}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+INFO    [U=1000,P=1]       action\PYGZus{}shell()                            Singularity: Invoking an interactive shell within container...
 
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{action\PYGZus{}shell}\PYG{p}{(}\PYG{p}{)}                            \PYG{n}{Exec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ing /.singularity.d/actions/shell}
+DEBUG   [U=1000,P=1]       action\PYGZus{}shell()                            Exec\PYGZsq{}ing /.singularity.d/actions/shell
 
-\PYG{n}{Singularity} \PYG{n}{ubuntu}\PYG{p}{:}\PYG{o}{\PYGZti{}}\PYG{o}{\PYGZgt{}}
+Singularity ubuntu:\PYGZti{}\PYGZgt{}
 \end{sphinxVerbatim}
 
 Not only do I see all of the configuration options that I (probably
@@ -759,65 +765,65 @@ Evaluating args: \PYGZsq{}\PYGZhy{}\PYGZhy{}pid \PYGZhy{}\PYGZhy{}userns ubuntu.
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid}\PYG{p}{(}\PYG{p}{)}              \PYG{n}{Using} \PYG{n}{PID} \PYG{n}{namespace}\PYG{p}{:} \PYG{n}{CLONE\PYGZus{}NEWPID}
+DEBUG   [U=1000,P=32081]   singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid()              Using PID namespace: CLONE\PYGZus{}NEWPID
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid}\PYG{p}{(}\PYG{p}{)}              \PYG{n}{Virtualizing} \PYG{n}{PID} \PYG{n}{namespace}
+DEBUG   [U=1000,P=32081]   singularity\PYGZus{}runtime\PYGZus{}ns\PYGZus{}pid()              Virtualizing PID namespace
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}registry\PYGZus{}get}\PYG{p}{(}\PYG{p}{)}                \PYG{n}{Returning} \PYG{n}{NULL} \PYG{n}{on} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{DAEMON\PYGZus{}START}\PYG{l+s+s1}{\PYGZsq{}}
+DEBUG   [U=1000,P=32081]   singularity\PYGZus{}registry\PYGZus{}get()                Returning NULL on \PYGZsq{}DAEMON\PYGZus{}START\PYGZsq{}
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{prepare\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                            \PYG{n}{Creating} \PYG{n}{parent}\PYG{o}{/}\PYG{n}{child} \PYG{n}{coordination} \PYG{n}{pipes}\PYG{o}{.}
+DEBUG   [U=1000,P=32081]   prepare\PYGZus{}fork()                            Creating parent/child coordination pipes.
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Forking} \PYG{n}{child} \PYG{n}{process}
+VERBOSE [U=1000,P=32081]   singularity\PYGZus{}fork()                        Forking child process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}priv\PYGZus{}escalate}\PYG{p}{(}\PYG{p}{)}               \PYG{n}{Not} \PYG{n}{escalating} \PYG{n}{privileges}\PYG{p}{,} \PYG{n}{user} \PYG{n}{namespace} \PYG{n}{enabled}
+DEBUG   [U=1000,P=32081]   singularity\PYGZus{}priv\PYGZus{}escalate()               Not escalating privileges, user namespace enabled
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Not} \PYG{n}{dropping} \PYG{n}{privileges}\PYG{p}{,} \PYG{n}{user} \PYG{n}{namespace} \PYG{n}{enabled}
+DEBUG   [U=1000,P=32081]   singularity\PYGZus{}priv\PYGZus{}drop()                   Not dropping privileges, user namespace enabled
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Hello} \PYG{k+kn}{from} \PYG{n+nn}{parent} \PYG{n}{process}
+VERBOSE [U=1000,P=32081]   singularity\PYGZus{}fork()                        Hello from parent process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Assigning} \PYG{n}{generic} \PYG{n}{sigaction}\PYG{p}{(}\PYG{p}{)}\PYG{n}{s}
+DEBUG   [U=1000,P=32081]   install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle()           Assigning generic sigaction()s
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Creating} \PYG{n}{generic} \PYG{n}{signal} \PYG{n}{pipes}
+DEBUG   [U=1000,P=32081]   install\PYGZus{}generic\PYGZus{}signal\PYGZus{}handle()           Creating generic signal pipes
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Assigning} \PYG{n}{SIGCHLD} \PYG{n}{sigaction}\PYG{p}{(}\PYG{p}{)}
+DEBUG   [U=1000,P=32081]   install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle()           Assigning SIGCHLD sigaction()
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Creating} \PYG{n}{sigchld} \PYG{n}{signal} \PYG{n}{pipes}
+DEBUG   [U=1000,P=32081]   install\PYGZus{}sigchld\PYGZus{}signal\PYGZus{}handle()           Creating sigchld signal pipes
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{singularity\PYGZus{}signal\PYGZus{}go\PYGZus{}ahead}\PYG{p}{(}\PYG{p}{)}             \PYG{n}{Sending} \PYG{n}{go}\PYG{o}{\PYGZhy{}}\PYG{n}{ahead} \PYG{n}{signal}\PYG{p}{:} \PYG{l+m+mi}{0}
+DEBUG   [U=1000,P=32081]   singularity\PYGZus{}signal\PYGZus{}go\PYGZus{}ahead()             Sending go\PYGZhy{}ahead signal: 0
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{32081}\PYG{p}{]}   \PYG{n}{wait\PYGZus{}child}\PYG{p}{(}\PYG{p}{)}                              \PYG{n}{Parent} \PYG{n}{process} \PYG{o+ow}{is} \PYG{n}{waiting} \PYG{n}{on} \PYG{n}{child} \PYG{n}{process}
+DEBUG   [U=1000,P=32081]   wait\PYGZus{}child()                              Parent process is waiting on child process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}priv\PYGZus{}drop}\PYG{p}{(}\PYG{p}{)}                   \PYG{n}{Not} \PYG{n}{dropping} \PYG{n}{privileges}\PYG{p}{,} \PYG{n}{user} \PYG{n}{namespace} \PYG{n}{enabled}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}priv\PYGZus{}drop()                   Not dropping privileges, user namespace enabled
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}fork}\PYG{p}{(}\PYG{p}{)}                        \PYG{n}{Hello} \PYG{k+kn}{from} \PYG{n+nn}{child} \PYG{n}{process}
+VERBOSE [U=1000,P=1]       singularity\PYGZus{}fork()                        Hello from child process
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Waiting} \PYG{k}{for} \PYG{n}{go}\PYG{o}{\PYGZhy{}}\PYG{n}{ahead} \PYG{n}{signal}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead()           Waiting for go\PYGZhy{}ahead signal
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead}\PYG{p}{(}\PYG{p}{)}           \PYG{n}{Received} \PYG{n}{go}\PYG{o}{\PYGZhy{}}\PYG{n}{ahead} \PYG{n}{signal}\PYG{p}{:} \PYG{l+m+mi}{0}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}wait\PYGZus{}for\PYGZus{}go\PYGZus{}ahead()           Received go\PYGZhy{}ahead signal: 0
 
-\PYG{n}{VERBOSE} \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}registry\PYGZus{}set}\PYG{p}{(}\PYG{p}{)}                \PYG{n}{Adding} \PYG{n}{value} \PYG{n}{to} \PYG{n}{registry}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PIDNS\PYGZus{}ENABLED}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1}\PYG{l+s+s1}{\PYGZsq{}}
+VERBOSE [U=1000,P=1]       singularity\PYGZus{}registry\PYGZus{}set()                Adding value to registry: \PYGZsq{}PIDNS\PYGZus{}ENABLED\PYGZsq{} = \PYGZsq{}1\PYGZsq{}
 \end{sphinxVerbatim}
 
 (snipped to end)
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{envar\PYGZus{}set}\PYG{p}{(}\PYG{p}{)}                               \PYG{n}{Unsetting} \PYG{n}{environment} \PYG{n}{variable}\PYG{p}{:} \PYG{n}{SINGULARITY\PYGZus{}APPNAME}
+DEBUG   [U=1000,P=1]       envar\PYGZus{}set()                               Unsetting environment variable: SINGULARITY\PYGZus{}APPNAME
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{singularity\PYGZus{}registry\PYGZus{}get}\PYG{p}{(}\PYG{p}{)}                \PYG{n}{Returning} \PYG{n}{value} \PYG{k+kn}{from} \PYG{n+nn}{registry}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{COMMAND}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{shell}\PYG{l+s+s1}{\PYGZsq{}}
+DEBUG   [U=1000,P=1]       singularity\PYGZus{}registry\PYGZus{}get()                Returning value from registry: \PYGZsq{}COMMAND\PYGZsq{} = \PYGZsq{}shell\PYGZsq{}
 
-\PYG{n}{LOG}     \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{main}\PYG{p}{(}\PYG{p}{)}                                    \PYG{n}{USER}\PYG{o}{=}\PYG{n}{gmk}\PYG{p}{,} \PYG{n}{IMAGE}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ubuntu.dir}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{COMMAND}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{shell}\PYG{l+s+s1}{\PYGZsq{}}
+LOG     [U=1000,P=1]       main()                                    USER=gmk, IMAGE=\PYGZsq{}ubuntu.dir\PYGZsq{}, COMMAND=\PYGZsq{}shell\PYGZsq{}
 
-\PYG{n}{INFO}    \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{action\PYGZus{}shell}\PYG{p}{(}\PYG{p}{)}                            \PYG{n}{Singularity}\PYG{p}{:} \PYG{n}{Invoking} \PYG{n}{an} \PYG{n}{interactive} \PYG{n}{shell} \PYG{n}{within} \PYG{n}{container}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+INFO    [U=1000,P=1]       action\PYGZus{}shell()                            Singularity: Invoking an interactive shell within container...
 
 
-\PYG{n}{DEBUG}   \PYG{p}{[}\PYG{n}{U}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{n}{P}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{n}{action\PYGZus{}shell}\PYG{p}{(}\PYG{p}{)}                            \PYG{n}{Exec}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ing /.singularity.d/actions/shell}
+DEBUG   [U=1000,P=1]       action\PYGZus{}shell()                            Exec\PYGZsq{}ing /.singularity.d/actions/shell
 
-\PYG{n}{Singularity} \PYG{n}{ubuntu}\PYG{o}{.}\PYG{n}{dir}\PYG{p}{:}\PYG{o}{\PYGZti{}}\PYG{o}{\PYGZgt{}} \PYG{n}{whoami}
+Singularity ubuntu.dir:\PYGZti{}\PYGZgt{} whoami
 
-\PYG{n}{gmk}
+gmk
 
-\PYG{n}{Singularity} \PYG{n}{ubuntu}\PYG{o}{.}\PYG{n}{dir}\PYG{p}{:}\PYG{o}{\PYGZti{}}\PYG{o}{\PYGZgt{}}
+Singularity ubuntu.dir:\PYGZti{}\PYGZgt{}
 \end{sphinxVerbatim}
 
 Here you can see that the output and functionality is very similar,
@@ -966,7 +972,7 @@ paths using this directive. For example:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{autofs} \PYG{n}{bug} \PYG{n}{path} \PYG{o}{=} \PYG{o}{/}\PYG{n}{share}\PYG{o}{/}\PYG{n}{PI}
+autofs bug path = /share/PI
 \end{sphinxVerbatim}
 
 
@@ -1007,7 +1013,7 @@ Edit or create the file \sphinxcode{\sphinxupquote{/etc/modprobe.d/loop.conf}} a
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{options} \PYG{n}{loop} \PYG{n}{max\PYGZus{}loop}\PYG{o}{=}\PYG{l+m+mi}{128}
+options loop max\PYGZus{}loop=128
 \end{sphinxVerbatim}
 
 After making this change, you should be able to reboot your system or
@@ -1015,9 +1021,9 @@ unload/reload the loop device as root using the following commands:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} modprobe \PYGZhy{}r loop}
+\PYGZsh{} modprobe \PYGZhy{}r loop
 
-\PYG{c+c1}{\PYGZsh{} modprobe loop}
+\PYGZsh{} modprobe loop
 \end{sphinxVerbatim}
 
 
@@ -1084,11 +1090,11 @@ directory to this location:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import} \PYG{n+nn}{os}
+import os
 
-\PYG{n}{base} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{environ}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{SINGULARITY\PYGZus{}ROOTFS}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+base = os.environ[\PYGZdq{}SINGULARITY\PYGZus{}ROOTFS\PYGZdq{}]
 
-\PYG{n}{os}\PYG{o}{.}\PYG{n}{chdir}\PYG{p}{(}\PYG{n}{base}\PYG{p}{)}
+os.chdir(base)
 \end{sphinxVerbatim}
 
 or do the same in bash:
@@ -1123,20 +1129,20 @@ format:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
 
-\PYG{c+c1}{\PYGZsh{} CHECK SCRIPTS}
+\PYGZsh{} CHECK SCRIPTS
 
-\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}
 
 
-\PYG{c+c1}{\PYGZsh{}        [SUCCESS] [LEVEL]  [SCRIPT]                                                                         [TAGS]}
+\PYGZsh{}        [SUCCESS] [LEVEL]  [SCRIPT]                                                                         [TAGS]
 
-\PYG{n}{execute\PYGZus{}check}    \PYG{l+m+mi}{0}    \PYG{n}{HIGH}  \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{bash \PYGZdl{}SINGULARITY\PYGZus{}libexecdir/singularity/helpers/checks/1\PYGZhy{}hello\PYGZhy{}world.sh}\PYG{l+s+s2}{\PYGZdq{}}       \PYG{n}{security}
+execute\PYGZus{}check    0    HIGH  \PYGZdq{}bash \PYGZdl{}SINGULARITY\PYGZus{}libexecdir/singularity/helpers/checks/1\PYGZhy{}hello\PYGZhy{}world.sh\PYGZdq{}       security
 
-\PYG{n}{execute\PYGZus{}check}    \PYG{l+m+mi}{0}     \PYG{n}{LOW}  \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{python \PYGZdl{}SINGULARITY\PYGZus{}libexecdir/singularity/helpers/checks/2\PYGZhy{}cache\PYGZhy{}content.py}\PYG{l+s+s2}{\PYGZdq{}}   \PYG{n}{clean}
+execute\PYGZus{}check    0     LOW  \PYGZdq{}python \PYGZdl{}SINGULARITY\PYGZus{}libexecdir/singularity/helpers/checks/2\PYGZhy{}cache\PYGZhy{}content.py\PYGZdq{}   clean
 
-\PYG{n}{execute\PYGZus{}check}    \PYG{l+m+mi}{0}    \PYG{n}{HIGH}  \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{python \PYGZdl{}SINGULARITY\PYGZus{}libexecdir/singularity/helpers/checks/3\PYGZhy{}cve.py}\PYG{l+s+s2}{\PYGZdq{}}             \PYG{n}{security}
+execute\PYGZus{}check    0    HIGH  \PYGZdq{}python \PYGZdl{}SINGULARITY\PYGZus{}libexecdir/singularity/helpers/checks/3\PYGZhy{}cve.py\PYGZdq{}             security
 \end{sphinxVerbatim}
 
 The function \sphinxcode{\sphinxupquote{execute\_check}} will compare the level (\sphinxcode{\sphinxupquote{{[}LEVEL{]}}}) with the user specified (or
@@ -1169,23 +1175,23 @@ reporting one of the following error conditions:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ERROR}  \PYG{p}{:} \PYG{n}{Singularity} \PYG{n}{must} \PYG{n}{be} \PYG{n}{executed} \PYG{o+ow}{in} \PYG{n}{privileged} \PYG{n}{mode} \PYG{n}{to} \PYG{n}{use} \PYG{n}{images}
+ERROR  : Singularity must be executed in privileged mode to use images
 
-\PYG{n}{ABORT}  \PYG{p}{:} \PYG{n}{Retval} \PYG{o}{=} \PYG{l+m+mi}{255}
+ABORT  : Retval = 255
 \end{sphinxVerbatim}
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ERROR}  \PYG{p}{:} \PYG{n}{User} \PYG{n}{namespace} \PYG{o+ow}{not} \PYG{n}{supported}\PYG{p}{,} \PYG{o+ow}{and} \PYG{n}{program} \PYG{o+ow}{not} \PYG{n}{running} \PYG{n}{privileged}\PYG{o}{.}
+ERROR  : User namespace not supported, and program not running privileged.
 
-\PYG{n}{ABORT}  \PYG{p}{:} \PYG{n}{Retval} \PYG{o}{=} \PYG{l+m+mi}{255}
+ABORT  : Retval = 255
 \end{sphinxVerbatim}
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ABORT}  \PYG{p}{:} \PYG{n}{This} \PYG{n}{program} \PYG{n}{must} \PYG{n}{be} \PYG{n}{SUID} \PYG{n}{root}
+ABORT  : This program must be SUID root
 
-\PYG{n}{ABORT}  \PYG{p}{:} \PYG{n}{Retval} \PYG{o}{=} \PYG{l+m+mi}{255}
+ABORT  : Retval = 255
 \end{sphinxVerbatim}
 
 If one of these errors is reported, it is best to check the installation
@@ -1283,7 +1289,7 @@ container and then running an example MPI program through Singularity.
 
 \subsubsection{Tutorials}
 \label{\detokenize{installation_environments:tutorials}}
-\sphinxhref{https://singularity-admindoc.readthedocs.io/en/latest/appendix.html\#using-host-libraries-gpu-drivers-and-openmpi-btls}{Using Host libraries: GPU drivers and OpenMPI BTLs}
+{\hyperref[\detokenize{appendix:using-host-libraries-gpu-drivers-and-openmpi-btls}]{\sphinxcrossref{\DUrole{std,std-ref}{Using Host libraries: GPU drivers and OpenMPI BTLs}}}}
 
 
 \subsubsection{MPI Development Example}
@@ -1614,52 +1620,90 @@ writable, but it is non-persistent between non-overlapping runs.
 \label{\detokenize{installation_environments:license}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{Redistribution} \PYG{o+ow}{and} \PYG{n}{use} \PYG{o+ow}{in} \PYG{n}{source} \PYG{o+ow}{and} \PYG{n}{binary} \PYG{n}{forms}\PYG{p}{,} \PYG{k}{with} \PYG{o+ow}{or} \PYG{n}{without}
-\PYG{n}{modification}\PYG{p}{,} \PYG{n}{are} \PYG{n}{permitted} \PYG{n}{provided} \PYG{n}{that} \PYG{n}{the} \PYG{n}{following} \PYG{n}{conditions} \PYG{n}{are} \PYG{n}{met}\PYG{p}{:}
+Redistribution and use in source and binary forms, with or without
 
-\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{Redistributions} \PYG{n}{of} \PYG{n}{source} \PYG{n}{code} \PYG{n}{must} \PYG{n}{retain} \PYG{n}{the} \PYG{n}{above} \PYG{n}{copyright} \PYG{n}{notice}\PYG{p}{,}
-\PYG{n}{this} \PYG{n+nb}{list} \PYG{n}{of} \PYG{n}{conditions} \PYG{o+ow}{and} \PYG{n}{the} \PYG{n}{following} \PYG{n}{disclaimer}\PYG{o}{.}
+modification, are permitted provided that the following conditions are met:
 
-\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{n}{Redistributions} \PYG{o+ow}{in} \PYG{n}{binary} \PYG{n}{form} \PYG{n}{must} \PYG{n}{reproduce} \PYG{n}{the} \PYG{n}{above} \PYG{n}{copyright} \PYG{n}{notice}\PYG{p}{,}
-\PYG{n}{this} \PYG{n+nb}{list} \PYG{n}{of} \PYG{n}{conditions} \PYG{o+ow}{and} \PYG{n}{the} \PYG{n}{following} \PYG{n}{disclaimer} \PYG{o+ow}{in} \PYG{n}{the} \PYG{n}{documentation}
-\PYG{o+ow}{and}\PYG{o}{/}\PYG{o+ow}{or} \PYG{n}{other} \PYG{n}{materials} \PYG{n}{provided} \PYG{k}{with} \PYG{n}{the} \PYG{n}{distribution}\PYG{o}{.}
 
-\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)} \PYG{n}{Neither} \PYG{n}{the} \PYG{n}{name} \PYG{n}{of} \PYG{n}{the} \PYG{n}{University} \PYG{n}{of} \PYG{n}{California}\PYG{p}{,} \PYG{n}{Lawrence} \PYG{n}{Berkeley}
-\PYG{n}{National} \PYG{n}{Laboratory}\PYG{p}{,} \PYG{n}{U}\PYG{o}{.}\PYG{n}{S}\PYG{o}{.} \PYG{n}{Dept}\PYG{o}{.} \PYG{n}{of} \PYG{n}{Energy} \PYG{n}{nor} \PYG{n}{the} \PYG{n}{names} \PYG{n}{of} \PYG{n}{its} \PYG{n}{contributors}
-\PYG{n}{may} \PYG{n}{be} \PYG{n}{used} \PYG{n}{to} \PYG{n}{endorse} \PYG{o+ow}{or} \PYG{n}{promote} \PYG{n}{products} \PYG{n}{derived} \PYG{k+kn}{from} \PYG{n+nn}{this} \PYG{n}{software} \PYG{n}{without}
-\PYG{n}{specific} \PYG{n}{prior} \PYG{n}{written} \PYG{n}{permission}\PYG{o}{.}
+(1) Redistributions of source code must retain the above copyright notice,
 
-\PYG{n}{THIS} \PYG{n}{SOFTWARE} \PYG{n}{IS} \PYG{n}{PROVIDED} \PYG{n}{BY} \PYG{n}{THE} \PYG{n}{COPYRIGHT} \PYG{n}{HOLDERS} \PYG{n}{AND} \PYG{n}{CONTRIBUTORS} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{AS IS}\PYG{l+s+s2}{\PYGZdq{}}
-\PYG{n}{AND} \PYG{n}{ANY} \PYG{n}{EXPRESS} \PYG{n}{OR} \PYG{n}{IMPLIED} \PYG{n}{WARRANTIES}\PYG{p}{,} \PYG{n}{INCLUDING}\PYG{p}{,} \PYG{n}{BUT} \PYG{n}{NOT} \PYG{n}{LIMITED} \PYG{n}{TO}\PYG{p}{,} \PYG{n}{THE}
-\PYG{n}{IMPLIED} \PYG{n}{WARRANTIES} \PYG{n}{OF} \PYG{n}{MERCHANTABILITY} \PYG{n}{AND} \PYG{n}{FITNESS} \PYG{n}{FOR} \PYG{n}{A} \PYG{n}{PARTICULAR} \PYG{n}{PURPOSE} \PYG{n}{ARE}
-\PYG{n}{DISCLAIMED}\PYG{o}{.} \PYG{n}{IN} \PYG{n}{NO} \PYG{n}{EVENT} \PYG{n}{SHALL} \PYG{n}{THE} \PYG{n}{COPYRIGHT} \PYG{n}{OWNER} \PYG{n}{OR} \PYG{n}{CONTRIBUTORS} \PYG{n}{BE} \PYG{n}{LIABLE}
-\PYG{n}{FOR} \PYG{n}{ANY} \PYG{n}{DIRECT}\PYG{p}{,} \PYG{n}{INDIRECT}\PYG{p}{,} \PYG{n}{INCIDENTAL}\PYG{p}{,} \PYG{n}{SPECIAL}\PYG{p}{,} \PYG{n}{EXEMPLARY}\PYG{p}{,} \PYG{n}{OR} \PYG{n}{CONSEQUENTIAL}
-\PYG{n}{DAMAGES} \PYG{p}{(}\PYG{n}{INCLUDING}\PYG{p}{,} \PYG{n}{BUT} \PYG{n}{NOT} \PYG{n}{LIMITED} \PYG{n}{TO}\PYG{p}{,} \PYG{n}{PROCUREMENT} \PYG{n}{OF} \PYG{n}{SUBSTITUTE} \PYG{n}{GOODS} \PYG{n}{OR}
-\PYG{n}{SERVICES}\PYG{p}{;} \PYG{n}{LOSS} \PYG{n}{OF} \PYG{n}{USE}\PYG{p}{,} \PYG{n}{DATA}\PYG{p}{,} \PYG{n}{OR} \PYG{n}{PROFITS}\PYG{p}{;} \PYG{n}{OR} \PYG{n}{BUSINESS} \PYG{n}{INTERRUPTION}\PYG{p}{)} \PYG{n}{HOWEVER}
-\PYG{n}{CAUSED} \PYG{n}{AND} \PYG{n}{ON} \PYG{n}{ANY} \PYG{n}{THEORY} \PYG{n}{OF} \PYG{n}{LIABILITY}\PYG{p}{,} \PYG{n}{WHETHER} \PYG{n}{IN} \PYG{n}{CONTRACT}\PYG{p}{,} \PYG{n}{STRICT} \PYG{n}{LIABILITY}\PYG{p}{,}
-\PYG{n}{OR} \PYG{n}{TORT} \PYG{p}{(}\PYG{n}{INCLUDING} \PYG{n}{NEGLIGENCE} \PYG{n}{OR} \PYG{n}{OTHERWISE}\PYG{p}{)} \PYG{n}{ARISING} \PYG{n}{IN} \PYG{n}{ANY} \PYG{n}{WAY} \PYG{n}{OUT} \PYG{n}{OF} \PYG{n}{THE} \PYG{n}{USE}
-\PYG{n}{OF} \PYG{n}{THIS} \PYG{n}{SOFTWARE}\PYG{p}{,} \PYG{n}{EVEN} \PYG{n}{IF} \PYG{n}{ADVISED} \PYG{n}{OF} \PYG{n}{THE} \PYG{n}{POSSIBILITY} \PYG{n}{OF} \PYG{n}{SUCH} \PYG{n}{DAMAGE}\PYG{o}{.}
+this list of conditions and the following disclaimer.
 
-\PYG{n}{You} \PYG{n}{are} \PYG{n}{under} \PYG{n}{no} \PYG{n}{obligation} \PYG{n}{whatsoever} \PYG{n}{to} \PYG{n}{provide} \PYG{n+nb}{any} \PYG{n}{bug} \PYG{n}{fixes}\PYG{p}{,} \PYG{n}{patches}\PYG{p}{,} \PYG{o+ow}{or}
-\PYG{n}{upgrades} \PYG{n}{to} \PYG{n}{the} \PYG{n}{features}\PYG{p}{,} \PYG{n}{functionality} \PYG{o+ow}{or} \PYG{n}{performance} \PYG{n}{of} \PYG{n}{the} \PYG{n}{source} \PYG{n}{code}
-\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Enhancements}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)} \PYG{n}{to} \PYG{n}{anyone}\PYG{p}{;} \PYG{n}{however}\PYG{p}{,} \PYG{k}{if} \PYG{n}{you} \PYG{n}{choose} \PYG{n}{to} \PYG{n}{make} \PYG{n}{your} \PYG{n}{Enhancements}
-\PYG{n}{available} \PYG{n}{either} \PYG{n}{publicly}\PYG{p}{,} \PYG{o+ow}{or} \PYG{n}{directly} \PYG{n}{to} \PYG{n}{Lawrence} \PYG{n}{Berkeley} \PYG{n}{National}
-\PYG{n}{Laboratory}\PYG{p}{,} \PYG{n}{without} \PYG{n}{imposing} \PYG{n}{a} \PYG{n}{separate} \PYG{n}{written} \PYG{n}{license} \PYG{n}{agreement} \PYG{k}{for} \PYG{n}{such}
-\PYG{n}{Enhancements}\PYG{p}{,} \PYG{n}{then} \PYG{n}{you} \PYG{n}{hereby} \PYG{n}{grant} \PYG{n}{the} \PYG{n}{following} \PYG{n}{license}\PYG{p}{:} \PYG{n}{a}  \PYG{n}{non}\PYG{o}{\PYGZhy{}}\PYG{n}{exclusive}\PYG{p}{,}
-\PYG{n}{royalty}\PYG{o}{\PYGZhy{}}\PYG{n}{free} \PYG{n}{perpetual} \PYG{n}{license} \PYG{n}{to} \PYG{n}{install}\PYG{p}{,} \PYG{n}{use}\PYG{p}{,} \PYG{n}{modify}\PYG{p}{,} \PYG{n}{prepare} \PYG{n}{derivative}
-\PYG{n}{works}\PYG{p}{,} \PYG{n}{incorporate} \PYG{n}{into} \PYG{n}{other} \PYG{n}{computer} \PYG{n}{software}\PYG{p}{,} \PYG{n}{distribute}\PYG{p}{,} \PYG{o+ow}{and} \PYG{n}{sublicense}
-\PYG{n}{such} \PYG{n}{enhancements} \PYG{o+ow}{or} \PYG{n}{derivative} \PYG{n}{works} \PYG{n}{thereof}\PYG{p}{,} \PYG{o+ow}{in} \PYG{n}{binary} \PYG{o+ow}{and} \PYG{n}{source} \PYG{n}{code} \PYG{n}{form}\PYG{o}{.}
 
-\PYG{n}{If} \PYG{n}{you} \PYG{n}{have} \PYG{n}{questions} \PYG{n}{about} \PYG{n}{your} \PYG{n}{rights} \PYG{n}{to} \PYG{n}{use} \PYG{o+ow}{or} \PYG{n}{distribute} \PYG{n}{this} \PYG{n}{software}\PYG{p}{,}
-\PYG{n}{please} \PYG{n}{contact} \PYG{n}{Berkeley} \PYG{n}{Lab}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{s Innovation \PYGZam{} Partnerships Office at}
-\PYG{n}{IPO}\PYG{n+nd}{@lbl}\PYG{o}{.}\PYG{n}{gov}\PYG{o}{.}
+(2) Redistributions in binary form must reproduce the above copyright notice,
 
-\PYG{n}{NOTICE}\PYG{o}{.}  \PYG{n}{This} \PYG{n}{Software} \PYG{n}{was} \PYG{n}{developed} \PYG{n}{under} \PYG{n}{funding} \PYG{k+kn}{from} \PYG{n+nn}{the} \PYG{n}{U}\PYG{o}{.}\PYG{n}{S}\PYG{o}{.} \PYG{n}{Department} \PYG{n}{of}
-\PYG{n}{Energy} \PYG{o+ow}{and} \PYG{n}{the} \PYG{n}{U}\PYG{o}{.}\PYG{n}{S}\PYG{o}{.} \PYG{n}{Government} \PYG{n}{consequently} \PYG{n}{retains} \PYG{n}{certain} \PYG{n}{rights}\PYG{o}{.} \PYG{n}{As} \PYG{n}{such}\PYG{p}{,}
-\PYG{n}{the} \PYG{n}{U}\PYG{o}{.}\PYG{n}{S}\PYG{o}{.} \PYG{n}{Government} \PYG{n}{has} \PYG{n}{been} \PYG{n}{granted} \PYG{k}{for} \PYG{n}{itself} \PYG{o+ow}{and} \PYG{n}{others} \PYG{n}{acting} \PYG{n}{on} \PYG{n}{its}
-\PYG{n}{behalf} \PYG{n}{a} \PYG{n}{paid}\PYG{o}{\PYGZhy{}}\PYG{n}{up}\PYG{p}{,} \PYG{n}{nonexclusive}\PYG{p}{,} \PYG{n}{irrevocable}\PYG{p}{,} \PYG{n}{worldwide} \PYG{n}{license} \PYG{o+ow}{in} \PYG{n}{the} \PYG{n}{Software}
-\PYG{n}{to} \PYG{n}{reproduce}\PYG{p}{,} \PYG{n}{distribute} \PYG{n}{copies} \PYG{n}{to} \PYG{n}{the} \PYG{n}{public}\PYG{p}{,} \PYG{n}{prepare} \PYG{n}{derivative} \PYG{n}{works}\PYG{p}{,} \PYG{o+ow}{and}
-\PYG{n}{perform} \PYG{n}{publicly} \PYG{o+ow}{and} \PYG{n}{display} \PYG{n}{publicly}\PYG{p}{,} \PYG{o+ow}{and} \PYG{n}{to} \PYG{n}{permit} \PYG{n}{other} \PYG{n}{to} \PYG{n}{do} \PYG{n}{so}\PYG{o}{.}
+this list of conditions and the following disclaimer in the documentation
+
+and/or other materials provided with the distribution.
+
+
+(3) Neither the name of the University of California, Lawrence Berkeley
+
+National Laboratory, U.S. Dept. of Energy nor the names of its contributors
+
+may be used to endorse or promote products derived from this software without
+
+specific prior written permission.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \PYGZdq{}AS IS\PYGZdq{}
+
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+You are under no obligation whatsoever to provide any bug fixes, patches, or
+
+upgrades to the features, functionality or performance of the source code
+
+(\PYGZdq{}Enhancements\PYGZdq{}) to anyone; however, if you choose to make your Enhancements
+
+available either publicly, or directly to Lawrence Berkeley National
+
+Laboratory, without imposing a separate written license agreement for such
+
+Enhancements, then you hereby grant the following license: a  non\PYGZhy{}exclusive,
+
+royalty\PYGZhy{}free perpetual license to install, use, modify, prepare derivative
+
+works, incorporate into other computer software, distribute, and sublicense
+
+such enhancements or derivative works thereof, in binary and source code form.
+
+
+If you have questions about your rights to use or distribute this software,
+
+please contact Berkeley Lab\PYGZsq{}s Innovation \PYGZam{} Partnerships Office at
+
+IPO@lbl.gov.
+
+
+NOTICE.  This Software was developed under funding from the U.S. Department of
+
+Energy and the U.S. Government consequently retains certain rights. As such,
+
+the U.S. Government has been granted for itself and others acting on its
+
+behalf a paid\PYGZhy{}up, nonexclusive, irrevocable, worldwide license in the Software
+
+to reproduce, distribute copies to the public, prepare derivative works, and
+
+perform publicly and display publicly, and to permit other to do so.
 \end{sphinxVerbatim}
 
 
@@ -1679,7 +1723,7 @@ the contributor has authority to contribute.
 \label{\detokenize{appendix:appendix}}\label{\detokenize{appendix::doc}}
 
 \section{Using Host libraries: GPU drivers and OpenMPI BTLs}
-\label{\detokenize{appendix:using-host-libraries-gpu-drivers-and-openmpi-btls}}\phantomsection\label{\detokenize{appendix:sec-tutorial-gpu-drivers-and-openmpi}}
+\label{\detokenize{appendix:using-host-libraries-gpu-drivers-and-openmpi-btls}}\label{\detokenize{appendix:id1}}\phantomsection\label{\detokenize{appendix:sec-tutorial-gpu-drivers-and-openmpi}}
 \begin{sphinxadmonition}{note}{Note:}
 \sphinxstylestrong{Much of the GPU portion of this tutorial is deprecated by the} \sphinxcode{\sphinxupquote{-{-}nv}} \sphinxstylestrong{option
 that automatically binds host system driver libraries into your container at
@@ -1733,47 +1777,47 @@ Use the following def file to create the image.
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{Bootstrap}\PYG{p}{:} \PYG{n}{debootstrap}
+Bootstrap: debootstrap
 
-\PYG{n}{MirrorURL}\PYG{p}{:} \PYG{n}{http}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{us}\PYG{o}{.}\PYG{n}{archive}\PYG{o}{.}\PYG{n}{ubuntu}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{ubuntu}\PYG{o}{/}
+MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
-\PYG{n}{OSVersion}\PYG{p}{:} \PYG{n}{xenial}
+OSVersion: xenial
 
-\PYG{n}{Include}\PYG{p}{:} \PYG{n}{apt}
+Include: apt
 
 
 
-\PYG{o}{\PYGZpc{}}\PYG{n}{post}
+\PYGZpc{}post
 
-\PYG{n}{apt} \PYG{n}{install} \PYG{o}{\PYGZhy{}}\PYG{n}{y} \PYG{n}{software}\PYG{o}{\PYGZhy{}}\PYG{n}{properties}\PYG{o}{\PYGZhy{}}\PYG{n}{common}
+apt install \PYGZhy{}y software\PYGZhy{}properties\PYGZhy{}common
 
-\PYG{n}{apt}\PYG{o}{\PYGZhy{}}\PYG{n}{add}\PYG{o}{\PYGZhy{}}\PYG{n}{repository} \PYG{o}{\PYGZhy{}}\PYG{n}{y} \PYG{n}{universe}
+apt\PYGZhy{}add\PYGZhy{}repository \PYGZhy{}y universe
 
-\PYG{n}{apt} \PYG{n}{update}
+apt update
 
-\PYG{n}{apt} \PYG{n}{install} \PYG{o}{\PYGZhy{}}\PYG{n}{y} \PYG{n}{wget}
+apt install \PYGZhy{}y wget
 
-\PYG{n}{mkdir} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{openmpi} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Directory exists}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir /usr/local/openmpi \textbar{}\textbar{} echo \PYGZdq{}Directory exists\PYGZdq{}
 
-\PYG{n}{mkdir} \PYG{o}{/}\PYG{n}{opt}\PYG{o}{/}\PYG{n}{mellanox} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Directory exists}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir /opt/mellanox \textbar{}\textbar{} echo \PYGZdq{}Directory exists\PYGZdq{}
 
-\PYG{n}{mkdir} \PYG{o}{/}\PYG{n}{all\PYGZus{}hostlibs} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Directory exists}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir /all\PYGZus{}hostlibs \textbar{}\textbar{} echo \PYGZdq{}Directory exists\PYGZdq{}
 
-\PYG{n}{mkdir} \PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Directory exists}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir /desired\PYGZus{}hostlibs \textbar{}\textbar{} echo \PYGZdq{}Directory exists\PYGZdq{}
 
-\PYG{n}{mkdir} \PYG{o}{/}\PYG{n}{etc}\PYG{o}{/}\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{d} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Directory exists}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir /etc/libibverbs.d \textbar{}\textbar{} echo \PYGZdq{}Directory exists\PYGZdq{}
 
-\PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{driver mlx4}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZgt{}} \PYG{o}{/}\PYG{n}{etc}\PYG{o}{/}\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{d}\PYG{o}{/}\PYG{n}{mlx4}\PYG{o}{.}\PYG{n}{driver}
+echo \PYGZdq{}driver mlx4\PYGZdq{} \PYGZgt{} /etc/libibverbs.d/mlx4.driver
 
-\PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{driver mlx5}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZgt{}} \PYG{o}{/}\PYG{n}{etc}\PYG{o}{/}\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{d}\PYG{o}{/}\PYG{n}{mlx5}\PYG{o}{.}\PYG{n}{driver}
+echo \PYGZdq{}driver mlx5\PYGZdq{} \PYGZgt{} /etc/libibverbs.d/mlx5.driver
 
-\PYG{n}{adduser} \PYG{n}{slurm} \PYG{o}{\textbar{}}\PYG{o}{\textbar{}} \PYG{n}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{User exists}\PYG{l+s+s2}{\PYGZdq{}}
+adduser slurm \textbar{}\textbar{} echo \PYGZdq{}User exists\PYGZdq{}
 
-\PYG{n}{wget} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{gist}\PYG{o}{.}\PYG{n}{githubusercontent}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{l1ll1}\PYG{o}{/}\PYG{l+m+mi}{89}\PYG{n}{b3f067d5b790ace6e6767be5ea2851}\PYG{o}{/}\PYG{n}{raw}\PYG{o}{/}\PYG{l+m+mi}{422}\PYG{n}{c8b5446c6479285cd29d1bf5be60f1b359b90}\PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs}\PYG{o}{.}\PYG{n}{txt} \PYG{o}{\PYGZhy{}}\PYG{n}{O} \PYG{o}{/}\PYG{n}{tmp}\PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs}\PYG{o}{.}\PYG{n}{txt}
+wget https://gist.githubusercontent.com/l1ll1/89b3f067d5b790ace6e6767be5ea2851/raw/422c8b5446c6479285cd29d1bf5be60f1b359b90/desired\PYGZus{}hostlibs.txt \PYGZhy{}O /tmp/desired\PYGZus{}hostlibs.txt
 
-\PYG{n}{cat} \PYG{o}{/}\PYG{n}{tmp}\PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs}\PYG{o}{.}\PYG{n}{txt} \PYG{o}{\textbar{}} \PYG{n}{xargs} \PYG{o}{\PYGZhy{}}\PYG{n}{I}\PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}} \PYG{n}{ln} \PYG{o}{\PYGZhy{}}\PYG{n}{s} \PYG{o}{/}\PYG{n}{all\PYGZus{}hostlibs}\PYG{o}{/}\PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}} \PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs}\PYG{o}{/}\PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+cat /tmp/desired\PYGZus{}hostlibs.txt \textbar{} xargs \PYGZhy{}I\PYGZob{}\PYGZcb{} ln \PYGZhy{}s /all\PYGZus{}hostlibs/\PYGZob{}\PYGZcb{} /desired\PYGZus{}hostlibs/\PYGZob{}\PYGZcb{}
 
-\PYG{n}{rm} \PYG{o}{/}\PYG{n}{tmp}\PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs}\PYG{o}{.}\PYG{n}{txt}
+rm /tmp/desired\PYGZus{}hostlibs.txt
 \end{sphinxVerbatim}
 
 The mysterious \sphinxcode{\sphinxupquote{wget}} line gets a list of all the libraries that the CentOS host has in \sphinxcode{\sphinxupquote{/lib64}} that we
@@ -1781,173 +1825,173 @@ think its safe to use in the container. Specifically these are things like nvidi
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{libvdpau\PYGZus{}nvidia}\PYG{o}{.}\PYG{n}{so}
+libvdpau\PYGZus{}nvidia.so
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{opencl}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnvidia\PYGZhy{}opencl.so.1
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{ml}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnvidia\PYGZhy{}ml.so.1
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{ml}\PYG{o}{.}\PYG{n}{so}
+libnvidia\PYGZhy{}ml.so
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{ifr}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnvidia\PYGZhy{}ifr.so.1
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{ifr}\PYG{o}{.}\PYG{n}{so}
+libnvidia\PYGZhy{}ifr.so
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{fbc}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnvidia\PYGZhy{}fbc.so.1
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{fbc}\PYG{o}{.}\PYG{n}{so}
+libnvidia\PYGZhy{}fbc.so
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{encode}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnvidia\PYGZhy{}encode.so.1
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{encode}\PYG{o}{.}\PYG{n}{so}
+libnvidia\PYGZhy{}encode.so
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{cfg}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnvidia\PYGZhy{}cfg.so.1
 
-\PYG{n}{libnvidia}\PYG{o}{\PYGZhy{}}\PYG{n}{cfg}\PYG{o}{.}\PYG{n}{so}
+libnvidia\PYGZhy{}cfg.so
 
-\PYG{n}{libicudata}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{50}
+libicudata.so.50
 
-\PYG{n}{libicudata}\PYG{o}{.}\PYG{n}{so}
+libicudata.so
 
-\PYG{n}{libcuda}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libcuda.so.1
 
-\PYG{n}{libcuda}\PYG{o}{.}\PYG{n}{so}
+libcuda.so
 
-\PYG{n}{libGLX\PYGZus{}nvidia}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{0}
+libGLX\PYGZus{}nvidia.so.0
 
-\PYG{n}{libGLESv2\PYGZus{}nvidia}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{2}
+libGLESv2\PYGZus{}nvidia.so.2
 
-\PYG{n}{libGLESv1\PYGZus{}CM\PYGZus{}nvidia}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libGLESv1\PYGZus{}CM\PYGZus{}nvidia.so.1
 
-\PYG{n}{libEGL\PYGZus{}nvidia}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{0}
+libEGL\PYGZus{}nvidia.so.0
 
-\PYG{n}{libibcm}\PYG{o}{.}\PYG{n}{a}
+libibcm.a
 
-\PYG{n}{libibcm}\PYG{o}{.}\PYG{n}{so}
+libibcm.so
 
-\PYG{n}{libibcm}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libibcm.so.1
 
-\PYG{n}{libibcm}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{1.0}\PYG{o}{.}\PYG{l+m+mi}{0}
+libibcm.so.1.0.0
 
-\PYG{n}{libibdiag}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mf}{1.}\PYG{n}{so}
+libibdiag\PYGZhy{}2.1.1.so
 
-\PYG{n}{libibdiag}\PYG{o}{.}\PYG{n}{a}
+libibdiag.a
 
-\PYG{n}{libibdiag}\PYG{o}{.}\PYG{n}{la}
+libibdiag.la
 
-\PYG{n}{libibdiag}\PYG{o}{.}\PYG{n}{so}
+libibdiag.so
 
-\PYG{n}{libibdiagnet\PYGZus{}plugins\PYGZus{}ifc}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mf}{1.}\PYG{n}{so}
+libibdiagnet\PYGZus{}plugins\PYGZus{}ifc\PYGZhy{}2.1.1.so
 
-\PYG{n}{libibdiagnet\PYGZus{}plugins\PYGZus{}ifc}\PYG{o}{.}\PYG{n}{a}
+libibdiagnet\PYGZus{}plugins\PYGZus{}ifc.a
 
-\PYG{n}{libibdiagnet\PYGZus{}plugins\PYGZus{}ifc}\PYG{o}{.}\PYG{n}{la}
+libibdiagnet\PYGZus{}plugins\PYGZus{}ifc.la
 
-\PYG{n}{libibdiagnet\PYGZus{}plugins\PYGZus{}ifc}\PYG{o}{.}\PYG{n}{so}
+libibdiagnet\PYGZus{}plugins\PYGZus{}ifc.so
 
-\PYG{n}{libibdmcom}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mf}{1.}\PYG{n}{so}
+libibdmcom\PYGZhy{}2.1.1.so
 
-\PYG{n}{libibdmcom}\PYG{o}{.}\PYG{n}{a}
+libibdmcom.a
 
-\PYG{n}{libibdmcom}\PYG{o}{.}\PYG{n}{la}
+libibdmcom.la
 
-\PYG{n}{libibdmcom}\PYG{o}{.}\PYG{n}{so}
+libibdmcom.so
 
-\PYG{n}{libiberty}\PYG{o}{.}\PYG{n}{a}
+libiberty.a
 
-\PYG{n}{libibis}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mf}{1.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{3}
+libibis\PYGZhy{}2.1.1.so.3
 
-\PYG{n}{libibis}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mf}{1.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{3.0}\PYG{o}{.}\PYG{l+m+mi}{3}
+libibis\PYGZhy{}2.1.1.so.3.0.3
 
-\PYG{n}{libibis}\PYG{o}{.}\PYG{n}{a}
+libibis.a
 
-\PYG{n}{libibis}\PYG{o}{.}\PYG{n}{la}
+libibis.la
 
-\PYG{n}{libibis}\PYG{o}{.}\PYG{n}{so}
+libibis.so
 
-\PYG{n}{libibmad}\PYG{o}{.}\PYG{n}{a}
+libibmad.a
 
-\PYG{n}{libibmad}\PYG{o}{.}\PYG{n}{so}
+libibmad.so
 
-\PYG{n}{libibmad}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{5}
+libibmad.so.5
 
-\PYG{n}{libibmad}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{5.5}\PYG{o}{.}\PYG{l+m+mi}{0}
+libibmad.so.5.5.0
 
-\PYG{n}{libibnetdisc}\PYG{o}{.}\PYG{n}{a}
+libibnetdisc.a
 
-\PYG{n}{libibnetdisc}\PYG{o}{.}\PYG{n}{so}
+libibnetdisc.so
 
-\PYG{n}{libibnetdisc}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{5}
+libibnetdisc.so.5
 
-\PYG{n}{libibnetdisc}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{5.3}\PYG{o}{.}\PYG{l+m+mi}{0}
+libibnetdisc.so.5.3.0
 
-\PYG{n}{libibsysapi}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mf}{1.}\PYG{n}{so}
+libibsysapi\PYGZhy{}2.1.1.so
 
-\PYG{n}{libibsysapi}\PYG{o}{.}\PYG{n}{a}
+libibsysapi.a
 
-\PYG{n}{libibsysapi}\PYG{o}{.}\PYG{n}{la}
+libibsysapi.la
 
-\PYG{n}{libibsysapi}\PYG{o}{.}\PYG{n}{so}
+libibsysapi.so
 
-\PYG{n}{libibumad}\PYG{o}{.}\PYG{n}{a}
+libibumad.a
 
-\PYG{n}{libibumad}\PYG{o}{.}\PYG{n}{so}
+libibumad.so
 
-\PYG{n}{libibumad}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{3}
+libibumad.so.3
 
-\PYG{n}{libibumad}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{3.1}\PYG{o}{.}\PYG{l+m+mi}{0}
+libibumad.so.3.1.0
 
-\PYG{n}{libibus}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{5}
+libibus\PYGZhy{}1.0.so.5
 
-\PYG{n}{libibus}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{5.0}\PYG{o}{.}\PYG{l+m+mi}{503}
+libibus\PYGZhy{}1.0.so.5.0.503
 
-\PYG{n}{libibus}\PYG{o}{\PYGZhy{}}\PYG{n}{qt}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libibus\PYGZhy{}qt.so.1
 
-\PYG{n}{libibus}\PYG{o}{\PYGZhy{}}\PYG{n}{qt}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{1.3}\PYG{o}{.}\PYG{l+m+mi}{0}
+libibus\PYGZhy{}qt.so.1.3.0
 
-\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{a}
+libibverbs.a
 
-\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{so}
+libibverbs.so
 
-\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libibverbs.so.1
 
-\PYG{n}{libibverbs}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{1.0}\PYG{o}{.}\PYG{l+m+mi}{0}
+libibverbs.so.1.0.0
 
-\PYG{n}{liblustreapi}\PYG{o}{.}\PYG{n}{so}
+liblustreapi.so
 
-\PYG{n}{libmlx4}\PYG{o}{\PYGZhy{}}\PYG{n}{rdmav2}\PYG{o}{.}\PYG{n}{so}
+libmlx4\PYGZhy{}rdmav2.so
 
-\PYG{n}{libmlx4}\PYG{o}{.}\PYG{n}{a}
+libmlx4.a
 
-\PYG{n}{libmlx5}\PYG{o}{\PYGZhy{}}\PYG{n}{rdmav2}\PYG{o}{.}\PYG{n}{so}
+libmlx5\PYGZhy{}rdmav2.so
 
-\PYG{n}{libmlx5}\PYG{o}{.}\PYG{n}{a}
+libmlx5.a
 
-\PYG{n}{libnl}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnl.so.1
 
-\PYG{n}{libnuma}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+libnuma.so.1
 
-\PYG{n}{libosmcomp}\PYG{o}{.}\PYG{n}{a}
+libosmcomp.a
 
-\PYG{n}{libosmcomp}\PYG{o}{.}\PYG{n}{so}
+libosmcomp.so
 
-\PYG{n}{libosmcomp}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{3}
+libosmcomp.so.3
 
-\PYG{n}{libosmcomp}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{3.0}\PYG{o}{.}\PYG{l+m+mi}{6}
+libosmcomp.so.3.0.6
 
-\PYG{n}{libosmvendor}\PYG{o}{.}\PYG{n}{a}
+libosmvendor.a
 
-\PYG{n}{libosmvendor}\PYG{o}{.}\PYG{n}{so}
+libosmvendor.so
 
-\PYG{n}{libosmvendor}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{3}
+libosmvendor.so.3
 
-\PYG{n}{libosmvendor}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mf}{3.0}\PYG{o}{.}\PYG{l+m+mi}{8}
+libosmvendor.so.3.0.8
 
-\PYG{n}{libpciaccess}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{0}
+libpciaccess.so.0
 
-\PYG{n}{librdmacm}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{1}
+librdmacm.so.1
 
-\PYG{n}{libwrap}\PYG{o}{.}\PYG{n}{so}\PYG{o}{.}\PYG{l+m+mi}{0}
+libwrap.so.0
 \end{sphinxVerbatim}
 
 Also note:
@@ -1968,16 +2012,16 @@ On our system we do:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{SINGULARITYENV\PYGZus{}LD\PYGZus{}LIBRARY\PYGZus{}PATH}\PYG{o}{=}\PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{openmpi}\PYG{o}{/}\PYG{l+m+mf}{2.1}\PYG{o}{.}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{n}{gcc4}\PYG{o}{/}\PYG{n}{lib}\PYG{p}{:}\PYG{o}{/}\PYG{n}{opt}\PYG{o}{/}\PYG{n}{munge}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{o}{.}\PYG{l+m+mi}{11}\PYG{o}{/}\PYG{n}{lib}\PYG{p}{:}\PYG{o}{/}\PYG{n}{opt}\PYG{o}{/}\PYG{n}{slurm}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{16.05}\PYG{o}{.}\PYG{l+m+mi}{4}\PYG{o}{/}\PYG{n}{lib}\PYG{p}{:}\PYG{o}{/}\PYG{n}{opt}\PYG{o}{/}\PYG{n}{slurm}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{16.05}\PYG{o}{.}\PYG{l+m+mi}{4}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}\PYG{n}{slurm}\PYG{p}{:}\PYG{o}{/}\PYG{n}{desired\PYGZus{}hostlibs}\PYG{p}{:}\PYG{o}{/}\PYG{n}{opt}\PYG{o}{/}\PYG{n}{mellanox}\PYG{o}{/}\PYG{n}{mxm}\PYG{o}{/}\PYG{n}{lib}\PYG{o}{/}
+SINGULARITYENV\PYGZus{}LD\PYGZus{}LIBRARY\PYGZus{}PATH=/usr/local/openmpi/2.1.0\PYGZhy{}gcc4/lib:/opt/munge\PYGZhy{}0.5.11/lib:/opt/slurm\PYGZhy{}16.05.4/lib:/opt/slurm\PYGZhy{}16.05.4/lib/slurm:/desired\PYGZus{}hostlibs:/opt/mellanox/mxm/lib/
 
-\PYG{n}{export} \PYG{n}{SINGULARITYENV\PYGZus{}LD\PYGZus{}LIBRARY\PYGZus{}PATH}
+export SINGULARITYENV\PYGZus{}LD\PYGZus{}LIBRARY\PYGZus{}PATH
 \end{sphinxVerbatim}
 
 then
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{srun}  \PYG{n}{singularity} \PYG{n}{exec} \PYG{o}{\PYGZhy{}}\PYG{n}{B} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{openmpi}\PYG{p}{:}\PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n}{openmpi} \PYG{o}{\PYGZhy{}}\PYG{n}{B} \PYG{o}{/}\PYG{n}{opt}\PYG{p}{:}\PYG{o}{/}\PYG{n}{opt} \PYG{o}{\PYGZhy{}}\PYG{n}{B} \PYG{o}{/}\PYG{n}{lib64}\PYG{p}{:}\PYG{o}{/}\PYG{n}{all\PYGZus{}hostlibs} \PYG{n}{hostlibs}\PYG{o}{.}\PYG{n}{img} \PYG{o}{\PYGZlt{}}\PYG{n}{path} \PYG{n}{to} \PYG{n}{binary}\PYG{o}{\PYGZgt{}}
+srun  singularity exec \PYGZhy{}B /usr/local/openmpi:/usr/local/openmpi \PYGZhy{}B /opt:/opt \PYGZhy{}B /lib64:/all\PYGZus{}hostlibs hostlibs.img \PYGZlt{}path to binary\PYGZgt{}
 \end{sphinxVerbatim}
 
 
@@ -2031,23 +2075,23 @@ Below is a definition file for a minimal Ubuntu image:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DistType} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{debian}\PYG{l+s+s2}{\PYGZdq{}}
+DistType \PYGZdq{}debian\PYGZdq{}
 
-\PYG{n}{MirrorURL} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{http://us.archive.ubuntu.com/ubuntu/}\PYG{l+s+s2}{\PYGZdq{}}
+MirrorURL \PYGZdq{}http://us.archive.ubuntu.com/ubuntu/\PYGZdq{}
 
-\PYG{n}{OSVersion} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{trusty}\PYG{l+s+s2}{\PYGZdq{}}
-
-
-
-\PYG{n}{Setup}
-
-\PYG{n}{Bootstrap}
+OSVersion \PYGZdq{}trusty\PYGZdq{}
 
 
 
-\PYG{n}{Cleanup}
+Setup
 
-\PYG{n}{The} \PYG{n}{following} \PYG{n}{keywords} \PYG{n}{were} \PYG{n}{used} \PYG{o+ow}{in} \PYG{n}{this} \PYG{n}{definition} \PYG{n}{file}\PYG{p}{:}
+Bootstrap
+
+
+
+Cleanup
+
+The following keywords were used in this definition file:
 \end{sphinxVerbatim}
 \begin{itemize}
 \item {} 
@@ -2076,32 +2120,32 @@ things such as install packages or files. Some of these keywords are used in the
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DistType} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{debian}\PYG{l+s+s2}{\PYGZdq{}}
+DistType \PYGZdq{}debian\PYGZdq{}
 
-\PYG{n}{MirrorURL} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{http://us.archive.ubuntu.com/ubuntu/}\PYG{l+s+s2}{\PYGZdq{}}
+MirrorURL \PYGZdq{}http://us.archive.ubuntu.com/ubuntu/\PYGZdq{}
 
-\PYG{n}{OSVersion} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{trusty}\PYG{l+s+s2}{\PYGZdq{}}
-
-
-\PYG{n}{Setup}
-
-\PYG{n}{Bootstrap}
+OSVersion \PYGZdq{}trusty\PYGZdq{}
 
 
-\PYG{n}{InstallPkgs} \PYG{n}{python}
+Setup
 
-\PYG{n}{InstallPkgs} \PYG{n}{wget}
-
-\PYG{n}{RunCmd} \PYG{n}{wget} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{bootstrap}\PYG{o}{.}\PYG{n}{pypa}\PYG{o}{.}\PYG{n}{io}\PYG{o}{/}\PYG{n}{get}\PYG{o}{\PYGZhy{}}\PYG{n}{pip}\PYG{o}{.}\PYG{n}{py}
-
-\PYG{n}{RunCmd} \PYG{n}{python} \PYG{n}{get}\PYG{o}{\PYGZhy{}}\PYG{n}{pip}\PYG{o}{.}\PYG{n}{py}
-
-\PYG{n}{RunCmd} \PYG{n}{ln} \PYG{o}{\PYGZhy{}}\PYG{n}{s} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{pip} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{pip}
-
-\PYG{n}{RunCmd} \PYG{n}{pip} \PYG{n}{install} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZhy{}}\PYG{n}{upgrade} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{storage}\PYG{o}{.}\PYG{n}{googleapis}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{/}\PYG{n}{linux}\PYG{o}{/}\PYG{n}{cpu}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.9}\PYG{o}{.}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{n}{cp27}\PYG{o}{\PYGZhy{}}\PYG{n}{none}\PYG{o}{\PYGZhy{}}\PYG{n}{linux\PYGZus{}x86\PYGZus{}64}\PYG{o}{.}\PYG{n}{whl}
+Bootstrap
 
 
-\PYG{n}{Cleanup}
+InstallPkgs python
+
+InstallPkgs wget
+
+RunCmd wget https://bootstrap.pypa.io/get\PYGZhy{}pip.py
+
+RunCmd python get\PYGZhy{}pip.py
+
+RunCmd ln \PYGZhy{}s /usr/local/bin/pip /usr/bin/pip
+
+RunCmd pip install \PYGZhy{}\PYGZhy{}upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow\PYGZhy{}0.9.0\PYGZhy{}cp27\PYGZhy{}none\PYGZhy{}linux\PYGZus{}x86\PYGZus{}64.whl
+
+
+Cleanup
 \end{sphinxVerbatim}
 
 Before going over exactly what image this definition file specifies, the remaining Singularity keywords should be introduced.
@@ -2126,7 +2170,7 @@ and then to install ‘pip’. Subsequently, we also used RunCmd to pip install 
 
 
 \subsubsection{Creating your image}
-\label{\detokenize{appendix:id1}}
+\label{\detokenize{appendix:id2}}
 Once you have created your definition file, you will be ready to actually create your image. You will do this by utilizing the Singularity ‘create’ and ‘bootstrap’ subcommands. The process for doing this
 can be seen below:
 
@@ -2214,36 +2258,36 @@ in your definition file. For example, we can substitute a here document into the
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DistType} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{debian}\PYG{l+s+s2}{\PYGZdq{}}
+DistType \PYGZdq{}debian\PYGZdq{}
 
-\PYG{n}{MirrorURL} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{http://us.archive.ubuntu.com/ubuntu/}\PYG{l+s+s2}{\PYGZdq{}}
+MirrorURL \PYGZdq{}http://us.archive.ubuntu.com/ubuntu/\PYGZdq{}
 
-\PYG{n}{OSVersion} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{trusty}\PYG{l+s+s2}{\PYGZdq{}}
-
-
-\PYG{n}{Setup}
-
-\PYG{n}{Bootstrap}
+OSVersion \PYGZdq{}trusty\PYGZdq{}
 
 
-\PYG{n}{InstallPkgs} \PYG{n}{python}
+Setup
 
-\PYG{n}{InstallPkgs} \PYG{n}{wget}
-
-\PYG{n}{RunCmd} \PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{sh} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{EOF}
-
-\PYG{n}{wget} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{bootstrap}\PYG{o}{.}\PYG{n}{pypa}\PYG{o}{.}\PYG{n}{io}\PYG{o}{/}\PYG{n}{get}\PYG{o}{\PYGZhy{}}\PYG{n}{pip}\PYG{o}{.}\PYG{n}{py}
-
-\PYG{n}{python} \PYG{n}{get}\PYG{o}{\PYGZhy{}}\PYG{n}{pip}\PYG{o}{.}\PYG{n}{py}
-
-\PYG{n}{ln} \PYG{o}{\PYGZhy{}}\PYG{n}{s} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{pip} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{pip}
-
-\PYG{n}{pip} \PYG{n}{install} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZhy{}}\PYG{n}{upgrade} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{storage}\PYG{o}{.}\PYG{n}{googleapis}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{/}\PYG{n}{linux}\PYG{o}{/}\PYG{n}{cpu}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.9}\PYG{o}{.}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{n}{cp27}\PYG{o}{\PYGZhy{}}\PYG{n}{none}\PYG{o}{\PYGZhy{}}\PYG{n}{linux\PYGZus{}x86\PYGZus{}64}\PYG{o}{.}\PYG{n}{whl}
-
-\PYG{n}{EOF}
+Bootstrap
 
 
-\PYG{n}{Cleanup}
+InstallPkgs python
+
+InstallPkgs wget
+
+RunCmd /bin/sh \PYGZlt{}\PYGZlt{}EOF
+
+wget https://bootstrap.pypa.io/get\PYGZhy{}pip.py
+
+python get\PYGZhy{}pip.py
+
+ln \PYGZhy{}s /usr/local/bin/pip /usr/bin/pip
+
+pip install \PYGZhy{}\PYGZhy{}upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow\PYGZhy{}0.9.0\PYGZhy{}cp27\PYGZhy{}none\PYGZhy{}linux\PYGZus{}x86\PYGZus{}64.whl
+
+EOF
+
+
+Cleanup
 \end{sphinxVerbatim}
 
 As you can see, using a here document allowed us to decrease the number of RunCmd keywords from 4 to 1. This can be useful when your definition file
@@ -2257,34 +2301,34 @@ use a single InstallPkgs keyword to install multiple packages, as seen below:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{DistType} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{debian}\PYG{l+s+s2}{\PYGZdq{}}
+DistType \PYGZdq{}debian\PYGZdq{}
 
-\PYG{n}{MirrorURL} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{http://us.archive.ubuntu.com/ubuntu/}\PYG{l+s+s2}{\PYGZdq{}}
+MirrorURL \PYGZdq{}http://us.archive.ubuntu.com/ubuntu/\PYGZdq{}
 
-\PYG{n}{OSVersion} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{trusty}\PYG{l+s+s2}{\PYGZdq{}}
-
-
-\PYG{n}{Setup}
-
-\PYG{n}{Bootstrap}
+OSVersion \PYGZdq{}trusty\PYGZdq{}
 
 
-\PYG{n}{InstallPkgs} \PYG{n}{python} \PYG{n}{wget}
+Setup
 
-\PYG{n}{RunCmd} \PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{sh} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{EOF}
-
-\PYG{n}{wget} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{bootstrap}\PYG{o}{.}\PYG{n}{pypa}\PYG{o}{.}\PYG{n}{io}\PYG{o}{/}\PYG{n}{get}\PYG{o}{\PYGZhy{}}\PYG{n}{pip}\PYG{o}{.}\PYG{n}{py}
-
-\PYG{n}{python} \PYG{n}{get}\PYG{o}{\PYGZhy{}}\PYG{n}{pip}\PYG{o}{.}\PYG{n}{py}
-
-\PYG{n}{ln} \PYG{o}{\PYGZhy{}}\PYG{n}{s} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n}{local}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{pip} \PYG{o}{/}\PYG{n}{usr}\PYG{o}{/}\PYG{n+nb}{bin}\PYG{o}{/}\PYG{n}{pip}
-
-\PYG{n}{pip} \PYG{n}{install} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZhy{}}\PYG{n}{upgrade} \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{storage}\PYG{o}{.}\PYG{n}{googleapis}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{/}\PYG{n}{linux}\PYG{o}{/}\PYG{n}{cpu}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.9}\PYG{o}{.}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{n}{cp27}\PYG{o}{\PYGZhy{}}\PYG{n}{none}\PYG{o}{\PYGZhy{}}\PYG{n}{linux\PYGZus{}x86\PYGZus{}64}\PYG{o}{.}\PYG{n}{whl}
-
-\PYG{n}{EOF}
+Bootstrap
 
 
-\PYG{n}{Cleanup}
+InstallPkgs python wget
+
+RunCmd /bin/sh \PYGZlt{}\PYGZlt{}EOF
+
+wget https://bootstrap.pypa.io/get\PYGZhy{}pip.py
+
+python get\PYGZhy{}pip.py
+
+ln \PYGZhy{}s /usr/local/bin/pip /usr/bin/pip
+
+pip install \PYGZhy{}\PYGZhy{}upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow\PYGZhy{}0.9.0\PYGZhy{}cp27\PYGZhy{}none\PYGZhy{}linux\PYGZus{}x86\PYGZus{}64.whl
+
+EOF
+
+
+Cleanup
 \end{sphinxVerbatim}
 
 Using a single InstallPkgs keyword to install both ‘python’ and ‘wget’ allowed to decrease the number of InstallPkgs keywords we had to use in our definition file.
