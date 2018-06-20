@@ -107,7 +107,7 @@ There are however three caveats:
 Code Example using Open MPI 2.1.0 Stable
 ----------------------------------------
 
-::
+.. code-block:: none
 
     $ # Include the appropriate development tools into the container (notice we are calling
 
@@ -163,7 +163,7 @@ The previous example (using the Open MPI 2.1.0 stable release) should
 work fine on most hardware but if you have an issue, try running the
 example below (using the Open MPI Master branch):
 
-::
+.. code-block:: none
 
     $ # Include the appropriate development tools into the container (notice we are calling
 
@@ -296,7 +296,7 @@ is /tmp and /var/tmp. Additionally your current working directory
 system directory or already accessible via another mount. For almost all
 cases, this will work flawlessly as follows:
 
-::
+.. code-block:: none
 
     $ pwd
 
@@ -336,7 +336,7 @@ descriptor to your current directory and change you back to it. If you
 do a ‘pwd’ within the container, you may see some weird things. For
 example:
 
-::
+.. code-block:: none
 
     $ pwd
 
@@ -377,7 +377,7 @@ host to the applications within the container to facilitate expected
 behavior from the interaction between the host and the container. For
 example:
 
-::
+.. code-block:: none
 
     $ cat debian.def | singularity exec container.img grep 'MirrorURL'
 
