@@ -3,6 +3,8 @@
 Appendix
 ========
 
+.. _using-host-libraries-gpu-drivers-and-openmpi-btls:
+
 --------------------------------------------------
 Using Host libraries: GPU drivers and OpenMPI BTLs
 --------------------------------------------------
