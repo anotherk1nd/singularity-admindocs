@@ -1,5 +1,5 @@
 
-.. security admin guide:
+.. _security:
 
 ========
 Security
