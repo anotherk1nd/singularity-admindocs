@@ -401,7 +401,7 @@ writable, but it is non-persistent between non-overlapping runs.
 License
 -------
 
-::
+.. code-block:: none
 
     Redistribution and use in source and binary forms, with or without
 
