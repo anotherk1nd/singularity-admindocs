@@ -258,12 +258,19 @@ containers that are owned by a particular set of users.
 .. code-block:: none
 
     # LIMIT CONTAINER OWNERS: [STRING]
+
     # DEFAULT: NULL
+
     # Only allow containers to be used that are owned by a given user. If this
+
     # configuration is undefined (commented or set to NULL), all containers are
+
     # allowed to be used. This feature only applies when Singularity is running in
+
     # SUID mode and the user is non-root.
+
     #limit container owners = gmk, singularity, nobody
+
 
 .. note:: If you are in a high risk security environment, you may want to
     enable this feature. Trusting container images to users could allow a
