@@ -1,3 +1,6 @@
+
+.. security admin guide:
+
 ========
 Security
 ========
@@ -532,7 +535,7 @@ never escalated, but we have the same outcome using a sandbox directory
     gmk
 
     Singularity ubuntu.dir:~>
-    
+
 
 Here you can see that the output and functionality is very similar,
 but we never increased any privilege and none of the ``*-suid`` program flow was
